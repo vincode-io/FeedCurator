@@ -22,7 +22,7 @@ class ViewController: NSViewController {
 		return self.view.window?.windowController?.document as? Document
 	}
 	
-	private var opmlDocument: OPMLEntry?
+	var opmlDocument: OPMLEntry?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()

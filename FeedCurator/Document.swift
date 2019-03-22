@@ -23,7 +23,16 @@ class Document: NSDocument {
 	}
 
 	override func data(ofType typeName: String) throws -> Data {
-		throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
+		let entry = viewController.opmlDocument!
+		
+		entry.title = viewController.titleTextField.stringValue
+		
+		let xml = entry.makeXML(indentLevel: 0)
+		
+		// TODO: add error handling here...
+		// Throw an exception if there isn't any data
+		
+		return xml.data(using: .utf8)!
 	}
 
 	override func read(from data: Data, ofType typeName: String) throws {
