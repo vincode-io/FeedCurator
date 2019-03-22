@@ -1,21 +1,32 @@
 //Copyright © 2019 Vincode, Inc. All rights reserved.
 
-import Cocoa
+import AppKit
+import RSParser
 
 class ViewController: NSViewController {
 
-	override func viewDidLoad() {
-		super.viewDidLoad()
-
-		// Do any additional setup after loading the view.
+	@IBOutlet weak var titleTextField: NSTextField!
+	
+	var document: Document {
+		return self.view.window?.windowController?.document as! Document
+	}
+	
+	override func viewDidAppear() {
+		
+		super.viewDidAppear()
+		
+		guard let opmlDocument = document.opmlDocument else {
+			return
+		}
+		
+		titleTextField.stringValue = opmlDocument.title
+		
 	}
 
 	override var representedObject: Any? {
 		didSet {
-		// Update the view, if already loaded.
+			print("stored rep object")
 		}
 	}
 
-
 }
-

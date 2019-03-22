@@ -12,10 +12,50 @@
 		518C65AB22443C7B00B18604 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518C65AA22443C7B00B18604 /* Document.swift */; };
 		518C65AD22443C7C00B18604 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 518C65AC22443C7C00B18604 /* Assets.xcassets */; };
 		518C65B022443C7C00B18604 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 518C65AE22443C7C00B18604 /* Main.storyboard */; };
+		518C65D522444FDA00B18604 /* RSParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 518C65C222443FF500B18604 /* RSParser.framework */; };
+		518C65D622444FDA00B18604 /* RSParser.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 518C65C222443FF500B18604 /* RSParser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		518C65C122443FF500B18604 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 518C65BC22443FF500B18604 /* RSParser.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 84FF5F841EFA285800C15A01;
+			remoteInfo = RSParser;
+		};
+		518C65C322443FF500B18604 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 518C65BC22443FF500B18604 /* RSParser.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 84FF5F8D1EFA285800C15A01;
+			remoteInfo = RSParserTests;
+		};
+		518C65D722444FDA00B18604 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 518C65BC22443FF500B18604 /* RSParser.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 84FF5F831EFA285800C15A01;
+			remoteInfo = RSParser;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		518C65D922444FDA00B18604 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				518C65D622444FDA00B18604 /* RSParser.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		518C65A322443C7B00B18604 /* FeedCurator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FeedCurator.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		518C65A322443C7B00B18604 /* Feed Curator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Feed Curator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		518C65A622443C7B00B18604 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		518C65A822443C7B00B18604 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		518C65AA22443C7B00B18604 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
@@ -23,6 +63,7 @@
 		518C65AF22443C7C00B18604 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		518C65B122443C7C00B18604 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		518C65B222443C7C00B18604 /* FeedCurator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FeedCurator.entitlements; sourceTree = "<group>"; };
+		518C65BC22443FF500B18604 /* RSParser.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RSParser.xcodeproj; path = submodules/RSParser/RSParser.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				518C65D522444FDA00B18604 /* RSParser.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,13 +83,14 @@
 			children = (
 				518C65A522443C7B00B18604 /* FeedCurator */,
 				518C65A422443C7B00B18604 /* Products */,
+				518C65BC22443FF500B18604 /* RSParser.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
 		518C65A422443C7B00B18604 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				518C65A322443C7B00B18604 /* FeedCurator.app */,
+				518C65A322443C7B00B18604 /* Feed Curator.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -66,24 +109,36 @@
 			path = FeedCurator;
 			sourceTree = "<group>";
 		};
+		518C65BD22443FF500B18604 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				518C65C222443FF500B18604 /* RSParser.framework */,
+				518C65C422443FF500B18604 /* RSParserTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		518C65A222443C7B00B18604 /* FeedCurator */ = {
+		518C65A222443C7B00B18604 /* Feed Curator */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 518C65B522443C7C00B18604 /* Build configuration list for PBXNativeTarget "FeedCurator" */;
+			buildConfigurationList = 518C65B522443C7C00B18604 /* Build configuration list for PBXNativeTarget "Feed Curator" */;
 			buildPhases = (
+				518C65BB22443D1400B18604 /* ShellScript */,
 				518C659F22443C7B00B18604 /* Sources */,
 				518C65A022443C7B00B18604 /* Frameworks */,
 				518C65A122443C7B00B18604 /* Resources */,
+				518C65D922444FDA00B18604 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				518C65D822444FDA00B18604 /* PBXTargetDependency */,
 			);
-			name = FeedCurator;
+			name = "Feed Curator";
 			productName = FeedCurator;
-			productReference = 518C65A322443C7B00B18604 /* FeedCurator.app */;
+			productReference = 518C65A322443C7B00B18604 /* Feed Curator.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -101,7 +156,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 518C659E22443C7B00B18604 /* Build configuration list for PBXProject "FeedCurator" */;
+			buildConfigurationList = 518C659E22443C7B00B18604 /* Build configuration list for PBXProject "Feed Curator" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -112,12 +167,35 @@
 			mainGroup = 518C659A22443C7B00B18604;
 			productRefGroup = 518C65A422443C7B00B18604 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 518C65BD22443FF500B18604 /* Products */;
+					ProjectRef = 518C65BC22443FF500B18604 /* RSParser.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
-				518C65A222443C7B00B18604 /* FeedCurator */,
+				518C65A222443C7B00B18604 /* Feed Curator */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		518C65C222443FF500B18604 /* RSParser.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RSParser.framework;
+			remoteRef = 518C65C122443FF500B18604 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		518C65C422443FF500B18604 /* RSParserTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = RSParserTests.xctest;
+			remoteRef = 518C65C322443FF500B18604 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		518C65A122443C7B00B18604 /* Resources */ = {
@@ -131,6 +209,26 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		518C65BB22443D1400B18604 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		518C659F22443C7B00B18604 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -143,6 +241,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		518C65D822444FDA00B18604 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RSParser;
+			targetProxy = 518C65D722444FDA00B18604 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		518C65AE22443C7C00B18604 /* Main.storyboard */ = {
@@ -274,6 +380,7 @@
 		518C65B622443C7C00B18604 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FeedCurator/FeedCurator.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -293,6 +400,7 @@
 		518C65B722443C7C00B18604 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FeedCurator/FeedCurator.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -312,7 +420,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		518C659E22443C7B00B18604 /* Build configuration list for PBXProject "FeedCurator" */ = {
+		518C659E22443C7B00B18604 /* Build configuration list for PBXProject "Feed Curator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				518C65B322443C7C00B18604 /* Debug */,
@@ -321,7 +429,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		518C65B522443C7C00B18604 /* Build configuration list for PBXNativeTarget "FeedCurator" */ = {
+		518C65B522443C7C00B18604 /* Build configuration list for PBXNativeTarget "Feed Curator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				518C65B622443C7C00B18604 /* Debug */,

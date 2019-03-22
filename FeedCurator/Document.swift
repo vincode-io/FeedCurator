@@ -1,13 +1,15 @@
 //Copyright © 2019 Vincode, Inc. All rights reserved.
 
-import Cocoa
+import AppKit
+import RSParser
 
 class Document: NSDocument {
 
-	override init() {
-	    super.init()
-		// Add your subclass-specific initialization here.
+	var viewController: ViewController {
+		return windowControllers[0].contentViewController as! ViewController
 	}
+	
+	var opmlDocument: RSOPMLDocument?
 
 	override class var autosavesInPlace: Bool {
 		return true
@@ -27,12 +29,8 @@ class Document: NSDocument {
 	}
 
 	override func read(from data: Data, ofType typeName: String) throws {
-		// Insert code here to read your document from the given data of the specified type, throwing an error in case of failure.
-		// Alternatively, you could remove this method and override read(from:ofType:) instead.
-		// If you do, you should also override isEntireFileLoaded to return false if the contents are lazily loaded.
-		throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
+		let parserData = ParserData(url: "", data: data)
+		opmlDocument = try! RSOPMLParser.parseOPML(with: parserData)
 	}
 
-
 }
-
