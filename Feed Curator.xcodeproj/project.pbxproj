@@ -20,6 +20,10 @@
 		518C65FE224577B600B18604 /* RSWeb.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 518C65E82245779900B18604 /* RSWeb.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		518C66022245791600B18604 /* OutlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518C66012245791600B18604 /* OutlineView.swift */; };
 		518C66042245834E00B18604 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518C66032245834E00B18604 /* WindowController.swift */; };
+		518C66162245937800B18604 /* OPMLEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518C66152245937800B18604 /* OPMLEntry.swift */; };
+		518C66182245944600B18604 /* OPMLFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518C66172245944600B18604 /* OPMLFeed.swift */; };
+		518C661A2245957200B18604 /* RSOPMLItem+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518C66192245957200B18604 /* RSOPMLItem+.swift */; };
+		518C661C22459C7000B18604 /* OPMLDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518C661B22459C7000B18604 /* OPMLDocument.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +136,10 @@
 		518C65ED224577A100B18604 /* RSCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RSCore.xcodeproj; path = submodules/RSCore/RSCore.xcodeproj; sourceTree = "<group>"; };
 		518C66012245791600B18604 /* OutlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineView.swift; sourceTree = "<group>"; };
 		518C66032245834E00B18604 /* WindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
+		518C66152245937800B18604 /* OPMLEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OPMLEntry.swift; sourceTree = "<group>"; };
+		518C66172245944600B18604 /* OPMLFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OPMLFeed.swift; sourceTree = "<group>"; };
+		518C66192245957200B18604 /* RSOPMLItem+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RSOPMLItem+.swift"; sourceTree = "<group>"; };
+		518C661B22459C7000B18604 /* OPMLDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OPMLDocument.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +183,10 @@
 				518C65A822443C7B00B18604 /* ViewController.swift */,
 				518C66012245791600B18604 /* OutlineView.swift */,
 				518C65AA22443C7B00B18604 /* Document.swift */,
+				518C661B22459C7000B18604 /* OPMLDocument.swift */,
+				518C66152245937800B18604 /* OPMLEntry.swift */,
+				518C66172245944600B18604 /* OPMLFeed.swift */,
+				518C66192245957200B18604 /* RSOPMLItem+.swift */,
 				518C65AC22443C7C00B18604 /* Assets.xcassets */,
 				518C65AE22443C7C00B18604 /* Main.storyboard */,
 				518C65B122443C7C00B18604 /* Info.plist */,
@@ -382,6 +394,10 @@
 			files = (
 				518C65A922443C7B00B18604 /* ViewController.swift in Sources */,
 				518C66042245834E00B18604 /* WindowController.swift in Sources */,
+				518C66162245937800B18604 /* OPMLEntry.swift in Sources */,
+				518C661A2245957200B18604 /* RSOPMLItem+.swift in Sources */,
+				518C66182245944600B18604 /* OPMLFeed.swift in Sources */,
+				518C661C22459C7000B18604 /* OPMLDocument.swift in Sources */,
 				518C65A722443C7B00B18604 /* AppDelegate.swift in Sources */,
 				518C65AB22443C7B00B18604 /* Document.swift in Sources */,
 				518C66022245791600B18604 /* OutlineView.swift in Sources */,

@@ -18,12 +18,12 @@ class ViewController: NSViewController {
 		return NSImage(contentsOfFile: path)
 	}()
 
-	var document: Document {
-		return self.view.window?.windowController?.document as! Document
+	private var document: Document? {
+		return self.view.window?.windowController?.document as? Document
 	}
-
-	var opmlDocument: RSOPMLDocument?
-
+	
+	private var opmlDocument: OPMLEntry?
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		feedOutlineView.delegate = self
@@ -33,12 +33,12 @@ class ViewController: NSViewController {
 	override func viewDidAppear() {
 		
 		super.viewDidAppear()
-		if document.opmlDocument == nil {
+		if document == nil {
 			return
 		}
 		
-		opmlDocument = document.opmlDocument
-		titleTextField.stringValue = opmlDocument!.title
+		opmlDocument = document!.opmlDocument
+		titleTextField.stringValue = opmlDocument?.title ?? ""
 		feedOutlineView.reloadData()
 		
 	}
@@ -58,28 +58,28 @@ extension ViewController: NSOutlineViewDataSource {
 	func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
 		
 		if item == nil {
-			return opmlDocument!.children![index]
+			return opmlDocument!.entries[index]
 		}
 		
-		let opml = item as! RSOPMLItem
-		return opml.children![index]
+		let entry = item as! OPMLEntry
+		return entry.entries[index]
 		
 	}
 	
 	func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
 		
 		if item == nil {
-			return opmlDocument?.children?.count ?? 0
+			return opmlDocument?.entries.count ?? 0
 		}
 		
-		let opml = item as! RSOPMLItem
-		return opml.children?.count ?? 0
+		let entry = item as! OPMLEntry
+		return entry.entries.count
 		
 	}
 	
 	func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
-		let opml = item as! RSOPMLItem
-		return opml.isFolder
+		let entry = item as! OPMLEntry
+		return entry.isFolder
 	}
 	
 }
@@ -93,30 +93,26 @@ extension ViewController: NSOutlineViewDelegate {
 		switch tableColumn?.identifier.rawValue {
 		case "nameColumn":
 			if let cell = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "nameCell"), owner: nil) as? NSTableCellView {
-				if let opmlDoc = item as? RSOPMLDocument {
+				let entry = item as! OPMLEntry
+				if entry.isFolder {
 					cell.imageView?.image = folderImage
-					cell.textField?.stringValue = titleOrUntitled(opmlDoc.title)
-				} else if let opmlItem = item as? RSOPMLItem {
-					if opmlItem.children?.count ?? 0 > 0 {
-						cell.imageView?.image = folderImage
-					} else {
-						cell.imageView?.image = faviconImage
-					}
-					cell.textField?.stringValue = titleOrUntitled(opmlItem.titleFromAttributes)
+				} else {
+					cell.imageView?.image = faviconImage
 				}
+				cell.textField?.stringValue = titleOrUntitled(entry.title)
 				return cell
 			}
 		case "pageColumn":
-			if let opmlItem = item as? RSOPMLItem, let feedSpecifier = opmlItem.feedSpecifier {
+			if let feed = item as? OPMLFeed {
 				if let cell = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "pageCell"), owner: nil) as? NSTableCellView {
-					cell.textField?.stringValue = feedSpecifier.homePageURL ?? ""
+					cell.textField?.stringValue = feed.pageURL ?? ""
 					return cell
 				}
 			}
 		case "feedColumn":
-			if let opmlItem = item as? RSOPMLItem, let feedSpecifier = opmlItem.feedSpecifier {
+			if let feed = item as? OPMLFeed {
 				if let cell = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "feedCell"), owner: nil) as? NSTableCellView {
-					cell.textField?.stringValue = feedSpecifier.feedURL
+					cell.textField?.stringValue = feed.feedURL
 					return cell
 				}
 			}
@@ -137,8 +133,8 @@ extension ViewController: NSOutlineViewDelegate {
 	}
 	
 	func outlineView(_ outlineView: NSOutlineView, shouldShowOutlineCellForItem item: Any) -> Bool {
-		let opml = item as! RSOPMLItem
-		return opml.children?.count ?? 0 > 0
+		let entry = item as! OPMLEntry
+		return entry.isFolder
 	}
 	
 	func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
@@ -149,10 +145,10 @@ extension ViewController: NSOutlineViewDelegate {
 	}
 	
 	func outlineView(_ outlineView: NSOutlineView, pasteboardWriterForItem item: Any) -> NSPasteboardWriting? {
-		guard let opmlItem = item as? RSOPMLItem, let feedURL = opmlItem.feedSpecifier?.feedURL else {
-			return nil
+		if let feed = item as? OPMLFeed {
+			return URLPasteboardWriter(urlString: feed.feedURL)
 		}
-		return URLPasteboardWriter(urlString: feedURL)
+		return nil
 	}
 	
 	func outlineViewSelectionDidChange(_ notification: Notification) {
