@@ -23,6 +23,12 @@ class Document: NSDocument {
 		let windowController = windowControllers[0] as! WindowController
 		let viewController = windowController.contentViewController as! ViewController
 		let entry = viewController.opmlDocument!
+		
+		if entry.entries.isEmpty {
+			let error = NSLocalizedString("Can't save document with no entries.", comment: "Missing entries on save")
+			presentError(error)
+			throw error
+		}
 
 		if windowController.titleButton.title == WindowController.clickHere {
 			entry.title = ""
