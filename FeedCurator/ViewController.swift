@@ -95,7 +95,7 @@ extension ViewController: NSOutlineViewDelegate {
 				} else {
 					cell.imageView?.image = faviconImage
 				}
-				cell.textField?.stringValue = titleOrUntitled(entry.title)
+				cell.textField?.stringValue = entry.title ?? ""
 				return cell
 			}
 		case "pageColumn":
@@ -151,15 +151,4 @@ extension ViewController: NSOutlineViewDelegate {
 		
 	}
 	
-}
-
-private extension ViewController {
-	
-	func titleOrUntitled(_ title: String?) -> String {
-		if title == nil || title?.count ?? 0 < 1 {
-			return NSLocalizedString("(Untitled)", comment: "Untitled entity")
-		}
-		return title!
-	}
-
 }
