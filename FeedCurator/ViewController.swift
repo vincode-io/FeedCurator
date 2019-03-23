@@ -43,12 +43,6 @@ class ViewController: NSViewController {
 		
 	}
 
-	override var representedObject: Any? {
-		didSet {
-			print("stored rep object")
-		}
-	}
-
 }
 
 // MARK: NSOutlineViewDataSource
