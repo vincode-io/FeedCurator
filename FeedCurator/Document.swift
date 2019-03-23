@@ -3,6 +3,10 @@
 import AppKit
 import RSParser
 
+public extension Notification.Name {
+	static let OPMLDocumentTitleDidChange = Notification.Name(rawValue: "OPMLDocumentTitleDidChange")
+}
+
 class Document: NSDocument {
 
 	var opmlDocument = OPMLDocument(title: nil)
@@ -46,6 +50,18 @@ class Document: NSDocument {
 		}
 
 		return super.validateUserInterfaceItem(item)
+		
+	}
+	
+	func updateTitle(_ title: String?) {
+		
+		undoManager?.registerUndo(withTarget: opmlDocument) { [oldTitle = opmlDocument.title] target in
+			target.title = oldTitle
+			NotificationCenter.default.post(name: .OPMLDocumentTitleDidChange, object: self, userInfo: nil)
+		}
+		
+		opmlDocument.title = title
+		NotificationCenter.default.post(name: .OPMLDocumentTitleDidChange, object: self, userInfo: nil)
 		
 	}
 	

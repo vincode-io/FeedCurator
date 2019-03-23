@@ -13,11 +13,22 @@ class WindowController: NSWindowController {
 	override func windowDidLoad() {
         super.windowDidLoad()
     	self.shouldCascadeWindows = true
+		NotificationCenter.default.addObserver(self, selector: #selector(opmlDocumentTitleDidChange(_:)), name: .OPMLDocumentTitleDidChange, object: nil)
     }
 
 	@IBAction func titleButtonClicked(_ sender: NSButton) {
 		updateTitle = UpdateTitle()
 		updateTitle!.runSheetOnWindow(window!)
+	}
+	
+	@objc func opmlDocumentTitleDidChange(_ note: Notification) {
+		if let doc = self.document as? Document {
+			if doc.opmlDocument.title == nil {
+				titleButton.title = WindowController.clickHere
+			} else {
+				titleButton.title = doc.opmlDocument.title ?? ""
+			}
+		}
 	}
 	
 }

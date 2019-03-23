@@ -39,24 +39,17 @@ class UpdateTitle: NSWindowController {
 
 	private func updateTitle() {
 		
-		guard let windowController = hostWindow?.windowController as? WindowController else {
-			assertionFailure()
-			return
-		}
-
-		// Update the Toolbar
-		if titleTextField.stringValue.isEmpty {
-			windowController.titleButton.title = WindowController.clickHere
-		} else {
-			windowController.titleButton.title = titleTextField.stringValue
-		}
-		
 		// Update the model
 		guard let document = hostWindow?.windowController?.document as? Document else {
 			assertionFailure()
 			return
 		}
-		document.opmlDocument.title = windowController.titleButton.title
+		
+		if titleTextField.stringValue.isEmpty {
+			document.updateTitle(nil)
+		} else {
+			document.updateTitle(titleTextField.stringValue)
+		}
 		
 	}
 
