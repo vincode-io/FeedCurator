@@ -53,6 +53,10 @@ class UpdateTitle: NSWindowController {
 		
 	}
 
+	@IBAction func cancel(_ sender: NSButton) {
+		hostWindow!.endSheet(window!, returnCode: NSApplication.ModalResponse.cancel)
+	}
+	
 	@IBAction func update(_ sender: NSButton) {
 		hostWindow!.endSheet(window!, returnCode: NSApplication.ModalResponse.OK)
 	}

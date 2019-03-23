@@ -18,8 +18,8 @@
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="480" height="270"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
-            <view key="contentView" wantsLayer="YES" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="390" height="91"/>
+            <view key="contentView" wantsLayer="YES" misplaced="YES" id="se5-gp-TjO">
+                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Zpr-cg-GeL">
@@ -46,11 +46,26 @@ DQ
                             <action selector="update:" target="-2" id="PIk-6w-LLo"/>
                         </connections>
                     </button>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Uid-li-aed">
+                        <rect key="frame" x="209" y="13" width="82" height="32"/>
+                        <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="CVz-dF-8sL">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="cancel:" target="-2" id="VwF-HJ-R17"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Zpr-cg-GeL" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="0cR-YQ-cYL"/>
                     <constraint firstAttribute="bottom" secondItem="At1-7K-va6" secondAttribute="bottom" constant="20" id="CKL-zz-USg"/>
                     <constraint firstItem="Zpr-cg-GeL" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" id="IGR-Ud-VSn"/>
+                    <constraint firstItem="At1-7K-va6" firstAttribute="leading" secondItem="Uid-li-aed" secondAttribute="trailing" constant="12" symbolic="YES" id="IyQ-rn-v6A"/>
+                    <constraint firstItem="Uid-li-aed" firstAttribute="centerY" secondItem="At1-7K-va6" secondAttribute="centerY" id="a42-KD-hlU"/>
                     <constraint firstItem="At1-7K-va6" firstAttribute="top" secondItem="Zpr-cg-GeL" secondAttribute="bottom" constant="8" id="azK-kM-tF0"/>
                     <constraint firstAttribute="trailing" secondItem="At1-7K-va6" secondAttribute="trailing" constant="20" id="cTk-6a-CRq"/>
                     <constraint firstAttribute="trailing" secondItem="Zpr-cg-GeL" secondAttribute="trailing" constant="20" id="tf2-zK-G9f"/>
