@@ -44,7 +44,11 @@ class UpdateTitle: NSWindowController {
 			return
 		}
 		
-		windowController.titleButton.title = titleTextField.stringValue
+		if titleTextField.stringValue.isEmpty {
+			windowController.titleButton.title = WindowController.clickHere
+		} else {
+			windowController.titleButton.title = titleTextField.stringValue
+		}
 		
 	}
 
