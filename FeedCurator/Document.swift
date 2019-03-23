@@ -43,7 +43,7 @@ class Document: NSDocument {
 
 	override func read(from data: Data, ofType typeName: String) throws {
 		let parserData = ParserData(url: "", data: data)
-		let rsDoc = try! RSOPMLParser.parseOPML(with: parserData)
+		let rsDoc = try RSOPMLParser.parseOPML(with: parserData)
 		opmlDocument = rsDoc.translateToOPMLEntry()
 	}
 

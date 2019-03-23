@@ -691,28 +691,6 @@
                                         </buttonCell>
                                     </button>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="34EAF69F-5A49-4C49-BCAC-14B1FCA8D9F9" label="Publish" paletteLabel="Publish to Github" sizingBehavior="auto" id="chs-dC-a4c">
-                                    <nil key="toolTip"/>
-                                    <button key="view" verticalHuggingPriority="750" id="fVX-Gt-Nu9">
-                                        <rect key="frame" x="0.0" y="14" width="100" height="25"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="roundTextured" title="Publish" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="h2k-XV-fyb">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                    </button>
-                                </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="397837B0-316D-433C-AE44-84172F2067DF" label="Submit" paletteLabel="Submit to Github" sizingBehavior="auto" id="eTs-QI-WF7">
-                                    <nil key="toolTip"/>
-                                    <button key="view" verticalHuggingPriority="750" id="IQO-sh-AZJ">
-                                        <rect key="frame" x="0.0" y="14" width="100" height="25"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="roundTextured" title="Submit" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0B5-06-2vx">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                    </button>
-                                </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="7B48A55B-B800-48D8-8A8A-2C7740BD7B7B" label="Title" paletteLabel="Title" sizingBehavior="auto" id="Rsh-bx-k9r">
                                     <nil key="toolTip"/>
                                     <button key="view" verticalHuggingPriority="750" id="lYO-a6-njK">
@@ -733,8 +711,6 @@
                                 <toolbarItem reference="3ic-jy-Ogu"/>
                                 <toolbarItem reference="Rsh-bx-k9r"/>
                                 <toolbarItem reference="3ic-jy-Ogu"/>
-                                <toolbarItem reference="chs-dC-a4c"/>
-                                <toolbarItem reference="eTs-QI-WF7"/>
                             </defaultToolbarItems>
                         </toolbar>
                         <connections>
