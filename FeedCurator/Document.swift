@@ -20,12 +20,6 @@ class Document: NSDocument {
 
 	override func data(ofType typeName: String) throws -> Data {
 		
-		if opmlDocument.entries.isEmpty {
-			let error = NSLocalizedString("Can't save document with no entries.", comment: "Missing entries on save")
-			presentError(error)
-			throw error
-		}
-		
 		let xml = opmlDocument.makeXML(indentLevel: 0)
 		let xmlData = xml.data(using: .utf8)
 		
@@ -43,4 +37,16 @@ class Document: NSDocument {
 		opmlDocument = rsDoc.translateToOPMLEntry() as! OPMLDocument
 	}
 
+	override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
+		
+		if item.action == #selector(save(_:)) {
+			if opmlDocument.entries.isEmpty {
+				return false
+			}
+		}
+
+		return super.validateUserInterfaceItem(item)
+		
+	}
+	
 }
