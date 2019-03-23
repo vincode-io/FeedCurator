@@ -34,6 +34,10 @@ class ViewController: NSViewController {
 		super.viewDidAppear()
 
 		opmlDocument = (windowController!.document as! Document).opmlDocument
+		if opmlDocument == nil {
+			opmlDocument = OPMLDocument(title: nil)
+		}
+		
 		windowController!.titleButton.title = opmlDocument?.title ?? WindowController.clickHere
 		feedOutlineView.reloadData()
 		

@@ -129,6 +129,7 @@
 		512BDE23224687CF00CB4159 /* UpdateTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTitle.swift; sourceTree = "<group>"; };
 		512BDE24224687CF00CB4159 /* UpdateTitle.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpdateTitle.xib; sourceTree = "<group>"; };
 		512BDE28224689DE00CB4159 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
+		512BDE2A224694E800CB4159 /* Feed Curator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Feed Curator.entitlements"; sourceTree = "<group>"; };
 		518C65A322443C7B00B18604 /* Feed Curator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Feed Curator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		518C65A622443C7B00B18604 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		518C65A822443C7B00B18604 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -182,6 +183,7 @@
 		518C659A22443C7B00B18604 = {
 			isa = PBXGroup;
 			children = (
+				512BDE2A224694E800CB4159 /* Feed Curator.entitlements */,
 				518C65A522443C7B00B18604 /* FeedCurator */,
 				518C65A422443C7B00B18604 /* Products */,
 				518C65ED224577A100B18604 /* RSCore.xcodeproj */,
@@ -294,6 +296,11 @@
 				TargetAttributes = {
 					518C65A222443C7B00B18604 = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -592,7 +599,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = FeedCurator/FeedCurator.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "Feed Curator.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = SHJK2V3AJG;
@@ -612,7 +619,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = FeedCurator/FeedCurator.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "Feed Curator.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = SHJK2V3AJG;
