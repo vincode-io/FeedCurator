@@ -210,7 +210,7 @@
 				518C66012245791600B18604 /* OutlineView.swift */,
 				518C65AA22443C7B00B18604 /* Document.swift */,
 				512BDE1D2246879B00CB4159 /* Sheets */,
-				518C661D2245A51E00B18604 /* OPML */,
+				518C661D2245A51E00B18604 /* Model */,
 				512BDE27224689C400CB4159 /* Extensions */,
 				518C65AC22443C7C00B18604 /* Assets.xcassets */,
 				518C65B122443C7C00B18604 /* Info.plist */,
@@ -248,7 +248,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		518C661D2245A51E00B18604 /* OPML */ = {
+		518C661D2245A51E00B18604 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				518C66202245A5A400B18604 /* OPMLDocument.swift */,
@@ -256,7 +256,7 @@
 				518C661E2245A5A400B18604 /* OPMLFeed.swift */,
 				518C661F2245A5A400B18604 /* RSOPMLItem+.swift */,
 			);
-			path = OPML;
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
