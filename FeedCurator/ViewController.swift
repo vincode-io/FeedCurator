@@ -21,7 +21,9 @@ class ViewController: NSViewController {
 		return self.view.window?.windowController as? WindowController
 	}
 	
-	var opmlDocument: OPMLEntry?
+	private var opmlDocument: OPMLDocument? {
+		return (windowController?.document as? Document)?.opmlDocument
+	}
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -33,11 +35,6 @@ class ViewController: NSViewController {
 		
 		super.viewDidAppear()
 
-		opmlDocument = (windowController!.document as! Document).opmlDocument
-		if opmlDocument == nil {
-			opmlDocument = OPMLDocument(title: nil)
-		}
-		
 		windowController!.titleButton.title = opmlDocument?.title ?? WindowController.clickHere
 		feedOutlineView.reloadData()
 		

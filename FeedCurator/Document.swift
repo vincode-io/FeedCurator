@@ -5,7 +5,7 @@ import RSParser
 
 class Document: NSDocument {
 
-	var opmlDocument: OPMLEntry?
+	var opmlDocument = OPMLDocument(title: nil)
 
 	override class var autosavesInPlace: Bool {
 		return true
@@ -20,23 +20,13 @@ class Document: NSDocument {
 
 	override func data(ofType typeName: String) throws -> Data {
 		
-		let windowController = windowControllers[0] as! WindowController
-		let viewController = windowController.contentViewController as! ViewController
-		let entry = viewController.opmlDocument!
-		
-		if entry.entries.isEmpty {
+		if opmlDocument.entries.isEmpty {
 			let error = NSLocalizedString("Can't save document with no entries.", comment: "Missing entries on save")
 			presentError(error)
 			throw error
 		}
-
-		if windowController.titleButton.title == WindowController.clickHere {
-			entry.title = ""
-		} else {
-			entry.title = windowController.titleButton.title
-		}
 		
-		let xml = entry.makeXML(indentLevel: 0)
+		let xml = opmlDocument.makeXML(indentLevel: 0)
 		let xmlData = xml.data(using: .utf8)
 		
 		if xmlData == nil || xmlData!.count < 1 {
@@ -50,7 +40,7 @@ class Document: NSDocument {
 	override func read(from data: Data, ofType typeName: String) throws {
 		let parserData = ParserData(url: "", data: data)
 		let rsDoc = try RSOPMLParser.parseOPML(with: parserData)
-		opmlDocument = rsDoc.translateToOPMLEntry()
+		opmlDocument = rsDoc.translateToOPMLEntry() as! OPMLDocument
 	}
 
 }
