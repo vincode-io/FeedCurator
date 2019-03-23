@@ -48,11 +48,3 @@ class Document: NSDocument {
 	}
 
 }
-
-private extension Document {
-	
-//	func serializeOPML() -> Data {
-//
-//	}
-	
-}
