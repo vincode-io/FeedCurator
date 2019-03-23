@@ -6,7 +6,6 @@ import RSParser
 
 class ViewController: NSViewController {
 
-	@IBOutlet weak var titleTextField: NSTextField!
 	@IBOutlet weak var feedOutlineView: NSOutlineView!
 
 	private let folderImage: NSImage? = {
@@ -18,8 +17,8 @@ class ViewController: NSViewController {
 		return NSImage(contentsOfFile: path)
 	}()
 
-	private var document: Document? {
-		return self.view.window?.windowController?.document as? Document
+	private var windowController: WindowController? {
+		return self.view.window?.windowController as? WindowController
 	}
 	
 	var opmlDocument: OPMLEntry?
@@ -33,12 +32,9 @@ class ViewController: NSViewController {
 	override func viewDidAppear() {
 		
 		super.viewDidAppear()
-		if document == nil {
-			return
-		}
-		
-		opmlDocument = document!.opmlDocument
-		titleTextField.stringValue = opmlDocument?.title ?? ""
+
+		opmlDocument = (windowController!.document as! Document).opmlDocument
+		windowController!.titleButton.title = opmlDocument?.title ?? WindowController.clickHere
 		feedOutlineView.reloadData()
 		
 	}

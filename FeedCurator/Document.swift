@@ -5,10 +5,6 @@ import RSParser
 
 class Document: NSDocument {
 
-	var viewController: ViewController {
-		return windowControllers[0].contentViewController as! ViewController
-	}
-	
 	var opmlDocument: OPMLEntry?
 
 	override class var autosavesInPlace: Bool {
@@ -23,16 +19,26 @@ class Document: NSDocument {
 	}
 
 	override func data(ofType typeName: String) throws -> Data {
-		let entry = viewController.opmlDocument!
 		
-		entry.title = viewController.titleTextField.stringValue
+		let windowController = windowControllers[0] as! WindowController
+		let viewController = windowController.contentViewController as! ViewController
+		let entry = viewController.opmlDocument!
+
+		if windowController.titleButton.title == WindowController.clickHere {
+			entry.title = ""
+		} else {
+			entry.title = windowController.titleButton.title
+		}
 		
 		let xml = entry.makeXML(indentLevel: 0)
+		let xmlData = xml.data(using: .utf8)
 		
-		// TODO: add error handling here...
-		// Throw an exception if there isn't any data
+		if xmlData == nil || xmlData!.count < 1 {
+			throw NSLocalizedString("Error generating OPML file", comment: "Error generating OPML file")
+		}
 		
-		return xml.data(using: .utf8)!
+		return xmlData!
+		
 	}
 
 	override func read(from data: Data, ofType typeName: String) throws {

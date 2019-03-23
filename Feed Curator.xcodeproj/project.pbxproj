@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		512BDE25224687CF00CB4159 /* UpdateTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512BDE23224687CF00CB4159 /* UpdateTitle.swift */; };
+		512BDE26224687CF00CB4159 /* UpdateTitle.xib in Resources */ = {isa = PBXBuildFile; fileRef = 512BDE24224687CF00CB4159 /* UpdateTitle.xib */; };
+		512BDE29224689DE00CB4159 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512BDE28224689DE00CB4159 /* String+.swift */; };
 		518C65A722443C7B00B18604 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518C65A622443C7B00B18604 /* AppDelegate.swift */; };
 		518C65A922443C7B00B18604 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518C65A822443C7B00B18604 /* ViewController.swift */; };
 		518C65AB22443C7B00B18604 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518C65AA22443C7B00B18604 /* Document.swift */; };
@@ -123,6 +126,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		512BDE23224687CF00CB4159 /* UpdateTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTitle.swift; sourceTree = "<group>"; };
+		512BDE24224687CF00CB4159 /* UpdateTitle.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpdateTitle.xib; sourceTree = "<group>"; };
+		512BDE28224689DE00CB4159 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		518C65A322443C7B00B18604 /* Feed Curator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Feed Curator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		518C65A622443C7B00B18604 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		518C65A822443C7B00B18604 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -156,6 +162,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		512BDE1D2246879B00CB4159 /* Sheets */ = {
+			isa = PBXGroup;
+			children = (
+				512BDE23224687CF00CB4159 /* UpdateTitle.swift */,
+				512BDE24224687CF00CB4159 /* UpdateTitle.xib */,
+			);
+			path = Sheets;
+			sourceTree = "<group>";
+		};
+		512BDE27224689C400CB4159 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				512BDE28224689DE00CB4159 /* String+.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		518C659A22443C7B00B18604 = {
 			isa = PBXGroup;
 			children = (
@@ -178,14 +201,16 @@
 		518C65A522443C7B00B18604 /* FeedCurator */ = {
 			isa = PBXGroup;
 			children = (
+				518C65AE22443C7C00B18604 /* Main.storyboard */,
 				518C65A622443C7B00B18604 /* AppDelegate.swift */,
 				518C66032245834E00B18604 /* WindowController.swift */,
 				518C65A822443C7B00B18604 /* ViewController.swift */,
 				518C66012245791600B18604 /* OutlineView.swift */,
 				518C65AA22443C7B00B18604 /* Document.swift */,
+				512BDE1D2246879B00CB4159 /* Sheets */,
 				518C661D2245A51E00B18604 /* OPML */,
+				512BDE27224689C400CB4159 /* Extensions */,
 				518C65AC22443C7C00B18604 /* Assets.xcassets */,
-				518C65AE22443C7C00B18604 /* Main.storyboard */,
 				518C65B122443C7C00B18604 /* Info.plist */,
 				518C65B222443C7C00B18604 /* FeedCurator.entitlements */,
 			);
@@ -370,6 +395,7 @@
 			files = (
 				518C65AD22443C7C00B18604 /* Assets.xcassets in Resources */,
 				518C65B022443C7C00B18604 /* Main.storyboard in Resources */,
+				512BDE26224687CF00CB4159 /* UpdateTitle.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,9 +429,11 @@
 				518C65A922443C7B00B18604 /* ViewController.swift in Sources */,
 				518C66222245A5A400B18604 /* OPMLFeed.swift in Sources */,
 				518C66252245A5A400B18604 /* OPMLEntry.swift in Sources */,
+				512BDE25224687CF00CB4159 /* UpdateTitle.swift in Sources */,
 				518C66042245834E00B18604 /* WindowController.swift in Sources */,
 				518C65A722443C7B00B18604 /* AppDelegate.swift in Sources */,
 				518C66242245A5A400B18604 /* OPMLDocument.swift in Sources */,
+				512BDE29224689DE00CB4159 /* String+.swift in Sources */,
 				518C66232245A5A400B18604 /* RSOPMLItem+.swift in Sources */,
 				518C65AB22443C7B00B18604 /* Document.swift in Sources */,
 				518C66022245791600B18604 /* OutlineView.swift in Sources */,
