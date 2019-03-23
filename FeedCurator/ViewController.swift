@@ -4,7 +4,7 @@ import AppKit
 import RSCore
 import RSParser
 
-class ViewController: NSViewController {
+class ViewController: NSViewController, NSUserInterfaceValidations {
 
 	@IBOutlet weak var feedOutlineView: NSOutlineView!
 
@@ -21,8 +21,21 @@ class ViewController: NSViewController {
 		return self.view.window?.windowController as? WindowController
 	}
 	
-	private var opmlDocument: OPMLDocument? {
-		return (windowController?.document as? Document)?.opmlDocument
+	private var document: Document? {
+		return windowController?.document as? Document
+	}
+
+	var currentlySelectedEntry: OPMLEntry? {
+		let selectedItems = currentlySelectedEntries
+		if selectedItems.count == 1 {
+			return selectedItems[0]
+		}
+		return nil
+	}
+	
+	var currentlySelectedEntries: [OPMLEntry] {
+		let selectedRows = feedOutlineView.selectedRowIndexes
+		return selectedRows.map({ feedOutlineView.item(atRow: $0) as! OPMLEntry })
 	}
 	
 	override func viewDidLoad() {
@@ -35,11 +48,48 @@ class ViewController: NSViewController {
 		
 		super.viewDidAppear()
 
-		windowController!.titleButton.title = opmlDocument?.title ?? WindowController.clickHere
+		windowController!.titleButton.title = document?.opmlDocument.title ?? WindowController.clickHere
 		feedOutlineView.reloadData()
 		
 	}
 
+	public func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
+		
+		if item.action == #selector(delete(_:)) {
+			if !currentlySelectedEntries.isEmpty {
+				return true
+			}
+		}
+		
+		return false
+		
+	}
+
+	// MARK: Actions
+	
+	@IBAction func delete(_ sender: AnyObject?) {
+		
+		for entry in currentlySelectedEntries {
+			
+//			if let currentDoc = currentItem as? RSOPMLDocument {
+//
+//				if let index = opmls.firstIndex(of: currentDoc) {
+//					opmls.remove(at: index)
+//				}
+//
+//				let indexSet = IndexSet(integer: outlineView.childIndex(forItem: currentDoc))
+//				outlineView.removeItems(at: indexSet, inParent: nil, withAnimation: .effectFade)
+//
+//				var subs = AppDefaults.userSubscriptions
+//				subs?.remove(currentDoc.url)
+//				AppDefaults.userSubscriptions = subs
+//
+//			}
+			
+		}
+		
+	}
+	
 }
 
 // MARK: NSOutlineViewDataSource
@@ -49,7 +99,7 @@ extension ViewController: NSOutlineViewDataSource {
 	func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
 		
 		if item == nil {
-			return opmlDocument!.entries[index]
+			return document!.opmlDocument.entries[index]
 		}
 		
 		let entry = item as! OPMLEntry
@@ -60,7 +110,7 @@ extension ViewController: NSOutlineViewDataSource {
 	func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
 		
 		if item == nil {
-			return opmlDocument?.entries.count ?? 0
+			return document?.opmlDocument.entries.count ?? 0
 		}
 		
 		let entry = item as! OPMLEntry

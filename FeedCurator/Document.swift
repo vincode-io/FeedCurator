@@ -5,6 +5,7 @@ import RSParser
 
 public extension Notification.Name {
 	static let OPMLDocumentTitleDidChange = Notification.Name(rawValue: "OPMLDocumentTitleDidChange")
+	static let OPMLEntryDidRemove = Notification.Name(rawValue: "OPMLEntryDidRemove")
 }
 
 class Document: NSDocument {
@@ -62,6 +63,10 @@ class Document: NSDocument {
 		
 		opmlDocument.title = title
 		NotificationCenter.default.post(name: .OPMLDocumentTitleDidChange, object: self, userInfo: nil)
+		
+	}
+	
+	func removeEntry(_ entry: OPMLEntry) {
 		
 	}
 	
