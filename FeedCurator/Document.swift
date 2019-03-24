@@ -57,8 +57,10 @@ class Document: NSDocument {
 	func updateTitle(_ title: String?) {
 		
 		let oldTitle = opmlDocument.title
-		undoManager?.registerUndo(withTarget: opmlDocument) { target in
-			target.title = oldTitle
+		
+		undoManager?.setActionName(NSLocalizedString("Title Change", comment: "Update Title"))
+		undoManager?.registerUndo(withTarget: opmlDocument) { [weak self] target in
+			self?.updateTitle(oldTitle)
 			NotificationCenter.default.post(name: .OPMLDocumentTitleDidChange, object: self, userInfo: nil)
 		}
 		
@@ -78,8 +80,18 @@ class Document: NSDocument {
 		}()
 		
 		let target = (parent == nil ? opmlDocument : parent)!
-		undoManager?.registerUndo(withTarget: target) { target in
-			target.entries.insert(current, at: childIndex)
+
+		if !(undoManager?.isUndoing ?? false) {
+			if current.isFolder {
+				undoManager?.setActionName(NSLocalizedString("Delete Folder", comment: "Delete Folder"))
+			} else {
+				undoManager?.setActionName(NSLocalizedString("Delete Row", comment: "Delete Row"))
+			}
+		
+		}
+
+		undoManager?.registerUndo(withTarget: target) { [weak self] target in
+			self?.insertEntry(parent: target, entry: current, childIndex: childIndex)
 			NotificationCenter.default.post(name: .OPMLDocumentChildrenDidChange, object: self, userInfo: nil)
 		}
 		
@@ -87,6 +99,31 @@ class Document: NSDocument {
 			opmlDocument.entries.remove(at: childIndex)
 		} else {
 			parent!.entries.remove(at: childIndex)
+		}
+		
+	}
+	
+	func insertEntry(parent: OPMLEntry?, entry: OPMLEntry, childIndex: Int) {
+		
+		let target = (parent == nil ? opmlDocument : parent)!
+
+		if !(undoManager?.isUndoing ?? false) {
+			if entry.isFolder {
+				undoManager?.setActionName(NSLocalizedString("Insert Folder", comment: "Insert Folder"))
+			} else {
+				undoManager?.setActionName(NSLocalizedString("Insert Row", comment: "Insert Row"))
+			}
+		}
+
+		undoManager?.registerUndo(withTarget: target) { [weak self] target in
+			self?.removeEntry(parent: target, childIndex: childIndex)
+			NotificationCenter.default.post(name: .OPMLDocumentChildrenDidChange, object: self, userInfo: nil)
+		}
+		
+		if parent == nil {
+			opmlDocument.entries.insert(entry, at: childIndex)
+		} else {
+			parent!.entries.insert(entry, at: childIndex)
 		}
 		
 	}
