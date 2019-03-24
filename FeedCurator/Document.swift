@@ -58,7 +58,12 @@ class Document: NSDocument {
 		
 		let oldTitle = entry.title
 		
-		undoManager?.setActionName(NSLocalizedString("Title Change", comment: "Update Title"))
+		if entry is OPMLDocument {
+			undoManager?.setActionName(NSLocalizedString("Title Change", comment: "Update Title"))
+		} else {
+			undoManager?.setActionName(NSLocalizedString("Folder Rename", comment: "Update Title"))
+		}
+		
 		undoManager?.registerUndo(withTarget: opmlDocument) { [weak self] target in
 			self?.updateTitle(entry: entry, title: oldTitle)
 		}
