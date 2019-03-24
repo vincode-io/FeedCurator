@@ -142,6 +142,9 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Delete" id="pa3-QI-u2k">
+                                            <string key="keyEquivalent" base64-UTF8="YES">
+CA
+</string>
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="delete:" target="Ady-hI-5gd" id="0Mk-Ml-PaM"/>
@@ -878,7 +881,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="feedOutlineView" destination="Oxa-E7-vjW" id="les-zm-LlH"/>
+                        <outlet property="outlineView" destination="Oxa-E7-vjW" id="les-zm-LlH"/>
                     </connections>
                 </viewController>
                 <customObject id="2Tp-Fl-jBw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

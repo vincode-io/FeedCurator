@@ -66,7 +66,14 @@ class Document: NSDocument {
 		
 	}
 	
-	func removeEntry(_ entry: OPMLEntry) {
+	func removeEntry(parent: OPMLEntry?, childIndex: Int) {
+//		let current = parent.entries[childIndex]
+		
+		if parent == nil {
+			opmlDocument.entries.remove(at: childIndex)
+		} else {
+			parent!.entries.remove(at: childIndex)
+		}
 		
 	}
 	

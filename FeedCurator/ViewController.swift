@@ -6,7 +6,7 @@ import RSParser
 
 class ViewController: NSViewController, NSUserInterfaceValidations {
 
-	@IBOutlet weak var feedOutlineView: NSOutlineView!
+	@IBOutlet weak var outlineView: NSOutlineView!
 
 	private let folderImage: NSImage? = {
 		return NSImage(named: "NSFolder")
@@ -26,22 +26,17 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 	}
 
 	var currentlySelectedEntry: OPMLEntry? {
-		let selectedItems = currentlySelectedEntries
-		if selectedItems.count == 1 {
-			return selectedItems[0]
+		let selectedRow = outlineView.selectedRow
+		if selectedRow != -1 {
+			return outlineView.item(atRow: selectedRow) as! OPMLEntry
 		}
 		return nil
 	}
 	
-	var currentlySelectedEntries: [OPMLEntry] {
-		let selectedRows = feedOutlineView.selectedRowIndexes
-		return selectedRows.map({ feedOutlineView.item(atRow: $0) as! OPMLEntry })
-	}
-	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		feedOutlineView.delegate = self
-		feedOutlineView.dataSource = self
+		outlineView.delegate = self
+		outlineView.dataSource = self
 	}
 
 	override func viewDidAppear() {
@@ -49,14 +44,14 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 		super.viewDidAppear()
 
 		windowController!.titleButton.title = document?.opmlDocument.title ?? WindowController.clickHere
-		feedOutlineView.reloadData()
+		outlineView.reloadData()
 		
 	}
 
 	public func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
 		
 		if item.action == #selector(delete(_:)) {
-			if !currentlySelectedEntries.isEmpty {
+			if currentlySelectedEntry != nil {
 				return true
 			}
 		}
@@ -68,25 +63,17 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 	// MARK: Actions
 	
 	@IBAction func delete(_ sender: AnyObject?) {
-		
-		for entry in currentlySelectedEntries {
-			
-//			if let currentDoc = currentItem as? RSOPMLDocument {
-//
-//				if let index = opmls.firstIndex(of: currentDoc) {
-//					opmls.remove(at: index)
-//				}
-//
-//				let indexSet = IndexSet(integer: outlineView.childIndex(forItem: currentDoc))
-//				outlineView.removeItems(at: indexSet, inParent: nil, withAnimation: .effectFade)
-//
-//				var subs = AppDefaults.userSubscriptions
-//				subs?.remove(currentDoc.url)
-//				AppDefaults.userSubscriptions = subs
-//
-//			}
-			
+	
+		guard let current = currentlySelectedEntry else {
+			return
 		}
+		
+		let parent = outlineView.parent(forItem: current) as? OPMLEntry
+		let childIndex = outlineView.childIndex(forItem: current)
+		let indexSet = IndexSet(integer: childIndex)
+		outlineView.removeItems(at: indexSet, inParent: parent, withAnimation: .effectFade)
+		
+		document?.removeEntry(parent: parent, childIndex: childIndex)
 		
 	}
 	
