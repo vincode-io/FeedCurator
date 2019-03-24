@@ -75,13 +75,56 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 		
 		let parent = outlineView.parent(forItem: current) as? OPMLEntry
 		let childIndex = outlineView.childIndex(forItem: current)
-		let indexSet = IndexSet(integer: childIndex)
-		outlineView.removeItems(at: indexSet, inParent: parent, withAnimation: .effectFade)
 		
-		document?.removeEntry(parent: parent, childIndex: childIndex)
+		guard let document = document else {
+			assertionFailure()
+			return
+		}
+		
+		// Update the model
+		let realParent = parent == nil ? document.opmlDocument : parent!
+		document.removeEntry(parent: realParent, childIndex: childIndex)
+		
+		// Update the outline
+		let indexSet = IndexSet(integer: childIndex)
+		outlineView.removeItems(at: indexSet, inParent: parent, withAnimation: .slideUp)
 		
 	}
 
+	@IBAction func newFolder(_ sender: AnyObject?) {
+		
+		let current = currentlySelectedEntry
+		let parent: OPMLEntry? = {
+			if current == nil || current!.isFolder {
+				return current
+			} else {
+  				return outlineView.parent(forItem: current) as? OPMLEntry
+			}
+		}()
+		
+		let entry = OPMLEntry(title: NSLocalizedString("New Folder", comment: "New Folder"))
+		entry.isFolder = true
+
+		guard let document = document else {
+			assertionFailure()
+			return
+		}
+		
+		// Update the model
+		let realParent = parent == nil ? document.opmlDocument : parent!
+		document.appendEntry(parent: realParent, entry: entry)
+		
+		// Update the outline
+		let newRow = outlineView.numberOfChildren(ofItem: parent) - 1
+		let indexSet = IndexSet(integer: newRow)
+		outlineView.insertItems(at: indexSet, inParent: parent, withAnimation: .slideDown)
+		
+		outlineView.expandItem(parent, expandChildren: false)
+		let rowIndex = outlineView.row(forItem: entry)
+		outlineView.rs_selectRowAndScrollToVisible(rowIndex)
+		
+	}
+	
 	// MARK: Notifications
 	@objc func opmlDocumentChildrenDidChange(_ note: Notification) {
 		outlineView.reloadData()
@@ -173,6 +216,14 @@ extension ViewController: NSOutlineViewDelegate {
 	func outlineView(_ outlineView: NSOutlineView, shouldShowOutlineCellForItem item: Any) -> Bool {
 		let entry = item as! OPMLEntry
 		return entry.isFolder
+	}
+	
+	func outlineView(_ outlineView: NSOutlineView, shouldEdit tableColumn: NSTableColumn?, item: Any) -> Bool {
+		if tableColumn?.identifier.rawValue == "nameColumn" {
+			let entry = item as! OPMLEntry
+			return entry.isFolder
+		}
+		return false
 	}
 	
 	func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {

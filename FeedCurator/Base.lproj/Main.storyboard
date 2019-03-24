@@ -64,6 +64,15 @@
                                                 <action selector="newDocument:" target="Ady-hI-5gd" id="4Si-XN-c54"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="New Feed" keyEquivalent="N" id="oEW-9i-jkK">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="New Folder" keyEquivalent="N" id="nzl-ra-bB3">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES"/>
+                                            <connections>
+                                                <action selector="newFolder:" target="Ady-hI-5gd" id="FZe-Fs-c0k"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="Open…" keyEquivalent="o" id="IAo-SY-fd9">
                                             <connections>
                                                 <action selector="openDocument:" target="Ady-hI-5gd" id="bVn-NM-KNZ"/>
@@ -708,9 +717,24 @@ CA
                                         </connections>
                                     </button>
                                 </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="362D2025-EB16-41F0-A751-87713FC5AE42" label="New Folder" paletteLabel="New Folder" image="newFolder" sizingBehavior="auto" id="JgQ-hz-SLG">
+                                    <nil key="toolTip"/>
+                                    <button key="view" verticalHuggingPriority="750" id="wRf-ej-ecR">
+                                        <rect key="frame" x="14" y="14" width="40" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="newFolder" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="eka-04-Vgz">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="newFolder:" target="6f7-a7-6o1" id="FVo-br-GRk"/>
+                                        </connections>
+                                    </button>
+                                </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
                                 <toolbarItem reference="gjV-vs-8eC"/>
+                                <toolbarItem reference="JgQ-hz-SLG"/>
                                 <toolbarItem reference="3ic-jy-Ogu"/>
                                 <toolbarItem reference="Rsh-bx-k9r"/>
                                 <toolbarItem reference="3ic-jy-Ogu"/>
@@ -775,7 +799,7 @@ CA
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WGL-W1-eYT">
                                                                     <rect key="frame" x="25" y="0.0" width="275" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="Ccg-HI-2ee">
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="Ccg-HI-2ee">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -892,5 +916,6 @@ CA
     <resources>
         <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSAddTemplate" width="11" height="11"/>
+        <image name="newFolder" width="9.5" height="9.5"/>
     </resources>
 </document>

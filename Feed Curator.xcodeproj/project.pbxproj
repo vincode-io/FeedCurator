@@ -27,6 +27,8 @@
 		518C66232245A5A400B18604 /* RSOPMLItem+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518C661F2245A5A400B18604 /* RSOPMLItem+.swift */; };
 		518C66242245A5A400B18604 /* OPMLDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518C66202245A5A400B18604 /* OPMLDocument.swift */; };
 		518C66252245A5A400B18604 /* OPMLEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518C66212245A5A400B18604 /* OPMLEntry.swift */; };
+		51E41A172247CCB30014DDCC /* AddFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E41A152247CCB30014DDCC /* AddFeed.swift */; };
+		51E41A182247CCB30014DDCC /* AddFeed.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51E41A162247CCB30014DDCC /* AddFeed.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,6 +149,8 @@
 		518C661F2245A5A400B18604 /* RSOPMLItem+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RSOPMLItem+.swift"; sourceTree = "<group>"; };
 		518C66202245A5A400B18604 /* OPMLDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OPMLDocument.swift; sourceTree = "<group>"; };
 		518C66212245A5A400B18604 /* OPMLEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OPMLEntry.swift; sourceTree = "<group>"; };
+		51E41A152247CCB30014DDCC /* AddFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFeed.swift; sourceTree = "<group>"; };
+		51E41A162247CCB30014DDCC /* AddFeed.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddFeed.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +170,8 @@
 		512BDE1D2246879B00CB4159 /* Sheets */ = {
 			isa = PBXGroup;
 			children = (
+				51E41A152247CCB30014DDCC /* AddFeed.swift */,
+				51E41A162247CCB30014DDCC /* AddFeed.xib */,
 				512BDE23224687CF00CB4159 /* UpdateTitle.swift */,
 				512BDE24224687CF00CB4159 /* UpdateTitle.xib */,
 			);
@@ -400,6 +406,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51E41A182247CCB30014DDCC /* AddFeed.xib in Resources */,
 				518C65AD22443C7C00B18604 /* Assets.xcassets in Resources */,
 				518C65B022443C7C00B18604 /* Main.storyboard in Resources */,
 				512BDE26224687CF00CB4159 /* UpdateTitle.xib in Resources */,
@@ -436,6 +443,7 @@
 				518C65A922443C7B00B18604 /* ViewController.swift in Sources */,
 				518C66222245A5A400B18604 /* OPMLFeed.swift in Sources */,
 				518C66252245A5A400B18604 /* OPMLEntry.swift in Sources */,
+				51E41A172247CCB30014DDCC /* AddFeed.swift in Sources */,
 				512BDE25224687CF00CB4159 /* UpdateTitle.swift in Sources */,
 				518C66042245834E00B18604 /* WindowController.swift in Sources */,
 				518C65A722443C7B00B18604 /* AppDelegate.swift in Sources */,

@@ -69,62 +69,62 @@ class Document: NSDocument {
 		
 	}
 	
-	func removeEntry(parent: OPMLEntry?, childIndex: Int) {
+	func removeEntry(parent: OPMLEntry, childIndex: Int) {
 		
-		let current: OPMLEntry = {
-			if parent == nil {
-				return opmlDocument.entries[childIndex]
-			} else {
-				return parent!.entries[childIndex]
-			}
-		}()
-		
-		let target = (parent == nil ? opmlDocument : parent)!
+		let current = parent.entries[childIndex]
 
 		if !(undoManager?.isUndoing ?? false) {
 			if current.isFolder {
 				undoManager?.setActionName(NSLocalizedString("Delete Folder", comment: "Delete Folder"))
 			} else {
-				undoManager?.setActionName(NSLocalizedString("Delete Row", comment: "Delete Row"))
+				undoManager?.setActionName(NSLocalizedString("Delete Feed", comment: "Delete Row"))
 			}
-		
 		}
 
-		undoManager?.registerUndo(withTarget: target) { [weak self] target in
+		undoManager?.registerUndo(withTarget: parent) { [weak self] target in
 			self?.insertEntry(parent: target, entry: current, childIndex: childIndex)
 			NotificationCenter.default.post(name: .OPMLDocumentChildrenDidChange, object: self, userInfo: nil)
 		}
-		
-		if parent == nil {
-			opmlDocument.entries.remove(at: childIndex)
-		} else {
-			parent!.entries.remove(at: childIndex)
-		}
+
+		parent.entries.remove(at: childIndex)
 		
 	}
 	
-	func insertEntry(parent: OPMLEntry?, entry: OPMLEntry, childIndex: Int) {
+	func insertEntry(parent: OPMLEntry, entry: OPMLEntry, childIndex: Int) {
 		
-		let target = (parent == nil ? opmlDocument : parent)!
-
 		if !(undoManager?.isUndoing ?? false) {
 			if entry.isFolder {
 				undoManager?.setActionName(NSLocalizedString("Insert Folder", comment: "Insert Folder"))
 			} else {
-				undoManager?.setActionName(NSLocalizedString("Insert Row", comment: "Insert Row"))
+				undoManager?.setActionName(NSLocalizedString("Insert Feed", comment: "Insert Row"))
 			}
 		}
 
-		undoManager?.registerUndo(withTarget: target) { [weak self] target in
+		undoManager?.registerUndo(withTarget: parent) { [weak self] target in
 			self?.removeEntry(parent: target, childIndex: childIndex)
 			NotificationCenter.default.post(name: .OPMLDocumentChildrenDidChange, object: self, userInfo: nil)
 		}
 		
-		if parent == nil {
-			opmlDocument.entries.insert(entry, at: childIndex)
-		} else {
-			parent!.entries.insert(entry, at: childIndex)
+		parent.entries.insert(entry, at: childIndex)
+		
+	}
+	
+	func appendEntry(parent: OPMLEntry, entry: OPMLEntry) {
+
+		if !(undoManager?.isUndoing ?? false) {
+			if entry.isFolder {
+				undoManager?.setActionName(NSLocalizedString("Add Folder", comment: "Insert Folder"))
+			} else {
+				undoManager?.setActionName(NSLocalizedString("Add Feed", comment: "Insert Row"))
+			}
 		}
+		
+		undoManager?.registerUndo(withTarget: parent) { [weak self] target in
+			self?.removeEntry(parent: target, childIndex: target.entries.count - 1)
+			NotificationCenter.default.post(name: .OPMLDocumentChildrenDidChange, object: self, userInfo: nil)
+		}
+		
+		parent.entries.append(entry)
 		
 	}
 	
