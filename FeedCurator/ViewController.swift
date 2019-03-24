@@ -125,9 +125,25 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 		
 	}
 	
+	@IBAction func renameEntry(_ sender: NSTextField) {
+		guard let entry = currentlySelectedEntry else {
+			return
+		}
+		document?.updateTitle(entry: entry, title: sender.stringValue)
+	}
+	
 	// MARK: Notifications
 	@objc func opmlDocumentChildrenDidChange(_ note: Notification) {
+		
+		// Save the row to restore the selection
+		let rowIndex = outlineView.selectedRow
+		
 		outlineView.reloadData()
+		
+		if rowIndex != -1 {
+			outlineView.rs_selectRowAndScrollToVisible(rowIndex)
+		}
+		
 	}
 
 }
@@ -177,8 +193,10 @@ extension ViewController: NSOutlineViewDelegate {
 				let entry = item as! OPMLEntry
 				if entry.isFolder {
 					cell.imageView?.image = folderImage
+					cell.textField?.isEditable = true
 				} else {
 					cell.imageView?.image = faviconImage
+					cell.textField?.isEditable = false
 				}
 				cell.textField?.stringValue = entry.title ?? ""
 				return cell
@@ -216,14 +234,6 @@ extension ViewController: NSOutlineViewDelegate {
 	func outlineView(_ outlineView: NSOutlineView, shouldShowOutlineCellForItem item: Any) -> Bool {
 		let entry = item as! OPMLEntry
 		return entry.isFolder
-	}
-	
-	func outlineView(_ outlineView: NSOutlineView, shouldEdit tableColumn: NSTableColumn?, item: Any) -> Bool {
-		if tableColumn?.identifier.rawValue == "nameColumn" {
-			let entry = item as! OPMLEntry
-			return entry.isFolder
-		}
-		return false
 	}
 	
 	func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {

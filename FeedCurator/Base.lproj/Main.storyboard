@@ -804,6 +804,9 @@ CA
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
+                                                                    <connections>
+                                                                        <action selector="renameEntry:" target="5gI-5U-AMq" id="Nho-3i-bea"/>
+                                                                    </connections>
                                                                 </textField>
                                                             </subviews>
                                                             <connections>

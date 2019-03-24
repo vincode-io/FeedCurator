@@ -54,18 +54,23 @@ class Document: NSDocument {
 		
 	}
 	
-	func updateTitle(_ title: String?) {
+	func updateTitle(entry: OPMLEntry, title: String?) {
 		
-		let oldTitle = opmlDocument.title
+		let oldTitle = entry.title
 		
 		undoManager?.setActionName(NSLocalizedString("Title Change", comment: "Update Title"))
 		undoManager?.registerUndo(withTarget: opmlDocument) { [weak self] target in
-			self?.updateTitle(oldTitle)
-			NotificationCenter.default.post(name: .OPMLDocumentTitleDidChange, object: self, userInfo: nil)
+			self?.updateTitle(entry: entry, title: oldTitle)
 		}
 		
-		opmlDocument.title = title
-		NotificationCenter.default.post(name: .OPMLDocumentTitleDidChange, object: self, userInfo: nil)
+		entry.title = title
+		
+		// Not too happy with this.  Revisit and refactor later.
+		if entry is OPMLDocument {
+			NotificationCenter.default.post(name: .OPMLDocumentTitleDidChange, object: self, userInfo: nil)
+		} else {
+			NotificationCenter.default.post(name: .OPMLDocumentChildrenDidChange, object: self, userInfo: nil)
+		}
 		
 	}
 	

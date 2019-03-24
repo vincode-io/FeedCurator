@@ -46,9 +46,9 @@ class UpdateTitle: NSWindowController {
 		}
 		
 		if titleTextField.stringValue.isEmpty {
-			document.updateTitle(nil)
+			document.updateTitle(entry: document.opmlDocument, title: nil)
 		} else {
-			document.updateTitle(titleTextField.stringValue)
+			document.updateTitle(entry: document.opmlDocument, title: titleTextField.stringValue)
 		}
 		
 	}
