@@ -28,15 +28,20 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 	var currentlySelectedEntry: OPMLEntry? {
 		let selectedRow = outlineView.selectedRow
 		if selectedRow != -1 {
-			return outlineView.item(atRow: selectedRow) as! OPMLEntry
+			return outlineView.item(atRow: selectedRow) as? OPMLEntry
 		}
 		return nil
 	}
 	
 	override func viewDidLoad() {
+		
 		super.viewDidLoad()
+		
 		outlineView.delegate = self
 		outlineView.dataSource = self
+		
+		NotificationCenter.default.addObserver(self, selector: #selector(opmlDocumentChildrenDidChange(_:)), name: .OPMLDocumentChildrenDidChange, object: nil)
+
 	}
 
 	override func viewDidAppear() {
@@ -76,7 +81,12 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 		document?.removeEntry(parent: parent, childIndex: childIndex)
 		
 	}
-	
+
+	// MARK: Notifications
+	@objc func opmlDocumentChildrenDidChange(_ note: Notification) {
+		outlineView.reloadData()
+	}
+
 }
 
 // MARK: NSOutlineViewDataSource

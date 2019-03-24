@@ -5,7 +5,7 @@ import RSParser
 
 public extension Notification.Name {
 	static let OPMLDocumentTitleDidChange = Notification.Name(rawValue: "OPMLDocumentTitleDidChange")
-	static let OPMLEntryDidRemove = Notification.Name(rawValue: "OPMLEntryDidRemove")
+	static let OPMLDocumentChildrenDidChange = Notification.Name(rawValue: "OPMLDocumentChildrenDidChange")
 }
 
 class Document: NSDocument {
@@ -56,7 +56,8 @@ class Document: NSDocument {
 	
 	func updateTitle(_ title: String?) {
 		
-		undoManager?.registerUndo(withTarget: opmlDocument) { [oldTitle = opmlDocument.title] target in
+		let oldTitle = opmlDocument.title
+		undoManager?.registerUndo(withTarget: opmlDocument) { target in
 			target.title = oldTitle
 			NotificationCenter.default.post(name: .OPMLDocumentTitleDidChange, object: self, userInfo: nil)
 		}
@@ -67,7 +68,20 @@ class Document: NSDocument {
 	}
 	
 	func removeEntry(parent: OPMLEntry?, childIndex: Int) {
-//		let current = parent.entries[childIndex]
+		
+		let current: OPMLEntry = {
+			if parent == nil {
+				return opmlDocument.entries[childIndex]
+			} else {
+				return parent!.entries[childIndex]
+			}
+		}()
+		
+		let target = (parent == nil ? opmlDocument : parent)!
+		undoManager?.registerUndo(withTarget: target) { target in
+			target.entries.insert(current, at: childIndex)
+			NotificationCenter.default.post(name: .OPMLDocumentChildrenDidChange, object: self, userInfo: nil)
+		}
 		
 		if parent == nil {
 			opmlDocument.entries.remove(at: childIndex)
