@@ -6,7 +6,7 @@ class UpdateTitle: NSWindowController {
 
 	@IBOutlet weak var titleTextField: NSTextField!
 	
-	private var hostWindow: NSWindow?
+	private weak var hostWindow: NSWindow?
 	
 	convenience init() {
 		self.init(windowNibName: NSNib.Name("UpdateTitle"))

@@ -29,6 +29,11 @@
 		518C66252245A5A400B18604 /* OPMLEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518C66212245A5A400B18604 /* OPMLEntry.swift */; };
 		51E41A172247CCB30014DDCC /* AddFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E41A152247CCB30014DDCC /* AddFeed.swift */; };
 		51E41A182247CCB30014DDCC /* AddFeed.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51E41A162247CCB30014DDCC /* AddFeed.xib */; };
+		51E41A1D224932B00014DDCC /* FeedFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E41A1A224932B00014DDCC /* FeedFinder.swift */; };
+		51E41A1E224932B00014DDCC /* HTMLFeedFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E41A1B224932B00014DDCC /* HTMLFeedFinder.swift */; };
+		51E41A1F224932B00014DDCC /* FeedSpecifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E41A1C224932B00014DDCC /* FeedSpecifier.swift */; };
+		51E41A2122497DC80014DDCC /* InitialFeedDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E41A2022497DC80014DDCC /* InitialFeedDownloader.swift */; };
+		51E41A2322497E2E0014DDCC /* ViewController+OutlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E41A2222497E2E0014DDCC /* ViewController+OutlineView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -151,6 +156,11 @@
 		518C66212245A5A400B18604 /* OPMLEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OPMLEntry.swift; sourceTree = "<group>"; };
 		51E41A152247CCB30014DDCC /* AddFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFeed.swift; sourceTree = "<group>"; };
 		51E41A162247CCB30014DDCC /* AddFeed.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddFeed.xib; sourceTree = "<group>"; };
+		51E41A1A224932B00014DDCC /* FeedFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedFinder.swift; sourceTree = "<group>"; };
+		51E41A1B224932B00014DDCC /* HTMLFeedFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLFeedFinder.swift; sourceTree = "<group>"; };
+		51E41A1C224932B00014DDCC /* FeedSpecifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedSpecifier.swift; sourceTree = "<group>"; };
+		51E41A2022497DC80014DDCC /* InitialFeedDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialFeedDownloader.swift; sourceTree = "<group>"; };
+		51E41A2222497E2E0014DDCC /* ViewController+OutlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+OutlineView.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,10 +223,12 @@
 				518C65A622443C7B00B18604 /* AppDelegate.swift */,
 				518C66032245834E00B18604 /* WindowController.swift */,
 				518C65A822443C7B00B18604 /* ViewController.swift */,
+				51E41A2222497E2E0014DDCC /* ViewController+OutlineView.swift */,
 				518C66012245791600B18604 /* OutlineView.swift */,
 				518C65AA22443C7B00B18604 /* Document.swift */,
 				512BDE1D2246879B00CB4159 /* Sheets */,
 				518C661D2245A51E00B18604 /* Model */,
+				51E41A19224932B00014DDCC /* FeedFinder */,
 				512BDE27224689C400CB4159 /* Extensions */,
 				518C65AC22443C7C00B18604 /* Assets.xcassets */,
 				518C65B122443C7C00B18604 /* Info.plist */,
@@ -263,6 +275,17 @@
 				518C661F2245A5A400B18604 /* RSOPMLItem+.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		51E41A19224932B00014DDCC /* FeedFinder */ = {
+			isa = PBXGroup;
+			children = (
+				51E41A1A224932B00014DDCC /* FeedFinder.swift */,
+				51E41A1B224932B00014DDCC /* HTMLFeedFinder.swift */,
+				51E41A1C224932B00014DDCC /* FeedSpecifier.swift */,
+				51E41A2022497DC80014DDCC /* InitialFeedDownloader.swift */,
+			);
+			path = FeedFinder;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -443,15 +466,20 @@
 				518C65A922443C7B00B18604 /* ViewController.swift in Sources */,
 				518C66222245A5A400B18604 /* OPMLFeed.swift in Sources */,
 				518C66252245A5A400B18604 /* OPMLEntry.swift in Sources */,
+				51E41A2122497DC80014DDCC /* InitialFeedDownloader.swift in Sources */,
+				51E41A1D224932B00014DDCC /* FeedFinder.swift in Sources */,
 				51E41A172247CCB30014DDCC /* AddFeed.swift in Sources */,
 				512BDE25224687CF00CB4159 /* UpdateTitle.swift in Sources */,
 				518C66042245834E00B18604 /* WindowController.swift in Sources */,
 				518C65A722443C7B00B18604 /* AppDelegate.swift in Sources */,
+				51E41A1E224932B00014DDCC /* HTMLFeedFinder.swift in Sources */,
+				51E41A1F224932B00014DDCC /* FeedSpecifier.swift in Sources */,
 				518C66242245A5A400B18604 /* OPMLDocument.swift in Sources */,
 				512BDE29224689DE00CB4159 /* String+.swift in Sources */,
 				518C66232245A5A400B18604 /* RSOPMLItem+.swift in Sources */,
 				518C65AB22443C7B00B18604 /* Document.swift in Sources */,
 				518C66022245791600B18604 /* OutlineView.swift in Sources */,
+				51E41A2322497E2E0014DDCC /* ViewController+OutlineView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

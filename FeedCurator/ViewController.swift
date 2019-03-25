@@ -8,20 +8,14 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 
 	@IBOutlet weak var outlineView: NSOutlineView!
 
-	private let folderImage: NSImage? = {
-		return NSImage(named: "NSFolder")
-	}()
-	
-	private let faviconImage: NSImage? = {
-		let path = "/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/BookmarkIcon.icns"
-		return NSImage(contentsOfFile: path)
-	}()
+	private var addFeed: AddFeed?
+	private var feedFinder: FeedFinder?
 
 	private var windowController: WindowController? {
 		return self.view.window?.windowController as? WindowController
 	}
 	
-	private var document: Document? {
+	var document: Document? {
 		return windowController?.document as? Document
 	}
 
@@ -31,6 +25,17 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 			return outlineView.item(atRow: selectedRow) as? OPMLEntry
 		}
 		return nil
+	}
+	
+	var currentlySelectedParent: OPMLEntry? {
+		guard let current = currentlySelectedEntry else {
+			return nil
+		}
+		if current.isFolder {
+			return current
+		} else {
+			return outlineView.parent(forItem: current) as? OPMLEntry
+		}
 	}
 	
 	override func viewDidLoad() {
@@ -91,38 +96,17 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 		
 	}
 
+	@IBAction func newFeed(_ sender: AnyObject?) {
+		if let window = view.window {
+			addFeed = AddFeed(delegate: self)
+			addFeed?.runSheetOnWindow(window)
+		}
+	}
+		
 	@IBAction func newFolder(_ sender: AnyObject?) {
-		
-		let current = currentlySelectedEntry
-		let parent: OPMLEntry? = {
-			if current == nil || current!.isFolder {
-				return current
-			} else {
-  				return outlineView.parent(forItem: current) as? OPMLEntry
-			}
-		}()
-		
 		let entry = OPMLEntry(title: NSLocalizedString("New Folder", comment: "New Folder"))
 		entry.isFolder = true
-
-		guard let document = document else {
-			assertionFailure()
-			return
-		}
-		
-		// Update the model
-		let realParent = parent == nil ? document.opmlDocument : parent!
-		document.appendEntry(parent: realParent, entry: entry)
-		
-		// Update the outline
-		let newRow = outlineView.numberOfChildren(ofItem: parent) - 1
-		let indexSet = IndexSet(integer: newRow)
-		outlineView.insertItems(at: indexSet, inParent: parent, withAnimation: .slideDown)
-		
-		outlineView.expandItem(parent, expandChildren: false)
-		let rowIndex = outlineView.row(forItem: entry)
-		outlineView.rs_selectRowAndScrollToVisible(rowIndex)
-		
+		appendEntry(entry)
 	}
 	
 	@IBAction func renameEntry(_ sender: NSTextField) {
@@ -148,109 +132,116 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 
 }
 
-// MARK: NSOutlineViewDataSource
+// MARK: AddFeedDelegate
 
-extension ViewController: NSOutlineViewDataSource {
+extension ViewController: AddFeedDelegate {
 	
-	func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
-		
-		if item == nil {
-			return document!.opmlDocument.entries[index]
+	func addFeedUserDidAdd(_ urlString: String) {
+		guard let url = URL(string: urlString.rs_normalizedURL()) else {
+			return
 		}
-		
-		let entry = item as! OPMLEntry
-		return entry.entries[index]
-		
+		feedFinder = FeedFinder(url: url, delegate: self)
 	}
 	
-	func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
-		
-		if item == nil {
-			return document?.opmlDocument.entries.count ?? 0
-		}
-		
-		let entry = item as! OPMLEntry
-		return entry.entries.count
-		
-	}
-	
-	func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
-		let entry = item as! OPMLEntry
-		return entry.isFolder
+	func addFeedUserDidCancel() {
 	}
 	
 }
 
-// MARK: NSOutlineViewDelegate
+// MARK: FeedFinderDelegate
 
-extension ViewController: NSOutlineViewDelegate {
+extension ViewController: FeedFinderDelegate {
 	
-	func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
+	public func feedFinder(_ feedFinder: FeedFinder, didFindFeeds feedSpecifiers: Set<FeedSpecifier>) {
 		
-		switch tableColumn?.identifier.rawValue {
-		case "nameColumn":
-			if let cell = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "nameCell"), owner: nil) as? NSTableCellView {
-				let entry = item as! OPMLEntry
-				if entry.isFolder {
-					cell.imageView?.image = folderImage
-					cell.textField?.isEditable = true
-				} else {
-					cell.imageView?.image = faviconImage
-					cell.textField?.isEditable = false
-				}
-				cell.textField?.stringValue = entry.title ?? ""
-				return cell
+//		endShowingProgress()
+		
+		if let error = feedFinder.initialDownloadError {
+			if feedFinder.initialDownloadStatusCode == 404 {
+				showNoFeedsErrorMessage()
 			}
-		case "pageColumn":
-			if let feed = item as? OPMLFeed {
-				if let cell = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "pageCell"), owner: nil) as? NSTableCellView {
-					cell.textField?.stringValue = feed.pageURL ?? ""
-					return cell
-				}
+			else {
+				showInitialDownloadError(error)
 			}
-		case "feedColumn":
-			if let feed = item as? OPMLFeed {
-				if let cell = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "feedCell"), owner: nil) as? NSTableCellView {
-					cell.textField?.stringValue = feed.feedURL
-					return cell
-				}
-			}
-		default:
-			return nil
+			return
 		}
 		
-		return nil
+		guard let bestFeedSpecifier = FeedSpecifier.bestFeed(in: feedSpecifiers) else {
+			showNoFeedsErrorMessage()
+			return
+		}
+		
+		if let url = URL(string: bestFeedSpecifier.urlString) {
+			
+			InitialFeedDownloader.download(url) { [weak self] (parsedFeed) in
+				guard let parsedFeed = parsedFeed else {
+					assertionFailure()
+					return
+				}
+				let opmlFeed = OPMLFeed(title: parsedFeed.title, pageURL: parsedFeed.homePageURL, feedURL: bestFeedSpecifier.urlString)
+				self?.appendEntry(opmlFeed)
+			}
+			
+		} else {
+			showNoFeedsErrorMessage()
+		}
 		
 	}
 	
-	func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
-		return 22.0
-	}
-	
-	func outlineView(_ outlineView: NSOutlineView, isGroupItem item: Any) -> Bool {
-		return false
-	}
-	
-	func outlineView(_ outlineView: NSOutlineView, shouldShowOutlineCellForItem item: Any) -> Bool {
-		let entry = item as! OPMLEntry
-		return entry.isFolder
-	}
-	
-	func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
-		return true
-	}
-	
-	func outlineView(_ outlineView: NSOutlineView, draggingSession session: NSDraggingSession, willBeginAt screenPoint: NSPoint, forItems draggedItems: [Any]) {
-	}
-	
-	func outlineView(_ outlineView: NSOutlineView, pasteboardWriterForItem item: Any) -> NSPasteboardWriting? {
-		if let feed = item as? OPMLFeed {
-			return URLPasteboardWriter(urlString: feed.feedURL)
+	func showInitialDownloadError(_ error: Error) {
+		
+		let alert = NSAlert()
+		alert.alertStyle = .informational
+		alert.messageText = NSLocalizedString("Download Error", comment: "Feed finder")
+		
+		let formatString = NSLocalizedString("Can’t add this feed because of a download error: “%@”", comment: "Feed finder")
+		let errorText = NSString.localizedStringWithFormat(formatString as NSString, error.localizedDescription)
+		alert.informativeText = errorText as String
+		
+		if let window = view.window {
+			alert.beginSheetModal(for: window)
 		}
-		return nil
+		
 	}
 	
-	func outlineViewSelectionDidChange(_ notification: Notification) {
+	func showNoFeedsErrorMessage() {
+		
+		let alert = NSAlert()
+		alert.alertStyle = .informational
+		alert.messageText = NSLocalizedString("Feed not found", comment: "Feed finder")
+		alert.informativeText = NSLocalizedString("Can’t add a feed because no feed was found.", comment: "Feed finder")
+		
+		if let window = view.window {
+			alert.beginSheetModal(for: window)
+		}
+
+	}
+	
+}
+
+private extension ViewController {
+	
+	func appendEntry(_ entry: OPMLEntry) {
+		
+		guard let document = document else {
+			assertionFailure()
+			return
+		}
+		
+		let parent = currentlySelectedParent
+
+		// Update the model
+		let realParent = parent == nil ? document.opmlDocument : parent!
+		document.appendEntry(parent: realParent, entry: entry)
+		
+		// Update the outline
+		let newRow = outlineView.numberOfChildren(ofItem: parent) - 1
+		let indexSet = IndexSet(integer: newRow)
+		outlineView.insertItems(at: indexSet, inParent: parent, withAnimation: .slideDown)
+		
+		outlineView.expandItem(parent, expandChildren: false)
+		let rowIndex = outlineView.row(forItem: entry)
+		outlineView.rs_selectRowAndScrollToVisible(rowIndex)
 		
 	}
 	

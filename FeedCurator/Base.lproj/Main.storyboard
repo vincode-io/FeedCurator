@@ -702,6 +702,9 @@ CA
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                     </button>
+                                    <connections>
+                                        <action selector="newFeed:" target="6f7-a7-6o1" id="VHW-ZT-AOZ"/>
+                                    </connections>
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="7B48A55B-B800-48D8-8A8A-2C7740BD7B7B" label="Title" paletteLabel="Title" sizingBehavior="auto" id="Rsh-bx-k9r">
                                     <nil key="toolTip"/>
