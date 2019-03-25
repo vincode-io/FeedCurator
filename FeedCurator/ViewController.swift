@@ -73,27 +73,10 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 	// MARK: Actions
 	
 	@IBAction func delete(_ sender: AnyObject?) {
-	
 		guard let current = currentlySelectedEntry else {
 			return
 		}
-		
-		let parent = outlineView.parent(forItem: current) as? OPMLEntry
-		let childIndex = outlineView.childIndex(forItem: current)
-		
-		guard let document = document else {
-			assertionFailure()
-			return
-		}
-		
-		// Update the model
-		let realParent = parent == nil ? document.opmlDocument : parent!
-		document.removeEntry(parent: realParent, childIndex: childIndex)
-		
-		// Update the outline
-		let indexSet = IndexSet(integer: childIndex)
-		outlineView.removeItems(at: indexSet, inParent: parent, withAnimation: .slideUp)
-		
+		deleteEntry(current)
 	}
 
 	@IBAction func newFeed(_ sender: AnyObject?) {
@@ -119,6 +102,8 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 	// MARK: Notifications
 	@objc func opmlDocumentChildrenDidChange(_ note: Notification) {
 		
+		// TODO: Change this to save the actual item instead of the row index
+		
 		// Save the row to restore the selection
 		let rowIndex = outlineView.selectedRow
 		
@@ -137,10 +122,7 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 extension ViewController: AddFeedDelegate {
 	
 	func addFeedUserDidAdd(_ urlString: String) {
-		guard let url = URL(string: urlString.rs_normalizedURL()) else {
-			return
-		}
-		feedFinder = FeedFinder(url: url, delegate: self)
+		findFeed(urlString)
 	}
 	
 	func addFeedUserDidCancel() {
@@ -188,7 +170,7 @@ extension ViewController: FeedFinderDelegate {
 		
 	}
 	
-	func showInitialDownloadError(_ error: Error) {
+	private func showInitialDownloadError(_ error: Error) {
 		
 		let alert = NSAlert()
 		alert.alertStyle = .informational
@@ -204,7 +186,7 @@ extension ViewController: FeedFinderDelegate {
 		
 	}
 	
-	func showNoFeedsErrorMessage() {
+	private func showNoFeedsErrorMessage() {
 		
 		let alert = NSAlert()
 		alert.alertStyle = .informational
@@ -220,6 +202,33 @@ extension ViewController: FeedFinderDelegate {
 }
 
 private extension ViewController {
+	
+	func findFeed(_ urlString: String) {
+		guard let url = URL(string: urlString.rs_normalizedURL()) else {
+			return
+		}
+		feedFinder = FeedFinder(url: url, delegate: self)
+	}
+
+	func deleteEntry(_ entry: OPMLEntry) {
+		
+		guard let document = document else {
+			assertionFailure()
+			return
+		}
+		
+		let parent = outlineView.parent(forItem: entry) as? OPMLEntry
+		let childIndex = outlineView.childIndex(forItem: entry)
+		
+		// Update the model
+		let realParent = parent == nil ? document.opmlDocument : parent!
+		document.removeEntry(parent: realParent, childIndex: childIndex)
+		
+		// Update the outline
+		let indexSet = IndexSet(integer: childIndex)
+		outlineView.removeItems(at: indexSet, inParent: parent, withAnimation: .slideUp)
+		
+	}
 	
 	func appendEntry(_ entry: OPMLEntry) {
 		
