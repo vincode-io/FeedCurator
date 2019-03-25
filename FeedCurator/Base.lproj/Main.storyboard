@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -618,7 +618,7 @@ CA
                                         <menuItem title="Show Sidebar" keyEquivalent="s" id="kIP-vf-haE">
                                             <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
                                             <connections>
-                                                <action selector="toggleSourceList:" target="Ady-hI-5gd" id="iwa-gc-5KM"/>
+                                                <action selector="toggleSidebar:" target="Ady-hI-5gd" id="iwa-gc-5KM"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Enter Full Screen" keyEquivalent="f" id="4J7-dP-txa">
@@ -761,17 +761,17 @@ CA
             <objects>
                 <viewController id="5gI-5U-AMq" customClass="ViewController" customModule="Feed_Curator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="ERx-hH-rdd">
-                        <rect key="frame" x="0.0" y="0.0" width="1048" height="446"/>
+                        <rect key="frame" x="0.0" y="0.0" width="900" height="446"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="liG-9d-jHo">
-                                <rect key="frame" x="0.0" y="0.0" width="1048" height="446"/>
+                                <rect key="frame" x="0.0" y="0.0" width="900" height="446"/>
                                 <clipView key="contentView" id="EU4-ss-UzT">
-                                    <rect key="frame" x="1" y="0.0" width="1046" height="445"/>
+                                    <rect key="frame" x="1" y="0.0" width="898" height="445"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="xqd-er-Qxv" viewBased="YES" indentationPerLevel="16" outlineTableColumn="eGF-8D-w70" id="Oxa-E7-vjW" customClass="OutlineView" customModule="Feed_Curator" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="1046" height="420"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="898" height="420"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -819,7 +819,7 @@ CA
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="pageColumn" width="350" minWidth="40" maxWidth="1000" id="Njh-pf-yEj">
+                                                <tableColumn identifier="pageColumn" width="300" minWidth="40" maxWidth="1000" id="Njh-pf-yEj">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Page URL">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -833,11 +833,11 @@ CA
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView identifier="pageCell" id="QLp-bQ-wmn">
-                                                            <rect key="frame" x="304" y="1" width="350" height="17"/>
+                                                            <rect key="frame" x="304" y="1" width="300" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tvL-iX-MLA">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="350" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="nR1-2h-rHB">
                                                                         <font key="font" metaFont="system"/>
@@ -852,7 +852,7 @@ CA
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="feedColumn" width="387" minWidth="10" maxWidth="3.4028234663852886e+38" id="YGn-Km-xgD">
+                                                <tableColumn identifier="feedColumn" width="289" minWidth="10" maxWidth="3.4028234663852886e+38" id="YGn-Km-xgD">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Feed URL">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -866,11 +866,11 @@ CA
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView identifier="feedCell" id="Z0u-Bn-WnP">
-                                                            <rect key="frame" x="657" y="1" width="387" height="17"/>
+                                                            <rect key="frame" x="607" y="1" width="289" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yTw-6R-OZM">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="387" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="289" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="YT5-sD-SZg">
                                                                         <font key="font" metaFont="system"/>
@@ -890,7 +890,7 @@ CA
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="xzS-uz-ycn">
-                                    <rect key="frame" x="1" y="331" width="1006" height="16"/>
+                                    <rect key="frame" x="1" y="429" width="898" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="26C-sU-zQv">
@@ -898,7 +898,7 @@ CA
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" id="xqd-er-Qxv">
-                                    <rect key="frame" x="0.0" y="0.0" width="1046" height="25"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="898" height="25"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
@@ -922,6 +922,6 @@ CA
     <resources>
         <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSAddTemplate" width="11" height="11"/>
-        <image name="newFolder" width="9.5" height="9.5"/>
+        <image name="newFolder" width="19" height="19"/>
     </resources>
 </document>
