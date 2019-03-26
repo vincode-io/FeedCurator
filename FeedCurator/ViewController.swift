@@ -10,6 +10,7 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 
 	private var addFeed: AddFeed?
 	private var feedFinder: FeedFinder?
+	private var indeterminateProgress: IndeterminateProgress?
 
 	private var windowController: WindowController? {
 		return self.view.window?.windowController as? WindowController
@@ -136,7 +137,7 @@ extension ViewController: FeedFinderDelegate {
 	
 	public func feedFinder(_ feedFinder: FeedFinder, didFindFeeds feedSpecifiers: Set<FeedSpecifier>) {
 		
-//		endShowingProgress()
+		view.window?.endSheet(indeterminateProgress!.window!)
 		
 		if let error = feedFinder.initialDownloadError {
 			if feedFinder.initialDownloadStatusCode == 404 {
@@ -204,10 +205,17 @@ extension ViewController: FeedFinderDelegate {
 private extension ViewController {
 	
 	func findFeed(_ urlString: String) {
+		
 		guard let url = URL(string: urlString.rs_normalizedURL()) else {
 			return
 		}
+		
+		let msg = NSLocalizedString("Downloading feed data...", comment: "Downloading feed")
+		indeterminateProgress = IndeterminateProgress(message: msg)
+		view.window?.beginSheet(indeterminateProgress!.window!)
+
 		feedFinder = FeedFinder(url: url, delegate: self)
+		
 	}
 
 	func deleteEntry(_ entry: OPMLEntry) {

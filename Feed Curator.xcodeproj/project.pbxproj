@@ -27,6 +27,8 @@
 		518C66232245A5A400B18604 /* RSOPMLItem+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518C661F2245A5A400B18604 /* RSOPMLItem+.swift */; };
 		518C66242245A5A400B18604 /* OPMLDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518C66202245A5A400B18604 /* OPMLDocument.swift */; };
 		518C66252245A5A400B18604 /* OPMLEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518C66212245A5A400B18604 /* OPMLEntry.swift */; };
+		51A35B5E224A50470098FA13 /* IndeterminateProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A35B5C224A50470098FA13 /* IndeterminateProgress.swift */; };
+		51A35B5F224A50470098FA13 /* IndeterminateProgress.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51A35B5D224A50470098FA13 /* IndeterminateProgress.xib */; };
 		51E41A172247CCB30014DDCC /* AddFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E41A152247CCB30014DDCC /* AddFeed.swift */; };
 		51E41A182247CCB30014DDCC /* AddFeed.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51E41A162247CCB30014DDCC /* AddFeed.xib */; };
 		51E41A1D224932B00014DDCC /* FeedFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E41A1A224932B00014DDCC /* FeedFinder.swift */; };
@@ -154,6 +156,8 @@
 		518C661F2245A5A400B18604 /* RSOPMLItem+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RSOPMLItem+.swift"; sourceTree = "<group>"; };
 		518C66202245A5A400B18604 /* OPMLDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OPMLDocument.swift; sourceTree = "<group>"; };
 		518C66212245A5A400B18604 /* OPMLEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OPMLEntry.swift; sourceTree = "<group>"; };
+		51A35B5C224A50470098FA13 /* IndeterminateProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndeterminateProgress.swift; sourceTree = "<group>"; };
+		51A35B5D224A50470098FA13 /* IndeterminateProgress.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IndeterminateProgress.xib; sourceTree = "<group>"; };
 		51E41A152247CCB30014DDCC /* AddFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFeed.swift; sourceTree = "<group>"; };
 		51E41A162247CCB30014DDCC /* AddFeed.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddFeed.xib; sourceTree = "<group>"; };
 		51E41A1A224932B00014DDCC /* FeedFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedFinder.swift; sourceTree = "<group>"; };
@@ -182,6 +186,8 @@
 			children = (
 				51E41A152247CCB30014DDCC /* AddFeed.swift */,
 				51E41A162247CCB30014DDCC /* AddFeed.xib */,
+				51A35B5C224A50470098FA13 /* IndeterminateProgress.swift */,
+				51A35B5D224A50470098FA13 /* IndeterminateProgress.xib */,
 				512BDE23224687CF00CB4159 /* UpdateTitle.swift */,
 				512BDE24224687CF00CB4159 /* UpdateTitle.xib */,
 			);
@@ -432,6 +438,7 @@
 				51E41A182247CCB30014DDCC /* AddFeed.xib in Resources */,
 				518C65AD22443C7C00B18604 /* Assets.xcassets in Resources */,
 				518C65B022443C7C00B18604 /* Main.storyboard in Resources */,
+				51A35B5F224A50470098FA13 /* IndeterminateProgress.xib in Resources */,
 				512BDE26224687CF00CB4159 /* UpdateTitle.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -473,6 +480,7 @@
 				518C66042245834E00B18604 /* WindowController.swift in Sources */,
 				518C65A722443C7B00B18604 /* AppDelegate.swift in Sources */,
 				51E41A1E224932B00014DDCC /* HTMLFeedFinder.swift in Sources */,
+				51A35B5E224A50470098FA13 /* IndeterminateProgress.swift in Sources */,
 				51E41A1F224932B00014DDCC /* FeedSpecifier.swift in Sources */,
 				518C66242245A5A400B18604 /* OPMLDocument.swift in Sources */,
 				512BDE29224689DE00CB4159 /* String+.swift in Sources */,

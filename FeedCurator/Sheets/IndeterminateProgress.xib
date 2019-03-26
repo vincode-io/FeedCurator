@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="IndeterminateProgress" customModule="Feed_Curator" customModuleProvider="target">
+            <connections>
+                <outlet property="messageLabel" destination="KYd-qW-pOV" id="K8S-wS-Vqs"/>
+                <outlet property="progressIndicator" destination="MVI-Ti-5hv" id="0cQ-bS-pDc"/>
+                <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="F0z-JX-Cv5">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+            <view key="contentView" id="se5-gp-TjO">
+                <rect key="frame" x="0.0" y="0.0" width="290" height="85"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KYd-qW-pOV">
+                        <rect key="frame" x="101" y="46" width="88" height="19"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Message…" id="5NB-vX-fQm">
+                            <font key="font" metaFont="systemBold" size="15"/>
+                            <color key="textColor" white="0.96999999999999997" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="MVI-Ti-5hv">
+                        <rect key="frame" x="20" y="19" width="250" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="250" id="O0N-Pu-uei"/>
+                        </constraints>
+                    </progressIndicator>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="MVI-Ti-5hv" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="0Em-9z-mBS"/>
+                    <constraint firstItem="MVI-Ti-5hv" firstAttribute="top" secondItem="KYd-qW-pOV" secondAttribute="bottom" constant="8" symbolic="YES" id="3cz-7A-cAA"/>
+                    <constraint firstAttribute="trailing" secondItem="MVI-Ti-5hv" secondAttribute="trailing" constant="20" id="56p-y0-7GL"/>
+                    <constraint firstItem="KYd-qW-pOV" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" id="5wD-gI-3iG"/>
+                    <constraint firstItem="MVI-Ti-5hv" firstAttribute="centerX" secondItem="se5-gp-TjO" secondAttribute="centerX" id="6uP-Nj-FqR"/>
+                    <constraint firstAttribute="bottom" secondItem="MVI-Ti-5hv" secondAttribute="bottom" constant="20" id="nvs-wA-e6b"/>
+                    <constraint firstItem="KYd-qW-pOV" firstAttribute="centerX" secondItem="se5-gp-TjO" secondAttribute="centerX" id="vAk-fl-QR8"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
+            </connections>
+        </window>
+    </objects>
+</document>
