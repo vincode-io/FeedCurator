@@ -103,14 +103,13 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 	// MARK: Notifications
 	@objc func opmlDocumentChildrenDidChange(_ note: Notification) {
 		
-		// TODO: Change this to save the actual item instead of the row index
-		
-		// Save the row to restore the selection
-		let rowIndex = outlineView.selectedRow
+		// Save the entry to restore the selection
+		let current = currentlySelectedEntry
 		
 		outlineView.reloadData()
 		
-		if rowIndex != -1 {
+		if current != nil {
+			let rowIndex = outlineView.row(forItem: current)
 			outlineView.rs_selectRowAndScrollToVisible(rowIndex)
 		}
 		
