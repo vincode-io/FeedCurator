@@ -107,14 +107,107 @@ extension ViewController: NSOutlineViewDelegate {
 	func outlineView(_ outlineView: NSOutlineView, draggingSession session: NSDraggingSession, willBeginAt screenPoint: NSPoint, forItems draggedItems: [Any]) {
 	}
 	
+	// Drag and Drop
+	
 	func outlineView(_ outlineView: NSOutlineView, pasteboardWriterForItem item: Any) -> NSPasteboardWriting? {
 		if let feed = item as? OPMLFeed {
 			return URLPasteboardWriter(urlString: feed.feedURL)
 		}
 		return nil
 	}
+
+	func outlineView(_ outlineView: NSOutlineView, validateDrop info: NSDraggingInfo, proposedItem item: Any?, proposedChildIndex index: Int) -> NSDragOperation {
+		
+		// Will eventually have to determine between local and non-local here.
+		
+		if item == nil {
+			return .copy
+		}
+		
+		if let entry = item as? OPMLEntry, entry.isFolder {
+			return .copy
+		}
+		
+		return []
+		
+	}
 	
-	func outlineViewSelectionDidChange(_ notification: Notification) {
+	func outlineView(_ outlineView: NSOutlineView, acceptDrop info: NSDraggingInfo, item: Any?, childIndex index: Int) -> Bool {
+		
+		guard let draggedEntries = PasteboardEntry.pasteboardEntries(with: info.draggingPasteboard), !draggedEntries.isEmpty else {
+			return false
+		}
+		
+		let contentsType = draggedFeedContentsType(draggedEntries)
+		
+		switch contentsType {
+		case .singleNonLocal:
+			let draggedNonLocalEntry = singleNonLocalEntry(from: draggedEntries)!
+			return acceptSingleNonLocalEntryDrop(outlineView, draggedNonLocalEntry, parent: item as? OPMLEntry, index)
+//		case .singleLocal:
+//			return acceptLocalFeedsDrop(outlineView, draggedFeeds, parentNode, index)
+//		case .multipleLocal:
+//			return acceptLocalFeedsDrop(outlineView, draggedFeeds, parentNode, index)
+		default:
+			return false
+		}
+
+	}
+	
+}
+
+private extension ViewController {
+
+	enum DraggedEntriesContentsType {
+		case empty, singleLocal, singleNonLocal, multipleLocal, multipleNonLocal, mixed
+	}
+	
+	func draggedFeedContentsType(_ draggedEntries: Set<PasteboardEntry>) -> DraggedEntriesContentsType {
+		
+		if draggedEntries.isEmpty {
+			return .empty
+		}
+		
+		if draggedEntries.count == 1 {
+			let entry = draggedEntries.first!
+			return entry.isLocalEntry ? .singleLocal : .singleNonLocal
+		}
+		
+		var hasLocalFeed = false
+		var hasNonLocalFeed = false
+		
+		for entry in draggedEntries {
+			if entry.isLocalEntry {
+				hasLocalFeed = true
+			} else {
+				hasNonLocalFeed = true
+			}
+			if hasLocalFeed && hasNonLocalFeed {
+				return .mixed
+			}
+		}
+		
+		if hasLocalFeed {
+			return .multipleLocal
+		}
+		
+ 	 	return .multipleNonLocal
+		
+	}
+	
+	func singleNonLocalEntry(from entries: Set<PasteboardEntry>) -> PasteboardEntry? {
+		guard entries.count == 1, let entry = entries.first else {
+			return nil
+		}
+		return entry.isLocalEntry ? nil : entry
+	}
+	
+	func acceptSingleNonLocalEntryDrop(_ outlineView: NSOutlineView, _ draggedEntry: PasteboardEntry, parent: OPMLEntry?, _ index: Int) -> Bool {
+		
+		currentDragData = (parent: parent, index: index)
+		
+		findFeed(draggedEntry.feedURL)
+		return true
 		
 	}
 	

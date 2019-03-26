@@ -39,12 +39,19 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 		}
 	}
 	
+	typealias DragData = (parent: OPMLEntry?, index: Int)
+	
+	var currentDragData: DragData?
+	
 	override func viewDidLoad() {
 		
 		super.viewDidLoad()
 		
 		outlineView.delegate = self
 		outlineView.dataSource = self
+		outlineView.setDraggingSourceOperationMask(.copy, forLocal: false)
+//		outlineView.setDraggingSourceOperationMask(.move, forLocal: true)
+		outlineView.registerForDraggedTypes([.URL, .string])
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(opmlDocumentChildrenDidChange(_:)), name: .OPMLDocumentChildrenDidChange, object: nil)
 
@@ -137,6 +144,8 @@ extension ViewController: FeedFinderDelegate {
 	public func feedFinder(_ feedFinder: FeedFinder, didFindFeeds feedSpecifiers: Set<FeedSpecifier>) {
 		
 		view.window?.endSheet(indeterminateProgress!.window!)
+		let dragData = currentDragData
+		currentDragData = nil
 		
 		if let error = feedFinder.initialDownloadError {
 			if feedFinder.initialDownloadStatusCode == 404 {
@@ -156,12 +165,20 @@ extension ViewController: FeedFinderDelegate {
 		if let url = URL(string: bestFeedSpecifier.urlString) {
 			
 			InitialFeedDownloader.download(url) { [weak self] (parsedFeed) in
+				
 				guard let parsedFeed = parsedFeed else {
 					assertionFailure()
 					return
 				}
+				
 				let opmlFeed = OPMLFeed(title: parsedFeed.title, pageURL: parsedFeed.homePageURL, feedURL: bestFeedSpecifier.urlString)
-				self?.insertEntry(opmlFeed)
+				
+				if dragData == nil {
+					self?.insertEntry(opmlFeed)
+				} else {
+					self?.insertEntry(opmlFeed, parent: dragData!.parent, childIndex: dragData!.index)
+				}
+				
 			}
 			
 		} else {
@@ -201,7 +218,9 @@ extension ViewController: FeedFinderDelegate {
 	
 }
 
-private extension ViewController {
+// MARK: API
+
+extension ViewController {
 	
 	func findFeed(_ urlString: String) {
 		
@@ -239,26 +258,45 @@ private extension ViewController {
 	
 	func insertEntry(_ entry: OPMLEntry) {
 		
-		guard let document = document else {
-			assertionFailure()
-			return
-		}
-		
 		let parent = currentlySelectedParent
 		let childIndex: Int = {
 			if let current = currentlySelectedEntry {
-				return outlineView.childIndex(forItem: current) + 1
+				if current.isFolder {
+					return outlineView.numberOfChildren(ofItem: parent)
+				} else {
+					return outlineView.childIndex(forItem: current) + 1
+				}
 			} else {
 				return outlineView.numberOfChildren(ofItem: parent)
 			}
 		}()
 		
+		insertEntry(entry, parent: parent, childIndex: childIndex)
+		
+	}
+	
+	func insertEntry(_ entry: OPMLEntry, parent: OPMLEntry?, childIndex: Int) {
+		
+		guard let document = document else {
+			assertionFailure()
+			return
+		}
+		
+		// If we didn't get an index, append to the end
+		let fixedIndex: Int = {
+			if childIndex == -1 {
+				return outlineView.numberOfChildren(ofItem: parent)
+			} else {
+				return childIndex
+			}
+		}()
+		
 		// Update the model
 		let realParent = parent == nil ? document.opmlDocument : parent!
-		document.insertEntry(parent: realParent, entry: entry, childIndex: childIndex)
+		document.insertEntry(parent: realParent, entry: entry, childIndex: fixedIndex)
 		
 		// Update the outline
-		let indexSet = IndexSet(integer: childIndex)
+		let indexSet = IndexSet(integer: fixedIndex)
 		outlineView.insertItems(at: indexSet, inParent: parent, withAnimation: .slideDown)
 		
 		outlineView.expandItem(parent, expandChildren: false)
@@ -266,5 +304,4 @@ private extension ViewController {
 		outlineView.rs_selectRowAndScrollToVisible(rowIndex)
 		
 	}
-	
 }
