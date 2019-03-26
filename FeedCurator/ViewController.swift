@@ -90,7 +90,7 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 	@IBAction func newFolder(_ sender: AnyObject?) {
 		let entry = OPMLEntry(title: NSLocalizedString("New Folder", comment: "New Folder"))
 		entry.isFolder = true
-		appendEntry(entry)
+		insertEntry(entry)
 	}
 	
 	@IBAction func renameEntry(_ sender: NSTextField) {
@@ -162,7 +162,7 @@ extension ViewController: FeedFinderDelegate {
 					return
 				}
 				let opmlFeed = OPMLFeed(title: parsedFeed.title, pageURL: parsedFeed.homePageURL, feedURL: bestFeedSpecifier.urlString)
-				self?.appendEntry(opmlFeed)
+				self?.insertEntry(opmlFeed)
 			}
 			
 		} else {
@@ -238,7 +238,7 @@ private extension ViewController {
 		
 	}
 	
-	func appendEntry(_ entry: OPMLEntry) {
+	func insertEntry(_ entry: OPMLEntry) {
 		
 		guard let document = document else {
 			assertionFailure()
@@ -246,14 +246,20 @@ private extension ViewController {
 		}
 		
 		let parent = currentlySelectedParent
-
+		let childIndex: Int = {
+			if let current = currentlySelectedEntry {
+				return outlineView.childIndex(forItem: current) + 1
+			} else {
+				return outlineView.numberOfChildren(ofItem: parent)
+			}
+		}()
+		
 		// Update the model
 		let realParent = parent == nil ? document.opmlDocument : parent!
-		document.appendEntry(parent: realParent, entry: entry)
+		document.insertEntry(parent: realParent, entry: entry, childIndex: childIndex)
 		
 		// Update the outline
-		let newRow = outlineView.numberOfChildren(ofItem: parent) - 1
-		let indexSet = IndexSet(integer: newRow)
+		let indexSet = IndexSet(integer: childIndex)
 		outlineView.insertItems(at: indexSet, inParent: parent, withAnimation: .slideDown)
 		
 		outlineView.expandItem(parent, expandChildren: false)
