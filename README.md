@@ -53,5 +53,5 @@ MIT Licensed
 ## Credits
 
 Many thanks to [Brent Simmons](http://inessential.com) releasing
-[NetNewsWire](https://github.com/brentsimmons/NetNewsWire) as and Open 
+[NetNewsWire](https://github.com/brentsimmons/NetNewsWire) as an Open 
 Source project.  There is a lot of NetNewsWire DNA in Feed Curator.
