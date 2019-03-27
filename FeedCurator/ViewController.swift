@@ -96,7 +96,6 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 		
 	@IBAction func newFolder(_ sender: AnyObject?) {
 		let entry = OPMLEntry(title: NSLocalizedString("New Folder", comment: "New Folder"))
-		entry.isFolder = true
 		insertEntry(entry)
 	}
 	
