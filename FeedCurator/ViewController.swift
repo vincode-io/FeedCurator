@@ -50,7 +50,7 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 		outlineView.delegate = self
 		outlineView.dataSource = self
 		outlineView.setDraggingSourceOperationMask(.copy, forLocal: false)
-//		outlineView.setDraggingSourceOperationMask(.move, forLocal: true)
+		outlineView.setDraggingSourceOperationMask(.move, forLocal: true)
 		outlineView.registerForDraggedTypes([.URL, .string])
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(opmlDocumentChildrenDidChange(_:)), name: .OPMLDocumentChildrenDidChange, object: nil)
