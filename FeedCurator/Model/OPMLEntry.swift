@@ -3,6 +3,8 @@
 import Foundation
 import RSCore
 
+typealias OPMLEntryAddress = [Int]
+
 class OPMLEntry: NSObject, NSPasteboardWriting {
 	
 	static let folderUTI = "io.vicode.opml-folder"
@@ -15,7 +17,7 @@ class OPMLEntry: NSObject, NSPasteboardWriting {
 		static let entries = "entries"
 	}
 	
-	var overrideAddress: [Int]?
+	var overrideAddress: OPMLEntryAddress?
 	var title: String?
 	var entries = [OPMLEntry]()
 
@@ -25,12 +27,12 @@ class OPMLEntry: NSObject, NSPasteboardWriting {
 		}
 	}
 	
-	var address: [Int]? {
+	var address: OPMLEntryAddress? {
 		if overrideAddress != nil {
 			return overrideAddress
 		}
 		if parent != nil {
-			let backwardsAddress = parent!.mapAddress(child: self, workAddress: [Int]())
+			let backwardsAddress = parent!.mapAddress(child: self, workAddress: OPMLEntryAddress())
 			return backwardsAddress.reversed()
 		}
 		return nil
@@ -53,7 +55,7 @@ class OPMLEntry: NSObject, NSPasteboardWriting {
 	convenience init?(plist: [String: Any]) {
 		let title = plist[Key.title] as? String
 		self.init(title: title)
-		overrideAddress = plist[Key.address] as? [Int]
+		overrideAddress = plist[Key.address] as? OPMLEntryAddress
 	}
 	
 	convenience init?(pasteboardItem: NSPasteboardItem) {
@@ -144,7 +146,7 @@ class OPMLEntry: NSObject, NSPasteboardWriting {
 
 private extension OPMLEntry {
 	
-	func mapAddress(child: OPMLEntry, workAddress: [Int]) -> [Int] {
+	func mapAddress(child: OPMLEntry, workAddress: OPMLEntryAddress) -> OPMLEntryAddress {
 		
 		var workAddress = workAddress
 		workAddress.append(entries.firstIndex(of: child)!)
