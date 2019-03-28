@@ -310,16 +310,30 @@ extension ViewController {
 			return
 		}
 
+		let fromParent = outlineView.parent(forItem: entry) as? OPMLEntry
+		let fromChildIndex = outlineView.childIndex(forItem: entry)
+
+		// The first thing we do in this mess is check to see if the item was dropped
+		// on a folder or not.  If it was, we add it at the beginning by setting the
+		// index to zero.  After that we check to see if we are moving stuff inside the
+		// same parent folder or not.  If we are, we have to remove one from the "to"
+		// index, but only if the "from" object is higher up than the "to" object.
 		let correctedToChildIndex: Int = {
 			if toChildIndex == NSOutlineViewDropOnItemIndex {
 				return 0
 			} else {
-				return toChildIndex
+				if toParent == fromParent {
+					if fromChildIndex < toChildIndex {
+						return toChildIndex - 1
+					} else {
+						return toChildIndex
+					}
+				} else {
+					return toChildIndex
+				}
 			}
 		}()
 		
-		let fromParent = outlineView.parent(forItem: entry) as? OPMLEntry
-		let fromChildIndex = outlineView.childIndex(forItem: entry)
 		
 		// Update the model
 		let realToParent = toParent == nil ? document.opmlDocument : toParent!
