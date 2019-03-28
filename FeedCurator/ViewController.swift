@@ -328,8 +328,7 @@ extension ViewController {
 		document.moveEntry(fromParent: realFromParent, fromChildIndex: fromChildIndex, toParent: realToParent, toChildIndex: correctedToChildIndex, entry: entry)
 		
 		// Update the outline
-		outlineView.removeItems(at: IndexSet(integer: fromChildIndex), inParent: fromParent, withAnimation: .slideUp)
-		outlineView.insertItems(at: IndexSet(integer: correctedToChildIndex), inParent: toParent, withAnimation: .slideDown)
+		outlineView.moveItem(at: fromChildIndex, inParent: fromParent, to: toChildIndex, inParent: toParent)
 		
 	}
 	
