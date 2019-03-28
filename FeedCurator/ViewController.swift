@@ -292,7 +292,7 @@ extension ViewController {
 		
 		// Update the model
 		let realParent = parent == nil ? document.opmlDocument : parent!
-		document.insertEntry(parent: realParent, entry: entry, childIndex: fixedIndex)
+		document.insertEntry(parent: realParent, childIndex: fixedIndex, entry: entry)
 		
 		// Update the outline
 		let indexSet = IndexSet(integer: fixedIndex)

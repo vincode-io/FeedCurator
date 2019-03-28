@@ -92,7 +92,7 @@ class Document: NSDocument {
 		}
 
 		undoManager?.registerUndo(withTarget: parent) { [weak self] target in
-			self?.insertEntry(parent: target, entry: current, childIndex: childIndex)
+			self?.insertEntry(parent: target, childIndex: childIndex, entry: current)
 			NotificationCenter.default.post(name: .OPMLDocumentChildrenDidChange, object: self, userInfo: nil)
 		}
 
@@ -100,7 +100,7 @@ class Document: NSDocument {
 		
 	}
 	
-	func insertEntry(parent: OPMLEntry, entry: OPMLEntry, childIndex: Int) {
+	func insertEntry(parent: OPMLEntry, childIndex: Int, entry: OPMLEntry) {
 		
 		if !(undoManager?.isUndoing ?? false) {
 			if entry.isFolder {
