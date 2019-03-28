@@ -39,7 +39,7 @@ class Document: NSDocument {
 	override func read(from data: Data, ofType typeName: String) throws {
 		let parserData = ParserData(url: "", data: data)
 		let rsDoc = try RSOPMLParser.parseOPML(with: parserData)
-		opmlDocument = rsDoc.translateToOPMLEntry() as! OPMLDocument
+		opmlDocument = rsDoc.translateToOPMLEntry(parent: nil) as! OPMLDocument
 	}
 
 	override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
@@ -116,25 +116,7 @@ class Document: NSDocument {
 		}
 		
 		parent.entries.insert(entry, at: childIndex)
-		
-	}
-	
-	func appendEntry(parent: OPMLEntry, entry: OPMLEntry) {
-
-		if !(undoManager?.isUndoing ?? false) {
-			if entry.isFolder {
-				undoManager?.setActionName(NSLocalizedString("Add Folder", comment: "Insert Folder"))
-			} else {
-				undoManager?.setActionName(NSLocalizedString("Add Feed", comment: "Insert Row"))
-			}
-		}
-		
-		undoManager?.registerUndo(withTarget: parent) { [weak self] target in
-			self?.removeEntry(parent: target, childIndex: target.entries.count - 1)
-			NotificationCenter.default.post(name: .OPMLDocumentChildrenDidChange, object: self, userInfo: nil)
-		}
-		
-		parent.entries.append(entry)
+		entry.parent = parent
 		
 	}
 	

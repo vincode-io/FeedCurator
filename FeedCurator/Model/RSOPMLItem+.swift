@@ -5,7 +5,7 @@ import RSParser
 
 extension RSOPMLItem {
 	
-	func translateToOPMLEntry() -> OPMLEntry {
+	func translateToOPMLEntry(parent: OPMLEntry?) -> OPMLEntry {
 		
 		let opmlEntry: OPMLEntry = {
 			if let fs = self.feedSpecifier {
@@ -14,14 +14,14 @@ extension RSOPMLItem {
 				if let document = self as? RSOPMLDocument {
 					return OPMLDocument(title: document.title)
 				} else {
-					return OPMLEntry(title: titleFromAttributes)
+					return OPMLEntry(title: titleFromAttributes, parent: parent)
 				}
 			}
 		}()
 		
 		if let opmlItems = children {
 			opmlItems.forEach { opmlItem in
-				opmlEntry.entries.append(opmlItem.translateToOPMLEntry())
+				opmlEntry.entries.append(opmlItem.translateToOPMLEntry(parent: opmlEntry))
 			}
 		}
 		

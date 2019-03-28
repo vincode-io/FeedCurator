@@ -25,10 +25,10 @@ class OPMLFeed: OPMLEntry {
 		self.feedURL = feedURL
 	}
 	
-	init(title: String?, pageURL: String?, feedURL: String?) {
+	init(title: String?, pageURL: String?, feedURL: String?, parent: OPMLEntry? = nil) {
 		self.pageURL = pageURL
 		self.feedURL = feedURL
-		super.init(title: title)
+		super.init(title: title, parent: parent)
 	}
 	
 	convenience init?(plist: [String: Any]) {
@@ -83,9 +83,10 @@ class OPMLFeed: OPMLEntry {
 
 	override func makePlist() -> Any? {
 		
-		var result = [String: String]()
+		var result = [String: Any]()
 		
 		result[OPMLEntry.Key.uti] = OPMLFeed.feedUTI
+		result[OPMLEntry.Key.address] = address
 		result[OPMLEntry.Key.title] = title
 		result[Key.pageURL] = pageURL
 		result[Key.feedURL] = feedURL

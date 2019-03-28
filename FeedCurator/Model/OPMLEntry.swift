@@ -10,11 +10,21 @@ class OPMLEntry: NSObject, NSPasteboardWriting {
 	
 	struct Key {
 		static let uti = "uti"
+		static let address = "address"
 		static let title = "title"
 		static let entries = "entries"
 	}
 	
 	var title: String?
+	var address: [Int]?
+	weak var parent: OPMLEntry? {
+		didSet {
+			if parent != nil {
+				let backwardsAddress = parent!.mapAddress(child: self, workAddress: [Int]())
+				address = backwardsAddress.reversed()
+			}
+		}
+	}
 	var entries = [OPMLEntry]()
 
 	var isFolder: Bool {
@@ -25,8 +35,9 @@ class OPMLEntry: NSObject, NSPasteboardWriting {
 		return true
 	}
 	
-	init(title: String?, entries: [OPMLEntry]? = nil) {
+	init(title: String?, parent: OPMLEntry? = nil, entries: [OPMLEntry]? = nil) {
 		self.title = title
+		self.parent = parent
 	}
 	
 	convenience init?(plist: [String: Any]) {
@@ -58,13 +69,16 @@ class OPMLEntry: NSObject, NSPasteboardWriting {
 		
 	}
 	
+	// MARK: Drag and Drop
+	
 	func makePlist() -> Any? {
 		var result = [String: Any]()
 		result[Key.uti] = OPMLEntry.folderUTI
+		result[Key.address] = address
 		result[Key.title] = title
 		return result
 	}
-	
+
 	static func entries(with pasteboard: NSPasteboard) -> [OPMLEntry]? {
 		
 		guard let items = pasteboard.pasteboardItems else {
@@ -117,4 +131,21 @@ class OPMLEntry: NSObject, NSPasteboardWriting {
 		
 	}
 
+}
+
+private extension OPMLEntry {
+	
+	func mapAddress(child: OPMLEntry, workAddress: [Int]) -> [Int] {
+		
+		var workAddress = workAddress
+		workAddress.append(entries.firstIndex(of: child)!)
+		
+		if let parent = parent {
+			return parent.mapAddress(child: self, workAddress: workAddress)
+		} else {
+			return workAddress
+		}
+		
+	}
+	
 }
