@@ -18,7 +18,7 @@ Feed Curator is currently in development.  Beta testing releases coming soon.
 - Feed Finder - Just drag a page URL to Feed Curator and it will find the
 feed for you
 - Automatic population of feed details: Title, URL, and Home Page
-- Drag and drop rearrangement of feeds (in development)
+- Drag and drop rearrangement of feeds 
 - Free publishing of OPML files using Github Gist (in development)
 - Easy submission to Feed Compass for inclusing in future release (in development)
 
