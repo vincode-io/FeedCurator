@@ -59,15 +59,10 @@ class OPMLEntry: NSObject, NSPasteboardWriting {
 	}
 	
 	func makePlist() -> Any? {
-		
 		var result = [String: Any]()
-		
 		result[Key.uti] = OPMLEntry.folderUTI
 		result[Key.title] = title
-		result[Key.entries] = entries.compactMap { $0.makePlist() }
-		
 		return result
-		
 	}
 	
 	static func entries(with pasteboard: NSPasteboard) -> [OPMLEntry]? {
