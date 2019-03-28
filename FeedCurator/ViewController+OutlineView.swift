@@ -139,12 +139,9 @@ extension ViewController: NSOutlineViewDelegate {
 		
 		switch contentsType {
 		case .singleNonLocal:
-			let draggedNonLocalEntry = draggedEntries.first!
-			return acceptSingleNonLocalEntryDrop(outlineView, draggedNonLocalEntry, parent: item as? OPMLEntry, index)
-//		case .singleLocal:
-//			return acceptLocalFeedsDrop(outlineView, draggedFeeds, parentNode, index)
-//		case .multipleLocal:
-//			return acceptLocalFeedsDrop(outlineView, draggedFeeds, parentNode, index)
+			return acceptSingleNonLocalEntryDrop(outlineView, draggedEntries.first!, parent: item as? OPMLEntry, index)
+		case .singleLocal:
+			return acceptSingleLocalEntryDrop(outlineView, draggedEntries.first!, parent: item as? OPMLEntry, index)
 		default:
 			return false
 		}
@@ -178,6 +175,18 @@ private extension ViewController {
 		} else {
 			return false
 		}
+	}
+	
+	func acceptSingleLocalEntryDrop(_ outlineView: NSOutlineView, _ draggedEntry: OPMLEntry, parent: OPMLEntry?, _ index: Int) -> Bool {
+		print("********* address: \(draggedEntry.address)")
+		return false
+//		if let feed = draggedEntry as? OPMLFeed, let feedURL = feed.feedURL {
+//			currentDragData = (parent: parent, index: index)
+//			findFeed(feedURL)
+//			return true
+//		} else {
+//			return false
+//		}
 	}
 	
 }

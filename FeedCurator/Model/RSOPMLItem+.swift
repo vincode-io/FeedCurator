@@ -9,7 +9,7 @@ extension RSOPMLItem {
 		
 		let opmlEntry: OPMLEntry = {
 			if let fs = self.feedSpecifier {
-				return OPMLFeed(title: titleFromAttributes, pageURL: fs.homePageURL, feedURL: fs.feedURL)
+				return OPMLFeed(title: titleFromAttributes, pageURL: fs.homePageURL, feedURL: fs.feedURL, parent: parent)
 			} else {
 				if let document = self as? RSOPMLDocument {
 					return OPMLDocument(title: document.title)
@@ -20,8 +20,9 @@ extension RSOPMLItem {
 		}()
 		
 		if let opmlItems = children {
-			opmlItems.forEach { opmlItem in
-				opmlEntry.entries.append(opmlItem.translateToOPMLEntry(parent: opmlEntry))
+			for opmlItem in opmlItems {
+				let childEntry = opmlItem.translateToOPMLEntry(parent: opmlEntry)
+				opmlEntry.entries.append(childEntry)
 			}
 		}
 		

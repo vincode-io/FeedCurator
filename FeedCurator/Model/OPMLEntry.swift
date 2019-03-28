@@ -15,17 +15,26 @@ class OPMLEntry: NSObject, NSPasteboardWriting {
 		static let entries = "entries"
 	}
 	
+	var overrideAddress: [Int]?
 	var title: String?
-	var address: [Int]?
+	var entries = [OPMLEntry]()
+
 	weak var parent: OPMLEntry? {
 		didSet {
-			if parent != nil {
-				let backwardsAddress = parent!.mapAddress(child: self, workAddress: [Int]())
-				address = backwardsAddress.reversed()
-			}
+			overrideAddress = nil
 		}
 	}
-	var entries = [OPMLEntry]()
+	
+	var address: [Int]? {
+		if overrideAddress != nil {
+			return overrideAddress
+		}
+		if parent != nil {
+			let backwardsAddress = parent!.mapAddress(child: self, workAddress: [Int]())
+			return backwardsAddress.reversed()
+		}
+		return nil
+	}
 
 	var isFolder: Bool {
 		return type(of: self) == OPMLEntry.self
@@ -35,16 +44,16 @@ class OPMLEntry: NSObject, NSPasteboardWriting {
 		return true
 	}
 	
-	init(title: String?, parent: OPMLEntry? = nil, entries: [OPMLEntry]? = nil) {
+	init(title: String?, parent: OPMLEntry? = nil) {
+		super.init()
 		self.title = title
 		self.parent = parent
 	}
 	
 	convenience init?(plist: [String: Any]) {
 		let title = plist[Key.title] as? String
-		let plistEntries = plist[Key.entries] as! [[String: Any]]
-		let entries = plistEntries.compactMap { return OPMLEntry.entry(plist: $0) }
-		self.init(title: title, entries: entries)
+		self.init(title: title)
+		overrideAddress = plist[Key.address] as? [Int]
 	}
 	
 	convenience init?(pasteboardItem: NSPasteboardItem) {

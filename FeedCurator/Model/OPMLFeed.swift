@@ -26,9 +26,9 @@ class OPMLFeed: OPMLEntry {
 	}
 	
 	init(title: String?, pageURL: String?, feedURL: String?, parent: OPMLEntry? = nil) {
+		super.init(title: title, parent: parent)
 		self.pageURL = pageURL
 		self.feedURL = feedURL
-		super.init(title: title, parent: parent)
 	}
 	
 	convenience init?(plist: [String: Any]) {
@@ -36,11 +36,12 @@ class OPMLFeed: OPMLEntry {
 		let pageURL = plist[Key.pageURL] as? String
 		let feedURL = plist[Key.feedURL] as? String
 		self.init(title: title, pageURL: pageURL, feedURL: feedURL)
+		overrideAddress = plist[Key.address] as? [Int]
 	}
 
 	convenience init?(pasteboardItem: NSPasteboardItem) {
 		
-		if pasteboardItem.types.contains(OPMLFeed.folderUTIType) {
+		if pasteboardItem.types.contains(OPMLFeed.feedUTIType) {
 			guard let plist = pasteboardItem.propertyList(forType: OPMLFeed.feedUTIType) as? [String: Any] else {
 				return nil
 			}
