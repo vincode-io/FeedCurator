@@ -131,8 +131,7 @@ class Document: NSDocument {
 		}
 
 		undoManager?.registerUndo(withTarget: fromParent) { [weak self] target in
-			self?.insertEntry(parent: fromParent, childIndex: fromChildIndex, entry: entry)
-			self?.removeEntry(parent: toParent, childIndex: toChildIndex)
+			self?.moveEntry(fromParent: toParent, fromChildIndex: toChildIndex, toParent: fromParent, toChildIndex: fromChildIndex, entry: entry)
 			NotificationCenter.default.post(name: .OPMLDocumentChildrenDidChange, object: self, userInfo: nil)
 		}
 		
