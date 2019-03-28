@@ -280,11 +280,10 @@ extension ViewController {
 			assertionFailure()
 			return
 		}
-		
-		// If we didn't get an index, append to the end
-		let fixedIndex: Int = {
-			if childIndex == -1 {
-				return outlineView.numberOfChildren(ofItem: parent)
+
+		let correctedChildIndex: Int = {
+			if childIndex == NSOutlineViewDropOnItemIndex {
+				return 0
 			} else {
 				return childIndex
 			}
@@ -292,10 +291,10 @@ extension ViewController {
 		
 		// Update the model
 		let realParent = parent == nil ? document.opmlDocument : parent!
-		document.insertEntry(parent: realParent, childIndex: fixedIndex, entry: entry)
+		document.insertEntry(parent: realParent, childIndex: correctedChildIndex, entry: entry)
 		
 		// Update the outline
-		let indexSet = IndexSet(integer: fixedIndex)
+		let indexSet = IndexSet(integer: correctedChildIndex)
 		outlineView.insertItems(at: indexSet, inParent: parent, withAnimation: .slideDown)
 		
 		outlineView.expandItem(parent, expandChildren: false)
@@ -312,10 +311,10 @@ extension ViewController {
 		}
 
 		let correctedToChildIndex: Int = {
-			if toChildIndex != -1 {
-				return toChildIndex
+			if toChildIndex == NSOutlineViewDropOnItemIndex {
+				return 0
 			} else {
-				return outlineView.numberOfChildren(ofItem: toParent)
+				return toChildIndex
 			}
 		}()
 		
@@ -328,7 +327,7 @@ extension ViewController {
 		document.moveEntry(fromParent: realFromParent, fromChildIndex: fromChildIndex, toParent: realToParent, toChildIndex: correctedToChildIndex, entry: entry)
 		
 		// Update the outline
-		outlineView.moveItem(at: fromChildIndex, inParent: fromParent, to: toChildIndex, inParent: toParent)
+		outlineView.moveItem(at: fromChildIndex, inParent: fromParent, to: correctedToChildIndex, inParent: toParent)
 		
 	}
 	

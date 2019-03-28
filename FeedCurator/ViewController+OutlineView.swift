@@ -114,15 +114,34 @@ extension ViewController: NSOutlineViewDelegate {
 	}
 
 	func outlineView(_ outlineView: NSOutlineView, validateDrop info: NSDraggingInfo, proposedItem item: Any?, proposedChildIndex index: Int) -> NSDragOperation {
+
+		guard let draggedEntries = OPMLEntry.entries(with: info.draggingPasteboard), !draggedEntries.isEmpty else {
+			return []
+		}
 		
-		// Will eventually have to determine between local and non-local here.
+		let contentsType = draggedFeedContentsType(draggedEntries)
+
+		func evaluateDrop() -> NSDragOperation {
+			switch contentsType {
+			case .singleNonLocal:
+				return .copy
+			case .singleLocal:
+				if (info.draggingSource as AnyObject) === outlineView {
+					return .move
+				} else {
+					return []
+				}
+			default:
+				return []
+			}
+		}
 		
 		if item == nil {
-			return .copy
+			return evaluateDrop()
 		}
 		
 		if let entry = item as? OPMLEntry, entry.isFolder {
-			return .copy
+			return evaluateDrop()
 		}
 		
 		return []

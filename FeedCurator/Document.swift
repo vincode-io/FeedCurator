@@ -136,9 +136,13 @@ class Document: NSDocument {
 			NotificationCenter.default.post(name: .OPMLDocumentChildrenDidChange, object: self, userInfo: nil)
 		}
 		
-		fromParent.entries.remove(at: fromChildIndex)
+		// Hold on to the item to remove and recheck to see if its index changed after the insert.
+		let itemToRemove = fromParent.entries[fromChildIndex]
+		
 		toParent.entries.insert(entry, at: toChildIndex)
 		entry.parent = toParent
+		
+		fromParent.entries.remove(at: fromParent.entries.index(of: itemToRemove)!)
 
 	}
 	
