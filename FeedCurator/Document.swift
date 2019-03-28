@@ -120,4 +120,26 @@ class Document: NSDocument {
 		
 	}
 	
+	func moveEntry(fromParent: OPMLEntry, fromChildIndex: Int, toParent: OPMLEntry, toChildIndex: Int, entry: OPMLEntry) {
+
+		if !(undoManager?.isUndoing ?? false) {
+			if entry.isFolder {
+				undoManager?.setActionName(NSLocalizedString("Move Folder", comment: "Insert Folder"))
+			} else {
+				undoManager?.setActionName(NSLocalizedString("Move Feed", comment: "Insert Row"))
+			}
+		}
+
+		undoManager?.registerUndo(withTarget: fromParent) { [weak self] target in
+			self?.insertEntry(parent: fromParent, childIndex: fromChildIndex, entry: entry)
+			self?.removeEntry(parent: toParent, childIndex: toChildIndex)
+			NotificationCenter.default.post(name: .OPMLDocumentChildrenDidChange, object: self, userInfo: nil)
+		}
+		
+		fromParent.entries.remove(at: fromChildIndex)
+		toParent.entries.insert(entry, at: toChildIndex)
+		entry.parent = toParent
+
+	}
+	
 }

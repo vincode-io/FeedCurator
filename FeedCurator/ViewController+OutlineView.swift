@@ -184,18 +184,13 @@ private extension ViewController {
 			return false
 		}
 		
-		let lookupEntry = document?.opmlDocument.entry(for: address)
-		print("********* address: \(lookupEntry!.title)")
+		if let lookupEntry = document?.opmlDocument.entry(for: address) {
+			moveEntry(lookupEntry, toParent: parent, toChildIndex: index)
+			return true
+		}
 		
 		return false
 		
-//		if let feed = draggedEntry as? OPMLFeed, let feedURL = feed.feedURL {
-//			currentDragData = (parent: parent, index: index)
-//			findFeed(feedURL)
-//			return true
-//		} else {
-//			return false
-//		}
 	}
 	
 }

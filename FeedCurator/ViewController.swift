@@ -303,4 +303,34 @@ extension ViewController {
 		outlineView.rs_selectRowAndScrollToVisible(rowIndex)
 		
 	}
+	
+	func moveEntry(_ entry: OPMLEntry, toParent: OPMLEntry?, toChildIndex: Int) {
+		
+		guard let document = document else {
+			assertionFailure()
+			return
+		}
+
+		let correctedToChildIndex: Int = {
+			if toChildIndex != -1 {
+				return toChildIndex
+			} else {
+				return outlineView.numberOfChildren(ofItem: toParent)
+			}
+		}()
+		
+		let fromParent = outlineView.parent(forItem: entry) as? OPMLEntry
+		let fromChildIndex = outlineView.childIndex(forItem: entry)
+		
+		// Update the model
+		let realToParent = toParent == nil ? document.opmlDocument : toParent!
+		let realFromParent = fromParent == nil ? document.opmlDocument : fromParent!
+		document.moveEntry(fromParent: realFromParent, fromChildIndex: fromChildIndex, toParent: realToParent, toChildIndex: correctedToChildIndex, entry: entry)
+		
+		// Update the outline
+		outlineView.removeItems(at: IndexSet(integer: fromChildIndex), inParent: fromParent, withAnimation: .slideUp)
+		outlineView.insertItems(at: IndexSet(integer: correctedToChildIndex), inParent: toParent, withAnimation: .slideDown)
+		
+	}
+	
 }
