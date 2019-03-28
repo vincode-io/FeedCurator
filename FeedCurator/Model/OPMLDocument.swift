@@ -32,4 +32,12 @@ class OPMLDocument: OPMLEntry {
 		
 	}
 	
+	func entry(for address: OPMLEntryAddress) -> OPMLEntry {
+		var result: OPMLEntry = self
+		for i in address {
+			result = result.entries[i]
+		}
+		return result
+	}
+	
 }

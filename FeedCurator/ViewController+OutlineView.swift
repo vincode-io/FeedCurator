@@ -178,8 +178,17 @@ private extension ViewController {
 	}
 	
 	func acceptSingleLocalEntryDrop(_ outlineView: NSOutlineView, _ draggedEntry: OPMLEntry, parent: OPMLEntry?, _ index: Int) -> Bool {
-		print("********* address: \(draggedEntry.address)")
+		
+		guard let address = draggedEntry.address else {
+			assertionFailure()
+			return false
+		}
+		
+		let lookupEntry = document?.opmlDocument.entry(for: address)
+		print("********* address: \(lookupEntry!.title)")
+		
 		return false
+		
 //		if let feed = draggedEntry as? OPMLFeed, let feedURL = feed.feedURL {
 //			currentDragData = (parent: parent, index: index)
 //			findFeed(feedURL)
