@@ -40,8 +40,21 @@
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>0.1</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>CFBundleURLName</key>
+			<string>Feed Curator</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>feedcurator</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
-	<string>481</string>
+	<string>494</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>NSAppTransportSecurity</key>

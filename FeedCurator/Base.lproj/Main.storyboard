@@ -636,6 +636,9 @@ CA
                                     <items>
                                         <menuItem title="Sign on to Github" id="PCn-mL-rnh">
                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="loginToGithub:" target="Ady-hI-5gd" id="yIi-of-6q1"/>
+                                            </connections>
                                         </menuItem>
                                         <menuItem title="Upload to Github Gist" id="CBI-ee-ZuX">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -759,6 +762,9 @@ CA
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                     </button>
+                                    <connections>
+                                        <action selector="loginToGithub:" target="6f7-a7-6o1" id="YWV-kV-QgT"/>
+                                    </connections>
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="E15D0156-524E-4C42-B321-763CB03D32CC" label="Upload" paletteLabel="Custom View" toolTip="Upload to Github Gist" image="upload" sizingBehavior="auto" id="t9P-cQ-qNr" customClass="RSToolbarItem" customModule="RSCore">
                                     <button key="view" verticalHuggingPriority="750" id="dfD-2S-dnu">
