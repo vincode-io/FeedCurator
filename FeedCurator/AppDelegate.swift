@@ -15,7 +15,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidations {
 	}
 
 	func applicationDidFinishLaunching(_ notification: Notification) {
-		githubOAuthConfig = OAuthConfiguration(token: "", secret: "", scopes: ["repo"])
+		githubOAuthConfig = OAuthConfiguration(token: Secrets.GitHub.clientId, secret: Secrets.GitHub.clientSecret, scopes: ["repo"])
 	}
 	
 	@objc func handleCallback(_ event: NSAppleEventDescriptor, _ withReplyEvent: NSAppleEventDescriptor) {

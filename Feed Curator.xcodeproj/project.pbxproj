@@ -15,6 +15,7 @@
 		51533740224E94970024544D /* RequestKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5153373D224E94870024544D /* RequestKit.framework */; };
 		51533741224E94970024544D /* RequestKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5153373D224E94870024544D /* RequestKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		51533745224E9BE10024544D /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 51533744224E9BE10024544D /* Credits.rtf */; };
+		5153377F224ED9FE0024544D /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5153377E224ED9FE0024544D /* Secrets.swift */; };
 		518C65A722443C7B00B18604 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518C65A622443C7B00B18604 /* AppDelegate.swift */; };
 		518C65A922443C7B00B18604 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518C65A822443C7B00B18604 /* ViewController.swift */; };
 		518C65AB22443C7B00B18604 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518C65AA22443C7B00B18604 /* Document.swift */; };
@@ -261,6 +262,7 @@
 		51533707224E92B90024544D /* OctoKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OctoKit.xcodeproj; path = submodules/octokit.swift/OctoKit.xcodeproj; sourceTree = "<group>"; };
 		51533728224E94870024544D /* RequestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RequestKit.xcodeproj; path = submodules/RequestKit/RequestKit.xcodeproj; sourceTree = "<group>"; };
 		51533744224E9BE10024544D /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
+		5153377E224ED9FE0024544D /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		518C65A322443C7B00B18604 /* Feed Curator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Feed Curator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		518C65A622443C7B00B18604 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		518C65A822443C7B00B18604 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -386,6 +388,7 @@
 				518C65A822443C7B00B18604 /* ViewController.swift */,
 				51E41A2222497E2E0014DDCC /* ViewController+OutlineView.swift */,
 				518C66012245791600B18604 /* OutlineView.swift */,
+				5153377E224ED9FE0024544D /* Secrets.swift */,
 				512BDE1D2246879B00CB4159 /* Sheets */,
 				518C661D2245A51E00B18604 /* Model */,
 				51E41A19224932B00014DDCC /* FeedFinder */,
@@ -456,7 +459,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 518C65B522443C7C00B18604 /* Build configuration list for PBXNativeTarget "Feed Curator" */;
 			buildPhases = (
-				518C65BB22443D1400B18604 /* ShellScript */,
+				518C65BB22443D1400B18604 /* Increment Build Number */,
+				51533791224EDC310024544D /* Manage API Keys */,
 				518C659F22443C7B00B18604 /* Sources */,
 				518C65A022443C7B00B18604 /* Frameworks */,
 				518C65A122443C7B00B18604 /* Resources */,
@@ -713,7 +717,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		518C65BB22443D1400B18604 /* ShellScript */ = {
+		51533791224EDC310024544D /* Manage API Keys */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -722,6 +726,25 @@
 			);
 			inputPaths = (
 			);
+			name = "Manage API Keys";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "FAILED=false\n\nif [ \"${CONFIGURATION}\" = \"Debug\" ]; then\necho \"Not a release build.  Secrets.swift not changed.\"\nexit 0\nfi\n\nif [ -z \"${GITHUB_CLIENT_ID}\" ]; then\necho \"${SRCROOT}/FeedCurator/Secrets.swift:14:1: warning: Missing GitHub Client ID\"\nFAILED=true\nfi\n\nif [ -z \"${GITHUB_CLIENT_SECRET}\" ]; then\necho \"${SRCROOT}/FeedCurator/Secrets.swift:15:1: warning: Missing GitHub Client Secret\"\nFAILED=true\nfi\n\nsed -i \"s|{GITHUBID}|${GITHUB_CLIENT_ID}|g; s|{GITHUBSECRET}|${GITHUB_CLIENT_SECRET}|g\" \"${SRCROOT}/FeedCurator/Secrets.swift\"\n\nif [ \"$FAILED\" = true ]; then\nexit 1\nfi\n\necho \"All env values found!\"\n";
+		};
+		518C65BB22443D1400B18604 /* Increment Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Increment Build Number";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -737,6 +760,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5153377F224ED9FE0024544D /* Secrets.swift in Sources */,
 				518C65A922443C7B00B18604 /* ViewController.swift in Sources */,
 				518C66222245A5A400B18604 /* OPMLFeed.swift in Sources */,
 				518C66252245A5A400B18604 /* OPMLEntry.swift in Sources */,
