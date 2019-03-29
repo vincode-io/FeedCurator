@@ -630,6 +630,22 @@ CA
                                     </items>
                                 </menu>
                             </menuItem>
+                            <menuItem title="Publish" id="aMp-5T-y34">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Publish" id="vuK-Kn-BEw">
+                                    <items>
+                                        <menuItem title="Sign on to Github" id="PCn-mL-rnh">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="Upload to Github Gist" id="CBI-ee-ZuX">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="Submit to Feed Compass" id="Gf8-TD-FPB">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
                             <menuItem title="Window" id="aUF-d1-5bR">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Window" systemMenu="window" id="Td7-aD-5lo">
@@ -734,6 +750,36 @@ CA
                                         </connections>
                                     </button>
                                 </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="2EB4B709-5AD5-4B68-AF6B-EE4D94B906E9" label="Github Signon" paletteLabel="Github Signon" toolTip="Signon to Github" image="github" sizingBehavior="auto" id="IiL-d0-5G2" customClass="RSToolbarItem" customModule="RSCore">
+                                    <button key="view" verticalHuggingPriority="750" id="HOO-dg-o8w">
+                                        <rect key="frame" x="0.0" y="14" width="127" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="github" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="02q-lZ-KBr">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="E15D0156-524E-4C42-B321-763CB03D32CC" label="Upload" paletteLabel="Custom View" toolTip="Upload to Github Gist" image="upload" sizingBehavior="auto" id="t9P-cQ-qNr" customClass="RSToolbarItem" customModule="RSCore">
+                                    <button key="view" verticalHuggingPriority="750" id="dfD-2S-dnu">
+                                        <rect key="frame" x="0.0" y="14" width="127" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="upload" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="EUH-UD-WoF">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="8C56B444-5CD4-4D9D-B340-F0F642BF95B7" label="Submit" paletteLabel="Submit" toolTip="Submit to Feed Compass" image="feedCompass" sizingBehavior="auto" id="PvJ-oC-UDe" customClass="RSToolbarItem" customModule="RSCore">
+                                    <button key="view" verticalHuggingPriority="750" id="Tmr-uE-3XY">
+                                        <rect key="frame" x="0.0" y="14" width="127" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="feedCompass" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="EGN-O5-c6w">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
                                 <toolbarItem reference="gjV-vs-8eC"/>
@@ -741,6 +787,9 @@ CA
                                 <toolbarItem reference="3ic-jy-Ogu"/>
                                 <toolbarItem reference="Rsh-bx-k9r"/>
                                 <toolbarItem reference="3ic-jy-Ogu"/>
+                                <toolbarItem reference="IiL-d0-5G2"/>
+                                <toolbarItem reference="t9P-cQ-qNr"/>
+                                <toolbarItem reference="PvJ-oC-UDe"/>
                             </defaultToolbarItems>
                         </toolbar>
                         <connections>
@@ -922,6 +971,9 @@ CA
     <resources>
         <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSAddTemplate" width="11" height="11"/>
+        <image name="feedCompass" width="32" height="32"/>
+        <image name="github" width="33" height="33"/>
         <image name="newFolder" width="19" height="19"/>
+        <image name="upload" width="20" height="18"/>
     </resources>
 </document>

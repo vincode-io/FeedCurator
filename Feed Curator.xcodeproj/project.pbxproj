@@ -14,6 +14,7 @@
 		51533725224E92D30024544D /* OctoKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5153371A224E92B90024544D /* OctoKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		51533740224E94970024544D /* RequestKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5153373D224E94870024544D /* RequestKit.framework */; };
 		51533741224E94970024544D /* RequestKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5153373D224E94870024544D /* RequestKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		51533745224E9BE10024544D /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 51533744224E9BE10024544D /* Credits.rtf */; };
 		518C65A722443C7B00B18604 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518C65A622443C7B00B18604 /* AppDelegate.swift */; };
 		518C65A922443C7B00B18604 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518C65A822443C7B00B18604 /* ViewController.swift */; };
 		518C65AB22443C7B00B18604 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518C65AA22443C7B00B18604 /* Document.swift */; };
@@ -259,6 +260,7 @@
 		512BDE2A224694E800CB4159 /* Feed Curator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Feed Curator.entitlements"; sourceTree = "<group>"; };
 		51533707224E92B90024544D /* OctoKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OctoKit.xcodeproj; path = submodules/octokit.swift/OctoKit.xcodeproj; sourceTree = "<group>"; };
 		51533728224E94870024544D /* RequestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RequestKit.xcodeproj; path = submodules/RequestKit/RequestKit.xcodeproj; sourceTree = "<group>"; };
+		51533744224E9BE10024544D /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		518C65A322443C7B00B18604 /* Feed Curator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Feed Curator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		518C65A622443C7B00B18604 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		518C65A822443C7B00B18604 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -391,6 +393,7 @@
 				518C65AC22443C7C00B18604 /* Assets.xcassets */,
 				518C65B122443C7C00B18604 /* Info.plist */,
 				518C65B222443C7C00B18604 /* FeedCurator.entitlements */,
+				51533744224E9BE10024544D /* Credits.rtf */,
 			);
 			path = FeedCurator;
 			sourceTree = "<group>";
@@ -699,6 +702,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				51E41A182247CCB30014DDCC /* AddFeed.xib in Resources */,
+				51533745224E9BE10024544D /* Credits.rtf in Resources */,
 				518C65AD22443C7C00B18604 /* Assets.xcassets in Resources */,
 				518C65B022443C7C00B18604 /* Main.storyboard in Resources */,
 				51A35B5F224A50470098FA13 /* IndeterminateProgress.xib in Resources */,
