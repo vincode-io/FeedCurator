@@ -10,6 +10,10 @@
 		512BDE25224687CF00CB4159 /* UpdateTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512BDE23224687CF00CB4159 /* UpdateTitle.swift */; };
 		512BDE26224687CF00CB4159 /* UpdateTitle.xib in Resources */ = {isa = PBXBuildFile; fileRef = 512BDE24224687CF00CB4159 /* UpdateTitle.xib */; };
 		512BDE29224689DE00CB4159 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512BDE28224689DE00CB4159 /* String+.swift */; };
+		51533724224E92D30024544D /* OctoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5153371A224E92B90024544D /* OctoKit.framework */; };
+		51533725224E92D30024544D /* OctoKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5153371A224E92B90024544D /* OctoKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		51533740224E94970024544D /* RequestKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5153373D224E94870024544D /* RequestKit.framework */; };
+		51533741224E94970024544D /* RequestKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5153373D224E94870024544D /* RequestKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		518C65A722443C7B00B18604 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518C65A622443C7B00B18604 /* AppDelegate.swift */; };
 		518C65A922443C7B00B18604 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518C65A822443C7B00B18604 /* ViewController.swift */; };
 		518C65AB22443C7B00B18604 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518C65AA22443C7B00B18604 /* Document.swift */; };
@@ -39,6 +43,118 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		51533711224E92B90024544D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 51533707224E92B90024544D /* OctoKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 239BE7C91B8C47A100D2CE22;
+			remoteInfo = OctoKit;
+		};
+		51533713224E92B90024544D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 51533707224E92B90024544D /* OctoKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 234F4BA91BDDE31A00A58EF7;
+			remoteInfo = OctoKitTests;
+		};
+		51533715224E92B90024544D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 51533707224E92B90024544D /* OctoKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 23CAF2621C7AB5FB005011C4;
+			remoteInfo = "OctoKit tvOS";
+		};
+		51533717224E92B90024544D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 51533707224E92B90024544D /* OctoKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 23CAF26B1C7AB5FC005011C4;
+			remoteInfo = "OctoKit tvOSTests";
+		};
+		51533719224E92B90024544D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 51533707224E92B90024544D /* OctoKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 23CAF27E1C7AB60C005011C4;
+			remoteInfo = "OctoKit Mac";
+		};
+		5153371B224E92B90024544D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 51533707224E92B90024544D /* OctoKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 23CAF2871C7AB60D005011C4;
+			remoteInfo = "OctoKit MacTests";
+		};
+		5153371D224E92B90024544D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 51533707224E92B90024544D /* OctoKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 23CAF29A1C7AB619005011C4;
+			remoteInfo = "OctoKit watchOS";
+		};
+		51533726224E92D30024544D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 51533707224E92B90024544D /* OctoKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 23CAF27D1C7AB60C005011C4;
+			remoteInfo = "OctoKit Mac";
+		};
+		51533732224E94870024544D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 51533728224E94870024544D /* RequestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 234F4C1C1BDDF64300A58EF7;
+			remoteInfo = RequestKit;
+		};
+		51533734224E94870024544D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 51533728224E94870024544D /* RequestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 234F4C261BDDF64300A58EF7;
+			remoteInfo = RequestKitTests;
+		};
+		51533736224E94870024544D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 51533728224E94870024544D /* RequestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 233743001C7981A800013492;
+			remoteInfo = "RequestKit tvOS";
+		};
+		51533738224E94870024544D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 51533728224E94870024544D /* RequestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2337434D1C79833A00013492;
+			remoteInfo = "RequestKit tvTests";
+		};
+		5153373A224E94870024544D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 51533728224E94870024544D /* RequestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2337430D1C7981D700013492;
+			remoteInfo = "RequestKit watchOS";
+		};
+		5153373C224E94870024544D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 51533728224E94870024544D /* RequestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2337431A1C7981E700013492;
+			remoteInfo = "RequestKit Mac";
+		};
+		5153373E224E94870024544D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 51533728224E94870024544D /* RequestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2337433E1C79832700013492;
+			remoteInfo = "RequestKit MacTests";
+		};
+		51533742224E94970024544D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 51533728224E94870024544D /* RequestKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 233743191C7981E700013492;
+			remoteInfo = "RequestKit Mac";
+		};
 		518C65C122443FF500B18604 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 518C65BC22443FF500B18604 /* RSParser.xcodeproj */;
@@ -127,6 +243,8 @@
 			files = (
 				518C65FE224577B600B18604 /* RSWeb.framework in Embed Frameworks */,
 				518C65FA224577AF00B18604 /* RSCore.framework in Embed Frameworks */,
+				51533741224E94970024544D /* RequestKit.framework in Embed Frameworks */,
+				51533725224E92D30024544D /* OctoKit.framework in Embed Frameworks */,
 				518C65D622444FDA00B18604 /* RSParser.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -139,6 +257,8 @@
 		512BDE24224687CF00CB4159 /* UpdateTitle.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpdateTitle.xib; sourceTree = "<group>"; };
 		512BDE28224689DE00CB4159 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		512BDE2A224694E800CB4159 /* Feed Curator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Feed Curator.entitlements"; sourceTree = "<group>"; };
+		51533707224E92B90024544D /* OctoKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OctoKit.xcodeproj; path = submodules/octokit.swift/OctoKit.xcodeproj; sourceTree = "<group>"; };
+		51533728224E94870024544D /* RequestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RequestKit.xcodeproj; path = submodules/RequestKit/RequestKit.xcodeproj; sourceTree = "<group>"; };
 		518C65A322443C7B00B18604 /* Feed Curator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Feed Curator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		518C65A622443C7B00B18604 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		518C65A822443C7B00B18604 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -174,6 +294,8 @@
 			files = (
 				518C65FD224577B600B18604 /* RSWeb.framework in Frameworks */,
 				518C65F9224577AF00B18604 /* RSCore.framework in Frameworks */,
+				51533740224E94970024544D /* RequestKit.framework in Frameworks */,
+				51533724224E92D30024544D /* OctoKit.framework in Frameworks */,
 				518C65D522444FDA00B18604 /* RSParser.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -202,12 +324,42 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		51533708224E92B90024544D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				51533712224E92B90024544D /* OctoKit.framework */,
+				51533714224E92B90024544D /* OctoKitTests.xctest */,
+				51533716224E92B90024544D /* OctoKit.framework */,
+				51533718224E92B90024544D /* OctoKit tvOSTests.xctest */,
+				5153371A224E92B90024544D /* OctoKit.framework */,
+				5153371C224E92B90024544D /* OctoKit MacTests.xctest */,
+				5153371E224E92B90024544D /* OctoKit.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		51533729224E94870024544D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				51533733224E94870024544D /* RequestKit.framework */,
+				51533735224E94870024544D /* RequestKitTests.xctest */,
+				51533737224E94870024544D /* RequestKit.framework */,
+				51533739224E94870024544D /* RequestKit tvTests.xctest */,
+				5153373B224E94870024544D /* RequestKit.framework */,
+				5153373D224E94870024544D /* RequestKit.framework */,
+				5153373F224E94870024544D /* RequestKit MacTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		518C659A22443C7B00B18604 = {
 			isa = PBXGroup;
 			children = (
 				512BDE2A224694E800CB4159 /* Feed Curator.entitlements */,
 				518C65A522443C7B00B18604 /* FeedCurator */,
 				518C65A422443C7B00B18604 /* Products */,
+				51533707224E92B90024544D /* OctoKit.xcodeproj */,
+				51533728224E94870024544D /* RequestKit.xcodeproj */,
 				518C65ED224577A100B18604 /* RSCore.xcodeproj */,
 				518C65BC22443FF500B18604 /* RSParser.xcodeproj */,
 				518C65E02245779900B18604 /* RSWeb.xcodeproj */,
@@ -313,6 +465,8 @@
 				518C65D822444FDA00B18604 /* PBXTargetDependency */,
 				518C65FC224577AF00B18604 /* PBXTargetDependency */,
 				518C6600224577B700B18604 /* PBXTargetDependency */,
+				51533727224E92D30024544D /* PBXTargetDependency */,
+				51533743224E94970024544D /* PBXTargetDependency */,
 			);
 			name = "Feed Curator";
 			productName = FeedCurator;
@@ -332,6 +486,9 @@
 					518C65A222443C7B00B18604 = {
 						CreatedOnToolsVersion = 10.1;
 						SystemCapabilities = {
+							com.apple.HardenedRuntime = {
+								enabled = 1;
+							};
 							com.apple.Sandbox = {
 								enabled = 1;
 							};
@@ -351,6 +508,14 @@
 			productRefGroup = 518C65A422443C7B00B18604 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = 51533708224E92B90024544D /* Products */;
+					ProjectRef = 51533707224E92B90024544D /* OctoKit.xcodeproj */;
+				},
+				{
+					ProductGroup = 51533729224E94870024544D /* Products */;
+					ProjectRef = 51533728224E94870024544D /* RequestKit.xcodeproj */;
+				},
 				{
 					ProductGroup = 518C65EE224577A100B18604 /* Products */;
 					ProjectRef = 518C65ED224577A100B18604 /* RSCore.xcodeproj */;
@@ -372,6 +537,104 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		51533712224E92B90024544D /* OctoKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OctoKit.framework;
+			remoteRef = 51533711224E92B90024544D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		51533714224E92B90024544D /* OctoKitTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = OctoKitTests.xctest;
+			remoteRef = 51533713224E92B90024544D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		51533716224E92B90024544D /* OctoKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OctoKit.framework;
+			remoteRef = 51533715224E92B90024544D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		51533718224E92B90024544D /* OctoKit tvOSTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "OctoKit tvOSTests.xctest";
+			remoteRef = 51533717224E92B90024544D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5153371A224E92B90024544D /* OctoKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OctoKit.framework;
+			remoteRef = 51533719224E92B90024544D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5153371C224E92B90024544D /* OctoKit MacTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "OctoKit MacTests.xctest";
+			remoteRef = 5153371B224E92B90024544D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5153371E224E92B90024544D /* OctoKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OctoKit.framework;
+			remoteRef = 5153371D224E92B90024544D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		51533733224E94870024544D /* RequestKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RequestKit.framework;
+			remoteRef = 51533732224E94870024544D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		51533735224E94870024544D /* RequestKitTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = RequestKitTests.xctest;
+			remoteRef = 51533734224E94870024544D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		51533737224E94870024544D /* RequestKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RequestKit.framework;
+			remoteRef = 51533736224E94870024544D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		51533739224E94870024544D /* RequestKit tvTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "RequestKit tvTests.xctest";
+			remoteRef = 51533738224E94870024544D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5153373B224E94870024544D /* RequestKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RequestKit.framework;
+			remoteRef = 5153373A224E94870024544D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5153373D224E94870024544D /* RequestKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RequestKit.framework;
+			remoteRef = 5153373C224E94870024544D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		5153373F224E94870024544D /* RequestKit MacTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "RequestKit MacTests.xctest";
+			remoteRef = 5153373E224E94870024544D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		518C65C222443FF500B18604 /* RSParser.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -494,6 +757,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		51533727224E92D30024544D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "OctoKit Mac";
+			targetProxy = 51533726224E92D30024544D /* PBXContainerItemProxy */;
+		};
+		51533743224E94970024544D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "RequestKit Mac";
+			targetProxy = 51533742224E94970024544D /* PBXContainerItemProxy */;
+		};
 		518C65D822444FDA00B18604 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = RSParser;
@@ -647,6 +920,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = SHJK2V3AJG;
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = FeedCurator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -667,6 +941,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = SHJK2V3AJG;
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = FeedCurator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
