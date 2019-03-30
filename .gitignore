@@ -69,3 +69,8 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
+
+# Project specific
+
+Configuration/Release.xcconfig
+Feed\ Curator.xcodeproj/xcshareddata
