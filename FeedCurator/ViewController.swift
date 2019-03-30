@@ -3,7 +3,6 @@
 import AppKit
 import RSCore
 import RSParser
-import OctoKit
 
 class ViewController: NSViewController, NSUserInterfaceValidations {
 
@@ -115,10 +114,14 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 	}
 	
 	@IBAction func submitIssue(_ sender: AnyObject?) {
+
 		if let window = view.window {
-			submitIssue = SubmitIssue(delegate: self)
+			let title = document?.opmlDocument.title ?? ""
+			let gistURL = "http://gist.github.com/test-url"
+			submitIssue = SubmitIssue(title: title, gistURL: gistURL)
 			submitIssue!.runSheetOnWindow(window)
 		}
+		
 	}
 	
 	// MARK: Notifications
@@ -147,36 +150,6 @@ extension ViewController: AddFeedDelegate {
 	}
 	
 	func addFeedUserDidCancel() {
-	}
-	
-}
-
-// MARK: SubmitIssueDelegate
-
-extension ViewController: SubmitIssueDelegate {
-
-	func submitIssueUserDidSubmit(_ body: String) {
-		
-		guard let tokenConfig = appDelegate.githubTokenConfig else { return }
-		let octoKit = Octokit(tokenConfig)
-		
-		let title = "Add Request: \(document?.opmlDocument.title ?? "")"
-		
-		octoKit.postIssue(owner: "vincode-io", repository: "FeedCompass", title: title, body: body) { response in
-			switch response {
-			case .success(let issue):
-				print("We did it!!!!")
-			case .failure(let error):
-				DispatchQueue.main.async {
-					// TODO: fix up this error handling
-					NSApplication.shared.presentError(error)
-				}
-			}
-		}
-		
-	}
-	
-	func submitIssueUserDidCancel() {
 	}
 	
 }
