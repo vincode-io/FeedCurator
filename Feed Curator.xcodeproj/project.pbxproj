@@ -16,6 +16,8 @@
 		51533741224E94970024544D /* RequestKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5153373D224E94870024544D /* RequestKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		51533745224E9BE10024544D /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 51533744224E9BE10024544D /* Credits.rtf */; };
 		5153377F224ED9FE0024544D /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5153377E224ED9FE0024544D /* Secrets.swift */; };
+		515337A6224EF7AE0024544D /* SubmitIssue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515337A4224EF7AE0024544D /* SubmitIssue.swift */; };
+		515337A7224EF7AE0024544D /* SubmitIssue.xib in Resources */ = {isa = PBXBuildFile; fileRef = 515337A5224EF7AE0024544D /* SubmitIssue.xib */; };
 		518C65A722443C7B00B18604 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518C65A622443C7B00B18604 /* AppDelegate.swift */; };
 		518C65A922443C7B00B18604 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518C65A822443C7B00B18604 /* ViewController.swift */; };
 		518C65AB22443C7B00B18604 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518C65AA22443C7B00B18604 /* Document.swift */; };
@@ -264,6 +266,8 @@
 		51533744224E9BE10024544D /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		5153377E224ED9FE0024544D /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		515337A3224EEFC90024544D /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		515337A4224EF7AE0024544D /* SubmitIssue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitIssue.swift; sourceTree = "<group>"; };
+		515337A5224EF7AE0024544D /* SubmitIssue.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubmitIssue.xib; sourceTree = "<group>"; };
 		518C65A322443C7B00B18604 /* Feed Curator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Feed Curator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		518C65A622443C7B00B18604 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		518C65A822443C7B00B18604 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -315,6 +319,8 @@
 				51E41A162247CCB30014DDCC /* AddFeed.xib */,
 				51A35B5C224A50470098FA13 /* IndeterminateProgress.swift */,
 				51A35B5D224A50470098FA13 /* IndeterminateProgress.xib */,
+				515337A4224EF7AE0024544D /* SubmitIssue.swift */,
+				515337A5224EF7AE0024544D /* SubmitIssue.xib */,
 				512BDE23224687CF00CB4159 /* UpdateTitle.swift */,
 				512BDE24224687CF00CB4159 /* UpdateTitle.xib */,
 			);
@@ -719,6 +725,7 @@
 				51533745224E9BE10024544D /* Credits.rtf in Resources */,
 				518C65AD22443C7C00B18604 /* Assets.xcassets in Resources */,
 				518C65B022443C7C00B18604 /* Main.storyboard in Resources */,
+				515337A7224EF7AE0024544D /* SubmitIssue.xib in Resources */,
 				51A35B5F224A50470098FA13 /* IndeterminateProgress.xib in Resources */,
 				512BDE26224687CF00CB4159 /* UpdateTitle.xib in Resources */,
 			);
@@ -771,6 +778,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5153377F224ED9FE0024544D /* Secrets.swift in Sources */,
+				515337A6224EF7AE0024544D /* SubmitIssue.swift in Sources */,
 				518C65A922443C7B00B18604 /* ViewController.swift in Sources */,
 				518C66222245A5A400B18604 /* OPMLFeed.swift in Sources */,
 				518C66252245A5A400B18604 /* OPMLEntry.swift in Sources */,

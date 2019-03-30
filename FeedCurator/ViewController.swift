@@ -3,6 +3,7 @@
 import AppKit
 import RSCore
 import RSParser
+import OctoKit
 
 class ViewController: NSViewController, NSUserInterfaceValidations {
 
@@ -11,6 +12,7 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 	private var addFeed: AddFeed?
 	private var feedFinder: FeedFinder?
 	private var indeterminateProgress: IndeterminateProgress?
+	private var submitIssue: SubmitIssue?
 
 	private var windowController: WindowController? {
 		return self.view.window?.windowController as? WindowController
@@ -74,6 +76,12 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 			}
 		}
 		
+		if item.action == #selector(submitIssue(_:)) {
+			if appDelegate.githubTokenConfig != nil {
+				return true
+			}
+		}
+		
 		return false
 		
 	}
@@ -90,7 +98,7 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 	@IBAction func newFeed(_ sender: AnyObject?) {
 		if let window = view.window {
 			addFeed = AddFeed(delegate: self)
-			addFeed?.runSheetOnWindow(window)
+			addFeed!.runSheetOnWindow(window)
 		}
 	}
 		
@@ -104,6 +112,13 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 			return
 		}
 		document?.updateTitle(entry: entry, title: sender.stringValue)
+	}
+	
+	@IBAction func submitIssue(_ sender: AnyObject?) {
+		if let window = view.window {
+			submitIssue = SubmitIssue(delegate: self)
+			submitIssue!.runSheetOnWindow(window)
+		}
 	}
 	
 	// MARK: Notifications
@@ -132,6 +147,36 @@ extension ViewController: AddFeedDelegate {
 	}
 	
 	func addFeedUserDidCancel() {
+	}
+	
+}
+
+// MARK: SubmitIssueDelegate
+
+extension ViewController: SubmitIssueDelegate {
+
+	func submitIssueUserDidSubmit(_ body: String) {
+		
+		guard let tokenConfig = appDelegate.githubTokenConfig else { return }
+		let octoKit = Octokit(tokenConfig)
+		
+		let title = "Add Request: \(document?.opmlDocument.title ?? "")"
+		
+		octoKit.postIssue(owner: "vincode-io", repository: "FeedCompass", title: title, body: body) { response in
+			switch response {
+			case .success(let issue):
+				print("We did it!!!!")
+			case .failure(let error):
+				DispatchQueue.main.async {
+					// TODO: fix up this error handling
+					NSApplication.shared.presentError(error)
+				}
+			}
+		}
+		
+	}
+	
+	func submitIssueUserDidCancel() {
 	}
 	
 }

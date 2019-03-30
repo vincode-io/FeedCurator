@@ -4,12 +4,19 @@ import AppKit
 import RSWeb
 import OctoKit
 
+var appDelegate: AppDelegate!
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidations {
 
 	var githubOAuthConfig: OAuthConfiguration?
 	var githubTokenConfig: TokenConfiguration?
 
+	override init() {
+		super.init()
+		appDelegate = self
+	}
+	
 	func applicationWillFinishLaunching(_ notification: Notification) {
 		NSAppleEventManager.shared().setEventHandler(self, andSelector: #selector(AppDelegate.handleCallback(_:_:)), forEventClass: AEEventClass(kInternetEventClass), andEventID: AEEventID(kAEGetURL))
 	}
