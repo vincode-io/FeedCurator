@@ -645,6 +645,9 @@ CA
                                         </menuItem>
                                         <menuItem title="Submit to Feed Compass" id="Gf8-TD-FPB">
                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="submitIssue:" target="Ady-hI-5gd" id="JzX-qY-o1M"/>
+                                            </connections>
                                         </menuItem>
                                     </items>
                                 </menu>
