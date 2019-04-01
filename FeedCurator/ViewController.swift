@@ -11,6 +11,7 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 	private var addFeed: AddFeed?
 	private var feedFinder: FeedFinder?
 	private var indeterminateProgress: IndeterminateProgress?
+	private var uploadOPML: UploadOPML?
 	private var submitIssue: SubmitIssue?
 
 	private var windowController: WindowController? {
@@ -75,6 +76,12 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 			}
 		}
 		
+		if item.action == #selector(uploadOPML(_:)) {
+			if appDelegate.githubTokenConfig != nil {
+				return true
+			}
+		}
+		
 		if item.action == #selector(submitIssue(_:)) {
 			if appDelegate.githubTokenConfig != nil {
 				return true
@@ -111,6 +118,19 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 			return
 		}
 		document?.updateTitle(entry: entry, title: sender.stringValue)
+	}
+	
+	@IBAction func uploadOPML(_ sender: AnyObject?) {
+		
+		guard let window = view.window,
+			let filename = document?.fileURL?.lastPathComponent,
+			let fileContent = document?.opmlDocument.makeXML(indentLevel: 0) else {
+				return
+		}
+		
+		uploadOPML = UploadOPML(filename: filename, fileContent: fileContent)
+		uploadOPML!.runSheetOnWindow(window)
+		
 	}
 	
 	@IBAction func submitIssue(_ sender: AnyObject?) {

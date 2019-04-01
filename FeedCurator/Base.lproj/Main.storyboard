@@ -642,6 +642,9 @@ CA
                                         </menuItem>
                                         <menuItem title="Upload to Github Gist" id="CBI-ee-ZuX">
                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="uploadOPML:" target="Ady-hI-5gd" id="CSh-qY-st1"/>
+                                            </connections>
                                         </menuItem>
                                         <menuItem title="Submit to Feed Compass" id="Gf8-TD-FPB">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -769,7 +772,7 @@ CA
                                         <action selector="loginToGithub:" target="6f7-a7-6o1" id="YWV-kV-QgT"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="E15D0156-524E-4C42-B321-763CB03D32CC" label="Upload" paletteLabel="Custom View" toolTip="Upload to Github Gist" image="upload" sizingBehavior="auto" id="t9P-cQ-qNr" customClass="RSToolbarItem" customModule="RSCore">
+                                <toolbarItem implicitItemIdentifier="E15D0156-524E-4C42-B321-763CB03D32CC" label="Upload OPML" paletteLabel="Upload OPML" toolTip="Upload to Github Gist" image="upload" sizingBehavior="auto" id="t9P-cQ-qNr" customClass="RSToolbarItem" customModule="RSCore">
                                     <button key="view" verticalHuggingPriority="750" id="dfD-2S-dnu">
                                         <rect key="frame" x="0.0" y="14" width="127" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -778,6 +781,9 @@ CA
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                     </button>
+                                    <connections>
+                                        <action selector="uploadOPML:" target="6f7-a7-6o1" id="Hkv-T2-Bwt"/>
+                                    </connections>
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="8C56B444-5CD4-4D9D-B340-F0F642BF95B7" label="Submit" paletteLabel="Submit" toolTip="Submit to Feed Compass" image="feedCompass" sizingBehavior="auto" id="PvJ-oC-UDe" customClass="RSToolbarItem" customModule="RSCore">
                                     <button key="view" verticalHuggingPriority="750" id="Tmr-uE-3XY">
