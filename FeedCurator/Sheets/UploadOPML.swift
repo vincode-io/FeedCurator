@@ -56,7 +56,7 @@ private extension UploadOPML {
 		guard let tokenConfig = appDelegate.githubTokenConfig else { return }
 		let octoKit = Octokit(tokenConfig)
 		
-		octoKit.postGistFile(description: description, filename: filename, fileContent: fileContent, publicAccess: true) { [weak self] response in
+		octoKit.postGistFile(description: "Feed Curator OPML", filename: filename, fileContent: fileContent, publicAccess: true) { [weak self] response in
 			
 			switch response {
 				
@@ -77,7 +77,7 @@ private extension UploadOPML {
 		guard let tokenConfig = appDelegate.githubTokenConfig else { return }
 		let octoKit = Octokit(tokenConfig)
 		
-		octoKit.patchGistFile(id: gistId, description: description, filename: filename, fileContent: fileContent) { [weak self] response in
+		octoKit.patchGistFile(id: gistId, description: "Feed Curator OPML", filename: filename, fileContent: fileContent) { [weak self] response in
 			
 			switch response {
 			case .success(let gist):
