@@ -12,11 +12,13 @@ class SubmitIssue: NSWindowController {
 	@IBOutlet weak var submitButton: NSButton!
 	
 	private weak var hostWindow: NSWindow?
+	private var filename: String!
 	private var title: String!
 	private var gistURL: String!
 
-	convenience init(title: String, gistURL: String) {
+	convenience init(filename: String, title: String, gistURL: String) {
 		self.init(windowNibName: NSNib.Name("SubmitIssue"))
+		self.filename = filename
 		self.title = title
 		self.gistURL = gistURL
 	}
@@ -52,6 +54,8 @@ class SubmitIssue: NSWindowController {
 				
 			case .success(let issue):
 				
+				self?.storeIssueURL(issue: issue)
+				
 				DispatchQueue.main.async {
 					if let htmlURL = issue.htmlURL {
 						MacWebBrowser.openURL(htmlURL, inBackground: false)
@@ -74,6 +78,22 @@ class SubmitIssue: NSWindowController {
 			}
 		}
 
+	}
+	
+	func storeIssueURL(issue: Issue) {
+		
+		var issueURLs: [String: Any?] = {
+			if let files = AppDefaults.issueURLs {
+				return files
+			} else {
+				return [String: Any?]()
+			}
+		}()
+		
+		issueURLs[filename] = issue.htmlURL?.absoluteString
+		
+		AppDefaults.issueURLs = issueURLs
+		
 	}
 	
 }

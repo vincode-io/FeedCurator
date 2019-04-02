@@ -3,6 +3,7 @@
 import AppKit
 import RSCore
 import RSParser
+import RSWeb
 
 class ViewController: NSViewController, NSUserInterfaceValidations {
 
@@ -88,7 +89,7 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 		}
 		
 		if item.action == #selector(submitIssue(_:)) {
-			if appDelegate.githubTokenConfig != nil && document?.uploadedURL != nil {
+			if (appDelegate.githubTokenConfig != nil && document?.uploadedURL != nil) || document?.issueURL != nil {
 				return true
 			}
 		}
@@ -135,7 +136,7 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 	@IBAction func uploadOPML(_ sender: AnyObject?) {
 		
 		guard let window = view.window,
-			let filename = document?.fileURL?.lastPathComponent,
+			let filename = document?.filename,
 			let fileContent = document?.opmlDocument.makeXML(indentLevel: 0) else {
 				return
 		}
@@ -147,10 +148,16 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 	
 	@IBAction func submitIssue(_ sender: AnyObject?) {
 
+		if let issueURL = document?.issueURL, let url = URL(string: issueURL) {
+			MacWebBrowser.openURL(url, inBackground: false)
+			return
+		}
+		
 		if let window = view.window {
+			let filename = document?.filename ?? ""
 			let title = document?.opmlDocument.title ?? ""
 			let gistURL = document?.uploadedURL ?? ""
-			submitIssue = SubmitIssue(title: title, gistURL: gistURL)
+			submitIssue = SubmitIssue(filename: filename, title: title, gistURL: gistURL)
 			submitIssue!.runSheetOnWindow(window)
 		}
 		

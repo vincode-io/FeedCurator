@@ -7,6 +7,7 @@ struct AppDefaults {
 	struct Key {
 		static let gistIds = "gistIds"
 		static let gistRawURLs = "gistRawURLs"
+		static let issueURLs = "issueURLs"
 	}
 	
 	static var gistIds: [String: Any?]? {
@@ -24,6 +25,15 @@ struct AppDefaults {
 		}
 		set {
 			UserDefaults.standard.set(newValue, forKey: Key.gistRawURLs)
+		}
+	}
+	
+	static var issueURLs: [String: Any?]? {
+		get {
+			return UserDefaults.standard.dictionary(forKey: Key.issueURLs)
+		}
+		set {
+			UserDefaults.standard.set(newValue, forKey: Key.issueURLs)
 		}
 	}
 	

@@ -12,9 +12,21 @@ class Document: NSDocument {
 
 	var opmlDocument = OPMLDocument(title: nil)
 
+	var filename: String? {
+		return fileURL?.absoluteURL.lastPathComponent
+	}
+	
 	var uploadedURL: String? {
-		if let filename = fileURL?.absoluteURL.lastPathComponent {
+		if let filename = filename {
 			return AppDefaults.gistRawURLs?[filename] as? String
+		} else {
+			return nil
+		}
+	}
+	
+	var issueURL: String? {
+		if let filename = filename {
+			return AppDefaults.issueURLs?[filename] as? String
 		} else {
 			return nil
 		}
