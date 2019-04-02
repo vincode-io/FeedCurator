@@ -21,6 +21,8 @@
 		515338042252B30D0024544D /* UploadOPML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515338022252B30D0024544D /* UploadOPML.swift */; };
 		515338052252B30D0024544D /* UploadOPML.xib in Resources */ = {isa = PBXBuildFile; fileRef = 515338032252B30D0024544D /* UploadOPML.xib */; };
 		5153381B2252BB800024544D /* AppDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5153381A2252BB800024544D /* AppDefaults.swift */; };
+		5153382E22539C690024544D /* SignonToGithub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5153382C22539C690024544D /* SignonToGithub.swift */; };
+		5153382F22539C690024544D /* SignonToGithub.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5153382D22539C690024544D /* SignonToGithub.xib */; };
 		518C65A722443C7B00B18604 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518C65A622443C7B00B18604 /* AppDelegate.swift */; };
 		518C65A922443C7B00B18604 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518C65A822443C7B00B18604 /* ViewController.swift */; };
 		518C65AB22443C7B00B18604 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518C65AA22443C7B00B18604 /* Document.swift */; };
@@ -274,6 +276,8 @@
 		515338022252B30D0024544D /* UploadOPML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadOPML.swift; sourceTree = "<group>"; };
 		515338032252B30D0024544D /* UploadOPML.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UploadOPML.xib; sourceTree = "<group>"; };
 		5153381A2252BB800024544D /* AppDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDefaults.swift; sourceTree = "<group>"; };
+		5153382C22539C690024544D /* SignonToGithub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignonToGithub.swift; sourceTree = "<group>"; };
+		5153382D22539C690024544D /* SignonToGithub.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignonToGithub.xib; sourceTree = "<group>"; };
 		518C65A322443C7B00B18604 /* Feed Curator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Feed Curator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		518C65A622443C7B00B18604 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		518C65A822443C7B00B18604 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -327,6 +331,8 @@
 				51A35B5D224A50470098FA13 /* IndeterminateProgress.xib */,
 				515338022252B30D0024544D /* UploadOPML.swift */,
 				515338032252B30D0024544D /* UploadOPML.xib */,
+				5153382C22539C690024544D /* SignonToGithub.swift */,
+				5153382D22539C690024544D /* SignonToGithub.xib */,
 				515337A4224EF7AE0024544D /* SubmitIssue.swift */,
 				515337A5224EF7AE0024544D /* SubmitIssue.xib */,
 				512BDE23224687CF00CB4159 /* UpdateTitle.swift */,
@@ -734,6 +740,7 @@
 				51533745224E9BE10024544D /* Credits.rtf in Resources */,
 				518C65AD22443C7C00B18604 /* Assets.xcassets in Resources */,
 				518C65B022443C7C00B18604 /* Main.storyboard in Resources */,
+				5153382F22539C690024544D /* SignonToGithub.xib in Resources */,
 				515338052252B30D0024544D /* UploadOPML.xib in Resources */,
 				515337A7224EF7AE0024544D /* SubmitIssue.xib in Resources */,
 				51A35B5F224A50470098FA13 /* IndeterminateProgress.xib in Resources */,
@@ -796,6 +803,7 @@
 				51E41A1D224932B00014DDCC /* FeedFinder.swift in Sources */,
 				51E41A172247CCB30014DDCC /* AddFeed.swift in Sources */,
 				512BDE25224687CF00CB4159 /* UpdateTitle.swift in Sources */,
+				5153382E22539C690024544D /* SignonToGithub.swift in Sources */,
 				518C66042245834E00B18604 /* WindowController.swift in Sources */,
 				518C65A722443C7B00B18604 /* AppDelegate.swift in Sources */,
 				51E41A1E224932B00014DDCC /* HTMLFeedFinder.swift in Sources */,

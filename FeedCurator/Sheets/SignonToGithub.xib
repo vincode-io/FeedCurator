@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="SignonToGithub" customModule="Feed_Curator" customModuleProvider="target">
+            <connections>
+                <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="F0z-JX-Cv5">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+            <view key="contentView" id="se5-gp-TjO">
+                <rect key="frame" x="0.0" y="0.0" width="480" height="202"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Jji-3g-4i2">
+                        <rect key="frame" x="18" y="158" width="153" height="24"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Signon To Github" id="Scl-y7-afn">
+                            <font key="font" metaFont="system" size="20"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Fxt-vQ-5X4">
+                        <rect key="frame" x="18" y="116" width="444" height="34"/>
+                        <textFieldCell key="cell" selectable="YES" title="We use Github to publish your OPML files and submit them to Feed Compass.  Github is free and is easy to sign up for." id="s89-Yc-CRQ">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="ci6-f5-M7W">
+                        <rect key="frame" x="18" y="57" width="444" height="51"/>
+                        <textFieldCell key="cell" selectable="YES" id="ntM-Jp-ZEn">
+                            <font key="font" metaFont="system"/>
+                            <string key="title">We will never access any repository or other gists that you have on Github.  We strickly submit the OPML files as your Gists and submit Issues to Feed Compass.</string>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EMj-HV-hcK">
+                        <rect key="frame" x="14" y="13" width="86" height="32"/>
+                        <buttonCell key="cell" type="push" title="Sign up" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uzr-F6-cpW">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="signup:" target="-2" id="7Eu-nK-XA4"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kfh-ij-oav">
+                        <rect key="frame" x="385" y="13" width="81" height="32"/>
+                        <buttonCell key="cell" type="push" title="Sign in" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="pV9-cV-PIQ">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="signin:" target="-2" id="X5q-KC-5e3"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8rt-00-I05">
+                        <rect key="frame" x="303" y="13" width="82" height="32"/>
+                        <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9kZ-n4-Yu6">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                        </buttonCell>
+                        <connections>
+                            <action selector="cancel:" target="-2" id="XPT-HR-nZ8"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Fxt-vQ-5X4" firstAttribute="top" secondItem="Jji-3g-4i2" secondAttribute="bottom" constant="8" id="2Kd-zk-1TM"/>
+                    <constraint firstItem="EMj-HV-hcK" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="2fP-fD-HKC"/>
+                    <constraint firstItem="ci6-f5-M7W" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="3ON-xx-dw4"/>
+                    <constraint firstAttribute="trailing" secondItem="kfh-ij-oav" secondAttribute="trailing" constant="20" id="5fV-Fx-nXm"/>
+                    <constraint firstItem="ci6-f5-M7W" firstAttribute="top" secondItem="Fxt-vQ-5X4" secondAttribute="bottom" constant="8" id="AWB-ky-BWN"/>
+                    <constraint firstItem="EMj-HV-hcK" firstAttribute="top" secondItem="ci6-f5-M7W" secondAttribute="bottom" constant="16" id="KDh-QA-MeX"/>
+                    <constraint firstItem="kfh-ij-oav" firstAttribute="leading" secondItem="8rt-00-I05" secondAttribute="trailing" constant="12" symbolic="YES" id="Kfi-Ii-jtl"/>
+                    <constraint firstItem="8rt-00-I05" firstAttribute="centerY" secondItem="kfh-ij-oav" secondAttribute="centerY" id="Kmy-M2-gZY"/>
+                    <constraint firstItem="Jji-3g-4i2" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="PKa-EI-u11"/>
+                    <constraint firstAttribute="trailing" secondItem="Fxt-vQ-5X4" secondAttribute="trailing" constant="20" id="PTs-04-Mtj"/>
+                    <constraint firstItem="Jji-3g-4i2" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" id="Szc-H8-gor"/>
+                    <constraint firstAttribute="trailing" secondItem="ci6-f5-M7W" secondAttribute="trailing" constant="20" id="U7N-kj-326"/>
+                    <constraint firstAttribute="bottom" secondItem="kfh-ij-oav" secondAttribute="bottom" constant="20" id="dFh-xl-hYf"/>
+                    <constraint firstItem="Fxt-vQ-5X4" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="qxq-la-EYr"/>
+                    <constraint firstAttribute="bottom" secondItem="EMj-HV-hcK" secondAttribute="bottom" constant="20" id="ywS-di-Dh6"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
+            </connections>
+        </window>
+    </objects>
+</document>

@@ -11,6 +11,7 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 	private var addFeed: AddFeed?
 	private var feedFinder: FeedFinder?
 	private var indeterminateProgress: IndeterminateProgress?
+	private var signonToGithub: SignonToGithub?
 	private var uploadOPML: UploadOPML?
 	private var submitIssue: SubmitIssue?
 
@@ -75,7 +76,11 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 				return true
 			}
 		}
-		
+
+		if item.action == #selector(signonToGithub(_:)) {
+			return appDelegate.githubTokenConfig == nil
+		}
+
 		if item.action == #selector(uploadOPML(_:)) {
 			if appDelegate.githubTokenConfig != nil {
 				return true
@@ -118,6 +123,13 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 			return
 		}
 		document?.updateTitle(entry: entry, title: sender.stringValue)
+	}
+	
+	@IBAction func signonToGithub(_ sender: AnyObject?) {
+		if let window = view.window {
+			signonToGithub = SignonToGithub()
+			signonToGithub!.runSheetOnWindow(window)
+		}
 	}
 	
 	@IBAction func uploadOPML(_ sender: AnyObject?) {

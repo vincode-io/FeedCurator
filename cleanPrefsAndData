@@ -1,0 +1,6 @@
+#!/bin/sh
+
+defaults delete io.vincode.FeedCurator
+killall cfprefsd
+
+rm -rf ~/Library/Containers/io.vincode.FeedCurator

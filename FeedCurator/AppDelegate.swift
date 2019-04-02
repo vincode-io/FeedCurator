@@ -7,7 +7,7 @@ import OctoKit
 var appDelegate: AppDelegate!
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidations {
+class AppDelegate: NSObject, NSApplicationDelegate {
 
 	var githubOAuthConfig: OAuthConfiguration?
 	var githubTokenConfig: TokenConfiguration?
@@ -36,42 +36,17 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidations {
 		}
 		
 		githubOAuthConfig?.handleOpenURL(url: url) { [unowned self] tokenConfig in
+			
 			self.githubTokenConfig = tokenConfig
-			self.validateAllToolbars()
+			
+			DispatchQueue.main.async {
+				NSApplication.shared.windows.forEach {
+					$0.toolbar?.validateVisibleItems()
+				}
+			}
+
 		}
 			
 	}
 
-	// MARK: NSUserInterfaceValidations
-	
-	func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
-
-		if item.action == #selector(loginToGithub(_:)) {
-			return githubTokenConfig == nil
-		}
-
-		return false
-		
-	}
-
-	// MARK: Actions
-	
-	@IBAction func loginToGithub(_ sender: Any?) {
-		if let url = githubOAuthConfig?.authenticate() {
-			MacWebBrowser.openURL(url, inBackground: false)
-		}
-	}
-	
-}
-
-private extension AppDelegate {
-	
-	func validateAllToolbars() {
-		DispatchQueue.main.async {
-			NSApplication.shared.windows.forEach {
-				$0.toolbar?.validateVisibleItems()
-			}
-		}
-	}
-	
 }
