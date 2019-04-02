@@ -88,9 +88,7 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 		}
 		
 		if item.action == #selector(submitIssue(_:)) {
-			if appDelegate.githubTokenConfig != nil &&
-				//				AppDefaults.  TODO: fix this to check for this file's gist....
-				document?.opmlDocument.isValid ?? false {
+			if appDelegate.githubTokenConfig != nil && document?.uploadedURL != nil {
 				return true
 			}
 		}
@@ -151,7 +149,7 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 
 		if let window = view.window {
 			let title = document?.opmlDocument.title ?? ""
-			let gistURL = "http://gist.github.com/test-url"
+			let gistURL = document?.uploadedURL ?? ""
 			submitIssue = SubmitIssue(title: title, gistURL: gistURL)
 			submitIssue!.runSheetOnWindow(window)
 		}

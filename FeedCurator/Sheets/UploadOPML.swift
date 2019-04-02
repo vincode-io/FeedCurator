@@ -39,7 +39,7 @@ class UploadOPML: NSWindowController {
 		cancelButton.isEnabled = false
 		uploadButton.isEnabled = false
 		
-		if let gistId = AppDefaults.gistID {
+		if let gistId = AppDefaults.gistIds?[filename] as? String {
 			patchOPML(gistId: gistId)
 		} else {
 			postOPML()
@@ -61,7 +61,7 @@ private extension UploadOPML {
 			switch response {
 				
 			case .success(let gist):
-				AppDefaults.gistID = gist.id
+				self?.storeGistId(gist: gist)
 				self?.storeRawFileURL(gist: gist)
 				self?.closeSheet()
 			case .failure(let error):
@@ -91,10 +91,26 @@ private extension UploadOPML {
 		
 	}
 	
+	func storeGistId(gist: Gist) {
+		
+		var gistIds: [String: Any?] = {
+			if let files = AppDefaults.gistIds {
+				return files
+			} else {
+				return [String: Any?]()
+			}
+		}()
+		
+		gistIds[filename] = gist.id
+		
+		AppDefaults.gistIds = gistIds
+		
+	}
+	
 	func storeRawFileURL(gist: Gist) {
 		
-		var gistFiles: [String: Any?] = {
-			if let files = AppDefaults.gistFiles {
+		var gistRawURLs: [String: Any?] = {
+			if let files = AppDefaults.gistRawURLs {
 				return files
 			} else {
 				return [String: Any?]()
@@ -104,10 +120,15 @@ private extension UploadOPML {
 		if let filename = self.filename {
 			for fileEntry in gist.files {
 				if fileEntry.key == filename {
-					gistFiles[filename] = fileEntry.value.rawURL
+					// Chop off the individual commit hash
+					if let url = fileEntry.value.rawURL?.absoluteURL.absoluteString, let idx = url.range(of: "/raw/") {
+						gistRawURLs[filename] = url[url.startIndex..<idx.upperBound]
+					}
 				}
 			}
 		}
+		
+		AppDefaults.gistRawURLs = gistRawURLs
 		
 	}
 	

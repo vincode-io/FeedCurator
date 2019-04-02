@@ -12,6 +12,14 @@ class Document: NSDocument {
 
 	var opmlDocument = OPMLDocument(title: nil)
 
+	var uploadedURL: String? {
+		if let filename = fileURL?.absoluteURL.lastPathComponent {
+			return AppDefaults.gistRawURLs?[filename] as? String
+		} else {
+			return nil
+		}
+	}
+	
 	override class var autosavesInPlace: Bool {
 		return true
 	}

@@ -5,25 +5,25 @@ import Foundation
 struct AppDefaults {
 	
 	struct Key {
-		static let gistID = "gistID"
-		static let gistFiles = "gistFiles"
+		static let gistIds = "gistIds"
+		static let gistRawURLs = "gistRawURLs"
 	}
 	
-	static var gistID: String? {
+	static var gistIds: [String: Any?]? {
 		get {
-			return UserDefaults.standard.string(forKey: Key.gistID)
+			return UserDefaults.standard.dictionary(forKey: Key.gistIds)
 		}
 		set {
-			UserDefaults.standard.set(newValue, forKey: Key.gistID)
+			UserDefaults.standard.set(newValue, forKey: Key.gistIds)
 		}
 	}
-	
-	static var gistFiles: [String: Any?]? {
+
+	static var gistRawURLs: [String: Any?]? {
 		get {
-			return UserDefaults.standard.dictionary(forKey: Key.gistFiles)
+			return UserDefaults.standard.dictionary(forKey: Key.gistRawURLs)
 		}
 		set {
-			UserDefaults.standard.set(newValue, forKey: Key.gistFiles)
+			UserDefaults.standard.set(newValue, forKey: Key.gistRawURLs)
 		}
 	}
 	
