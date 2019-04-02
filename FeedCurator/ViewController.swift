@@ -82,13 +82,15 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 		}
 
 		if item.action == #selector(uploadOPML(_:)) {
-			if appDelegate.githubTokenConfig != nil {
+			if appDelegate.githubTokenConfig != nil && document?.opmlDocument.isValid ?? false {
 				return true
 			}
 		}
 		
 		if item.action == #selector(submitIssue(_:)) {
-			if appDelegate.githubTokenConfig != nil {
+			if appDelegate.githubTokenConfig != nil &&
+				//				AppDefaults.  TODO: fix this to check for this file's gist....
+				document?.opmlDocument.isValid ?? false {
 				return true
 			}
 		}

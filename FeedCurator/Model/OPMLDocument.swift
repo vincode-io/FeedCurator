@@ -4,6 +4,10 @@ import Foundation
 
 class OPMLDocument: OPMLEntry {
 	
+	var isValid: Bool {
+		return title != nil && !entries.isEmpty
+	}
+	
 	override func makeXML(indentLevel: Int) -> String {
 		
 		var s =
