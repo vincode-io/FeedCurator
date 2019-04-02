@@ -6,7 +6,8 @@ import RSWeb
 
 class SubmitIssue: NSWindowController {
 	
-	@IBOutlet var bodyTextView: NSTextView!
+	@IBOutlet weak var urlContactTextField: NSTextField!
+	@IBOutlet weak var descriptionTextField: NSTextField!
 	@IBOutlet weak var progressIndicator: NSProgressIndicator!
 	@IBOutlet weak var cancelButton: NSButton!
 	@IBOutlet weak var submitButton: NSButton!
@@ -36,7 +37,7 @@ class SubmitIssue: NSWindowController {
 	
 	@IBAction func submit(_ sender: NSButton) {
 
-		bodyTextView.isEditable = false
+		descriptionTextField.isEditable = false
 		progressIndicator.isHidden = false
 		progressIndicator.startAnimation(self)
 		cancelButton.isEnabled = false
@@ -46,7 +47,11 @@ class SubmitIssue: NSWindowController {
 		let octoKit = Octokit(tokenConfig)
 		
 		let issueTitle = NSLocalizedString("Add Request: ", comment: "Add Request") + title
-		let body = bodyTextView.string + "\n\n \(gistURL ?? "")"
+		var body = String("Contact URL: \(urlContactTextField.stringValue)\n\n")
+		body.append("Description: \n")
+		body.append(descriptionTextField.stringValue)
+		body.append("\n\n")
+		body.append(gistURL ?? "")
 		
 		octoKit.postIssue(owner: "vincode-io", repository: "FeedCompass", title: issueTitle, body: body) { [weak self] response in
 			
