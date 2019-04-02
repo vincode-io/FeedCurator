@@ -6,7 +6,7 @@ import RSWeb
 
 class SubmitIssue: NSWindowController {
 	
-	@IBOutlet weak var urlContactTextField: NSTextField!
+	@IBOutlet weak var contributeURLTextField: NSTextField!
 	@IBOutlet weak var descriptionTextField: NSTextField!
 	@IBOutlet weak var progressIndicator: NSProgressIndicator!
 	@IBOutlet weak var cancelButton: NSButton!
@@ -47,7 +47,7 @@ class SubmitIssue: NSWindowController {
 		let octoKit = Octokit(tokenConfig)
 		
 		let issueTitle = NSLocalizedString("Add Request: ", comment: "Add Request") + title
-		var body = String("Contact URL: \(urlContactTextField.stringValue)\n\n")
+		var body = String("Contribute URL: \(contributeURLTextField.stringValue)\n\n")
 		body.append("Description: \n")
 		body.append(descriptionTextField.stringValue)
 		body.append("\n\n")

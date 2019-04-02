@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -8,10 +9,10 @@
         <customObject id="-2" userLabel="File's Owner" customClass="SubmitIssue" customModule="Feed_Curator" customModuleProvider="target">
             <connections>
                 <outlet property="cancelButton" destination="vL2-Tn-ZBB" id="Pzk-Yf-WeB"/>
+                <outlet property="contributeURLTextField" destination="DHy-8V-hTw" id="xI6-x2-lzt"/>
                 <outlet property="descriptionTextField" destination="Bdf-Gg-ILx" id="4oz-jg-xoO"/>
                 <outlet property="progressIndicator" destination="Zo8-F2-aPi" id="s40-Iz-JsK"/>
                 <outlet property="submitButton" destination="HIP-e2-G7h" id="MCq-Wo-Z47"/>
-                <outlet property="urlContactTextField" destination="DHy-8V-hTw" id="G1P-8V-g4X"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -80,14 +81,14 @@ Gw
                         <rect key="frame" x="18" y="205" width="474" height="51"/>
                         <textFieldCell key="cell" selectable="YES" id="GaN-Kb-Ryl">
                             <font key="font" metaFont="system"/>
-                            <string key="title">It is recommended that you provide a URL that fans can reach you at and suggest blogs to add.  This will be displayed in Feed Compass.  It can be an email address starting with mailto: or a website starting with http:.</string>
+                            <string key="title">It is recommended that you provide a URL that fans can reach you at to contribute blogs to add.  This will be displayed in Feed Compass.  It can be an email address starting with mailto: or a website starting with http:.</string>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DHy-8V-hTw">
                         <rect key="frame" x="20" y="175" width="470" height="22"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Contact URL" drawsBackground="YES" id="VMC-aX-cjb">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Contributing URL" drawsBackground="YES" id="VMC-aX-cjb">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
