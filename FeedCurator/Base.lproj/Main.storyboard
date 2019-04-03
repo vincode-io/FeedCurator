@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -686,7 +687,26 @@ CA
                                     <items>
                                         <menuItem title="Feed Curator Help" keyEquivalent="?" id="FKE-Sm-Kum">
                                             <connections>
-                                                <action selector="showHelp:" target="Ady-hI-5gd" id="y7X-2Q-9no"/>
+                                                <action selector="showHelp:" target="Voe-Tx-rLC" id="CI3-iO-cTO"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="Inl-YX-73A"/>
+                                        <menuItem title="Website" id="htw-Vb-pUW">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="showWebsite:" target="Voe-Tx-rLC" id="fu6-Sa-9Un"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Github Repository" id="ehU-m7-cwL">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="showGithubRepo:" target="Voe-Tx-rLC" id="r04-mT-Jtf"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Github Issues" id="Zye-fO-7bI">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="showGithubIssues:" target="Voe-Tx-rLC" id="rla-9h-IAY"/>
                                             </connections>
                                         </menuItem>
                                     </items>
