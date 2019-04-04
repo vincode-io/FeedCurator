@@ -19,8 +19,8 @@ users of Feed Compass see.  It can also be used as a standalone OPML feed editor
 feed for you
 - Automatic population of feed details: Title, URL, and Home Page
 - Drag and drop rearrangement of feeds 
-- Free publishing of OPML files using Github Gist (in development)
-- Easy submission to Feed Compass for inclusing in future release (in development)
+- Free publishing of OPML files using Github Gist
+- Easy submission to Feed Compass for inclusion in Feed Compass
 
 ## Feedback
 
