@@ -10,7 +10,7 @@ users of Feed Compass see.  It can also be used as a standalone OPML feed editor
 
 ## Download
 
-[![App Store](images/app-store-badge.png)](https://itunes.apple.com/us/app/feed-curator/id1458647758?ls=1&mt=12)
+[![App Store](images/app-store-badge.png)](https://itunes.apple.com/us/app/feed-curator/id1458647758)
 
 ## Features
 
