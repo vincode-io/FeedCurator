@@ -72,6 +72,10 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 
 	public func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
 		
+		if item.action == #selector(importOPML(_:)) {
+			return true
+		}
+
 		if item.action == #selector(delete(_:)) {
 			if currentlySelectedEntry != nil {
 				return true
@@ -162,6 +166,46 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 		}
 		
 	}
+	
+	@IBAction func importOPML(_ sender: AnyObject?) {
+		let panel = NSOpenPanel()
+		panel.canDownloadUbiquitousContents = true
+		panel.canResolveUbiquitousConflicts = true
+		panel.canChooseFiles = true
+		panel.allowsMultipleSelection = true
+		panel.canChooseDirectories = false
+		panel.resolvesAliases = true
+		panel.allowedFileTypes = ["opml", "xml"]
+		panel.allowsOtherFileTypes = false
+		
+		panel.beginSheetModal(for: view.window!) { result in
+			if result == NSApplication.ModalResponse.OK {
+				for url in panel.urls {
+					self.importOPML(url: url)
+				}
+			}
+		}
+	}
+	
+	func importOPML(url: URL) {
+		guard let data = try? Data(contentsOf: url) else {
+			return
+		}
+		
+		let parserData = ParserData(url: "", data: data)
+		guard let rsDoc = try? RSOPMLParser.parseOPML(with: parserData),
+			let opmlDocument = rsDoc.translateToOPMLEntry(parent: nil) as? OPMLDocument else {
+				return
+		}
+		
+		let importFolder = OPMLEntry(title: opmlDocument.title ?? "")
+		for child in opmlDocument.entries {
+			importFolder.entries.append(child)
+		}
+		
+		appendEntry(importFolder)
+	}
+	
 	
 	// MARK: Notifications
 	@objc func opmlDocumentChildrenDidChange(_ note: Notification) {
@@ -310,6 +354,11 @@ extension ViewController {
 		let indexSet = IndexSet(integer: childIndex)
 		outlineView.removeItems(at: indexSet, inParent: parent, withAnimation: .slideUp)
 		
+	}
+	
+	func appendEntry(_ entry: OPMLEntry) {
+		let childIndex = outlineView.numberOfChildren(ofItem: nil)
+		insertEntry(entry, parent: nil, childIndex: childIndex)
 	}
 	
 	func insertEntry(_ entry: OPMLEntry) {
