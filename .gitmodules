@@ -7,9 +7,3 @@
 [submodule "submodules/RSWeb"]
 	path = submodules/RSWeb
 	url = https://github.com/vincode-io/RSWeb.git
-[submodule "submodules/octokit.swift"]
-	path = submodules/octokit.swift
-	url = https://github.com/vincode-io/octokit.swift.git
-[submodule "submodules/RequestKit"]
-	path = submodules/RequestKit
-	url = https://github.com/vincode-io/RequestKit.git
