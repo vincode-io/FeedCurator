@@ -12,9 +12,6 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 	private var addFeed: AddFeed?
 	private var feedFinder: FeedFinder?
 	private var indeterminateProgress: IndeterminateProgress?
-	private var signonToGithub: SignonToGithub?
-	private var uploadOPML: UploadOPML?
-	private var submitIssue: SubmitIssue?
 
 	private var windowController: WindowController? {
 		return self.view.window?.windowController as? WindowController
@@ -71,35 +68,15 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 	}
 
 	public func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
-		
 		if item.action == #selector(importOPML(_:)) {
 			return true
 		}
-
 		if item.action == #selector(delete(_:)) {
 			if currentlySelectedEntry != nil {
 				return true
 			}
 		}
-
-		if item.action == #selector(signonToGithub(_:)) {
-			return appDelegate.githubTokenConfig == nil
-		}
-
-		if item.action == #selector(uploadOPML(_:)) {
-			if appDelegate.githubTokenConfig != nil && document?.opmlDocument.isValid ?? false {
-				return true
-			}
-		}
-		
-		if item.action == #selector(submitIssue(_:)) {
-			if (appDelegate.githubTokenConfig != nil && document?.uploadedURL != nil) || document?.issueURL != nil {
-				return true
-			}
-		}
-		
 		return false
-		
 	}
 
 	// MARK: Actions
@@ -128,43 +105,6 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 			return
 		}
 		document?.updateTitle(entry: entry, title: sender.stringValue)
-	}
-	
-	@IBAction func signonToGithub(_ sender: AnyObject?) {
-		if let window = view.window {
-			signonToGithub = SignonToGithub()
-			signonToGithub!.runSheetOnWindow(window)
-		}
-	}
-	
-	@IBAction func uploadOPML(_ sender: AnyObject?) {
-		
-		guard let window = view.window,
-			let filename = document?.filename,
-			let fileContent = document?.opmlDocument.makeXML(indentLevel: 0) else {
-				return
-		}
-		
-		uploadOPML = UploadOPML(filename: filename, fileContent: fileContent)
-		uploadOPML!.runSheetOnWindow(window)
-		
-	}
-	
-	@IBAction func submitIssue(_ sender: AnyObject?) {
-
-		if let issueURL = document?.issueURL, let url = URL(string: issueURL) {
-			MacWebBrowser.openURL(url, inBackground: false)
-			return
-		}
-		
-		if let window = view.window {
-			let filename = document?.filename ?? ""
-			let title = document?.opmlDocument.title ?? ""
-			let gistURL = document?.uploadedURL ?? ""
-			submitIssue = SubmitIssue(filename: filename, title: title, gistURL: gistURL)
-			submitIssue!.runSheetOnWindow(window)
-		}
-		
 	}
 	
 	@IBAction func importOPML(_ sender: AnyObject?) {

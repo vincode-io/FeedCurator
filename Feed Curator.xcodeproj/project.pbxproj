@@ -16,13 +16,7 @@
 		51533741224E94970024544D /* RequestKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5153373D224E94870024544D /* RequestKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		51533745224E9BE10024544D /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 51533744224E9BE10024544D /* Credits.rtf */; };
 		5153377F224ED9FE0024544D /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5153377E224ED9FE0024544D /* Secrets.swift */; };
-		515337A6224EF7AE0024544D /* SubmitIssue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515337A4224EF7AE0024544D /* SubmitIssue.swift */; };
-		515337A7224EF7AE0024544D /* SubmitIssue.xib in Resources */ = {isa = PBXBuildFile; fileRef = 515337A5224EF7AE0024544D /* SubmitIssue.xib */; };
-		515338042252B30D0024544D /* UploadOPML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515338022252B30D0024544D /* UploadOPML.swift */; };
-		515338052252B30D0024544D /* UploadOPML.xib in Resources */ = {isa = PBXBuildFile; fileRef = 515338032252B30D0024544D /* UploadOPML.xib */; };
 		5153381B2252BB800024544D /* AppDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5153381A2252BB800024544D /* AppDefaults.swift */; };
-		5153382E22539C690024544D /* SignonToGithub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5153382C22539C690024544D /* SignonToGithub.swift */; };
-		5153382F22539C690024544D /* SignonToGithub.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5153382D22539C690024544D /* SignonToGithub.xib */; };
 		518C65A722443C7B00B18604 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518C65A622443C7B00B18604 /* AppDelegate.swift */; };
 		518C65A922443C7B00B18604 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518C65A822443C7B00B18604 /* ViewController.swift */; };
 		518C65AB22443C7B00B18604 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 518C65AA22443C7B00B18604 /* Document.swift */; };
@@ -271,13 +265,7 @@
 		51533744224E9BE10024544D /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		5153377E224ED9FE0024544D /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		515337A3224EEFC90024544D /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
-		515337A4224EF7AE0024544D /* SubmitIssue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitIssue.swift; sourceTree = "<group>"; };
-		515337A5224EF7AE0024544D /* SubmitIssue.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubmitIssue.xib; sourceTree = "<group>"; };
-		515338022252B30D0024544D /* UploadOPML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadOPML.swift; sourceTree = "<group>"; };
-		515338032252B30D0024544D /* UploadOPML.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UploadOPML.xib; sourceTree = "<group>"; };
 		5153381A2252BB800024544D /* AppDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDefaults.swift; sourceTree = "<group>"; };
-		5153382C22539C690024544D /* SignonToGithub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignonToGithub.swift; sourceTree = "<group>"; };
-		5153382D22539C690024544D /* SignonToGithub.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignonToGithub.xib; sourceTree = "<group>"; };
 		518C65A322443C7B00B18604 /* Feed Curator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Feed Curator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		518C65A622443C7B00B18604 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		518C65A822443C7B00B18604 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -329,12 +317,6 @@
 				51E41A162247CCB30014DDCC /* AddFeed.xib */,
 				51A35B5C224A50470098FA13 /* IndeterminateProgress.swift */,
 				51A35B5D224A50470098FA13 /* IndeterminateProgress.xib */,
-				515338022252B30D0024544D /* UploadOPML.swift */,
-				515338032252B30D0024544D /* UploadOPML.xib */,
-				5153382C22539C690024544D /* SignonToGithub.swift */,
-				5153382D22539C690024544D /* SignonToGithub.xib */,
-				515337A4224EF7AE0024544D /* SubmitIssue.swift */,
-				515337A5224EF7AE0024544D /* SubmitIssue.xib */,
 				512BDE23224687CF00CB4159 /* UpdateTitle.swift */,
 				512BDE24224687CF00CB4159 /* UpdateTitle.xib */,
 			);
@@ -740,9 +722,6 @@
 				51533745224E9BE10024544D /* Credits.rtf in Resources */,
 				518C65AD22443C7C00B18604 /* Assets.xcassets in Resources */,
 				518C65B022443C7C00B18604 /* Main.storyboard in Resources */,
-				5153382F22539C690024544D /* SignonToGithub.xib in Resources */,
-				515338052252B30D0024544D /* UploadOPML.xib in Resources */,
-				515337A7224EF7AE0024544D /* SubmitIssue.xib in Resources */,
 				51A35B5F224A50470098FA13 /* IndeterminateProgress.xib in Resources */,
 				512BDE26224687CF00CB4159 /* UpdateTitle.xib in Resources */,
 			);
@@ -795,7 +774,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5153377F224ED9FE0024544D /* Secrets.swift in Sources */,
-				515337A6224EF7AE0024544D /* SubmitIssue.swift in Sources */,
 				518C65A922443C7B00B18604 /* ViewController.swift in Sources */,
 				518C66222245A5A400B18604 /* OPMLFeed.swift in Sources */,
 				518C66252245A5A400B18604 /* OPMLEntry.swift in Sources */,
@@ -803,7 +781,6 @@
 				51E41A1D224932B00014DDCC /* FeedFinder.swift in Sources */,
 				51E41A172247CCB30014DDCC /* AddFeed.swift in Sources */,
 				512BDE25224687CF00CB4159 /* UpdateTitle.swift in Sources */,
-				5153382E22539C690024544D /* SignonToGithub.swift in Sources */,
 				518C66042245834E00B18604 /* WindowController.swift in Sources */,
 				518C65A722443C7B00B18604 /* AppDelegate.swift in Sources */,
 				51E41A1E224932B00014DDCC /* HTMLFeedFinder.swift in Sources */,
@@ -813,7 +790,6 @@
 				512BDE29224689DE00CB4159 /* String+.swift in Sources */,
 				518C66232245A5A400B18604 /* RSOPMLItem+.swift in Sources */,
 				5153381B2252BB800024544D /* AppDefaults.swift in Sources */,
-				515338042252B30D0024544D /* UploadOPML.swift in Sources */,
 				518C65AB22443C7B00B18604 /* Document.swift in Sources */,
 				518C66022245791600B18604 /* OutlineView.swift in Sources */,
 				51E41A2322497E2E0014DDCC /* ViewController+OutlineView.swift in Sources */,
@@ -993,7 +969,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = io.vincode.FeedCurator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -1017,7 +993,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = io.vincode.FeedCurator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

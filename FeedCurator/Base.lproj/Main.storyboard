@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15400"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -638,31 +638,6 @@ CA
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Publish" id="aMp-5T-y34">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Publish" id="vuK-Kn-BEw">
-                                    <items>
-                                        <menuItem title="Sign on to Github" id="PCn-mL-rnh">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="signonToGithub:" target="Ady-hI-5gd" id="7zJ-AE-3ny"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Upload to Github Gist" id="CBI-ee-ZuX">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="uploadOPML:" target="Ady-hI-5gd" id="CSh-qY-st1"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Submit to Feed Compass" id="Gf8-TD-FPB">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="submitIssue:" target="Ady-hI-5gd" id="JzX-qY-o1M"/>
-                                            </connections>
-                                        </menuItem>
-                                    </items>
-                                </menu>
-                            </menuItem>
                             <menuItem title="Window" id="aUF-d1-5bR">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Window" systemMenu="window" id="Td7-aD-5lo">
@@ -786,45 +761,6 @@ CA
                                         </connections>
                                     </button>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="2EB4B709-5AD5-4B68-AF6B-EE4D94B906E9" label="Github Signon" paletteLabel="Github Signon" toolTip="Signon to Github" image="github" sizingBehavior="auto" id="IiL-d0-5G2" customClass="RSToolbarItem" customModule="RSCore">
-                                    <button key="view" verticalHuggingPriority="750" id="HOO-dg-o8w">
-                                        <rect key="frame" x="0.0" y="14" width="127" height="25"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="github" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="02q-lZ-KBr">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                    </button>
-                                    <connections>
-                                        <action selector="signonToGithub:" target="6f7-a7-6o1" id="8MK-qU-TFT"/>
-                                    </connections>
-                                </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="E15D0156-524E-4C42-B321-763CB03D32CC" label="Upload OPML" paletteLabel="Upload OPML" toolTip="Upload to Github Gist" image="upload" sizingBehavior="auto" id="t9P-cQ-qNr" customClass="RSToolbarItem" customModule="RSCore">
-                                    <button key="view" verticalHuggingPriority="750" id="dfD-2S-dnu">
-                                        <rect key="frame" x="0.0" y="14" width="127" height="25"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="upload" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="EUH-UD-WoF">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                    </button>
-                                    <connections>
-                                        <action selector="uploadOPML:" target="6f7-a7-6o1" id="Hkv-T2-Bwt"/>
-                                    </connections>
-                                </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="8C56B444-5CD4-4D9D-B340-F0F642BF95B7" label="Submit" paletteLabel="Submit" toolTip="Submit to Feed Compass" image="feedCompass" sizingBehavior="auto" id="PvJ-oC-UDe" customClass="RSToolbarItem" customModule="RSCore">
-                                    <button key="view" verticalHuggingPriority="750" id="Tmr-uE-3XY">
-                                        <rect key="frame" x="0.0" y="14" width="127" height="25"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="feedCompass" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="EGN-O5-c6w">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="submitIssue:" target="6f7-a7-6o1" id="k5H-eK-t73"/>
-                                        </connections>
-                                    </button>
-                                </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
                                 <toolbarItem reference="gjV-vs-8eC"/>
@@ -832,9 +768,6 @@ CA
                                 <toolbarItem reference="3ic-jy-Ogu"/>
                                 <toolbarItem reference="Rsh-bx-k9r"/>
                                 <toolbarItem reference="3ic-jy-Ogu"/>
-                                <toolbarItem reference="IiL-d0-5G2"/>
-                                <toolbarItem reference="t9P-cQ-qNr"/>
-                                <toolbarItem reference="PvJ-oC-UDe"/>
                             </defaultToolbarItems>
                         </toolbar>
                         <connections>
@@ -873,7 +806,6 @@ CA
                                             <tableColumns>
                                                 <tableColumn identifier="nameColumn" width="300" minWidth="40" maxWidth="1000" id="eGF-8D-w70">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Name">
-                                                        <font key="font" metaFont="controlContent" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -915,7 +847,6 @@ CA
                                                 </tableColumn>
                                                 <tableColumn identifier="pageColumn" width="300" minWidth="40" maxWidth="1000" id="Njh-pf-yEj">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Page URL">
-                                                        <font key="font" metaFont="controlContent" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -948,7 +879,6 @@ CA
                                                 </tableColumn>
                                                 <tableColumn identifier="feedColumn" width="289" minWidth="10" maxWidth="3.4028234663852886e+38" id="YGn-Km-xgD">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Feed URL">
-                                                        <font key="font" metaFont="controlContent" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -1016,9 +946,6 @@ CA
     <resources>
         <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSAddTemplate" width="11" height="11"/>
-        <image name="feedCompass" width="32" height="32"/>
-        <image name="github" width="33" height="33"/>
         <image name="newFolder" width="19" height="19"/>
-        <image name="upload" width="20" height="18"/>
     </resources>
 </document>
