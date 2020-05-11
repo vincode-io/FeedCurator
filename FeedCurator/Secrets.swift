@@ -12,8 +12,8 @@ import Foundation
 enum Secrets {
 	
 	enum Release {
-		static let githubId = "{GITHUBID}"
-		static let githubSecret = "{GITHUBSECRET}"
+		static let githubId = "624fb6e8b44d770e4fe5"
+		static let githubSecret = "d15c30bc8bc71beefe167dd1b52c70583ea6c1e5"
 	}
 	
 	enum GitHub {
