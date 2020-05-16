@@ -46,11 +46,6 @@ git submodule update
 You can now open the Feed Curator.xcodeproj project.  You will have to fix
 the project signing before building and running.
 
-If you want to test the Github functionality, you will need to set up a Github
-application to get a Github Client Id and a Github Client Secret.  These you 
-need to add to the scheme environment variables as GITHUB_CLIENT_ID and
-GITHUB_CLIENT_SECRET.
-
 ## Licence
 
 MIT Licensed
