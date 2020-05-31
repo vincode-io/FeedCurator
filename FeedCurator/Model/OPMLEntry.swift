@@ -7,7 +7,7 @@ typealias OPMLEntryAddress = [Int]
 
 class OPMLEntry: NSObject, NSPasteboardWriting {
 	
-	static let folderUTI = "io.vicode.opml-folder"
+	static let folderUTI = "io.vincode.opml-folder"
 	static let folderUTIType = NSPasteboard.PasteboardType(rawValue: folderUTI)
 	
 	struct Key {

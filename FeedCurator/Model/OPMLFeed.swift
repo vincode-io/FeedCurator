@@ -5,7 +5,7 @@ import RSCore
 
 class OPMLFeed: OPMLEntry {
 	
-	static let feedUTI = "io.vicode.opml-feed"
+	static let feedUTI = "io.vincode.opml-feed"
 	static let feedUTIType = NSPasteboard.PasteboardType(rawValue: feedUTI)
 
 	struct Key {
