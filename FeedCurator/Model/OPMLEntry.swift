@@ -42,10 +42,6 @@ class OPMLEntry: NSObject, NSPasteboardWriting {
 		return type(of: self) == OPMLEntry.self
 	}
 	
-	var isLocalEntry: Bool {
-		return true
-	}
-	
 	init(title: String?, parent: OPMLEntry? = nil) {
 		super.init()
 		self.title = title

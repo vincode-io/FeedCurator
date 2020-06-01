@@ -52,7 +52,7 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 		outlineView.dataSource = self
 		outlineView.setDraggingSourceOperationMask(.copy, forLocal: false)
 		outlineView.setDraggingSourceOperationMask(.move, forLocal: true)
-		outlineView.registerForDraggedTypes([.URL, .string])
+		outlineView.registerForDraggedTypes([OPMLFeed.feedUTIType, OPMLEntry.folderUTIType, .URL, .string])
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(opmlDocumentChildrenDidChange(_:)), name: .OPMLDocumentChildrenDidChange, object: nil)
 
@@ -379,7 +379,6 @@ extension ViewController {
 				}
 			}
 		}()
-		
 		
 		// Update the model
 		let realToParent = toParent == nil ? document.opmlDocument : toParent!

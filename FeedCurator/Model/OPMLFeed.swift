@@ -16,10 +16,6 @@ class OPMLFeed: OPMLEntry {
 	var pageURL: String?
 	var feedURL: String?
 	
-	override var isLocalEntry: Bool {
-		return title != nil || pageURL != nil
-	}
-	
 	init(feedURL: String) {
 		super.init(title: nil)
 		self.feedURL = feedURL

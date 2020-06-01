@@ -114,47 +114,40 @@ extension ViewController: NSOutlineViewDelegate {
 	}
 
 	func outlineView(_ outlineView: NSOutlineView, validateDrop info: NSDraggingInfo, proposedItem item: Any?, proposedChildIndex index: Int) -> NSDragOperation {
-
 		guard let draggedEntries = OPMLEntry.entries(with: info.draggingPasteboard), !draggedEntries.isEmpty else {
 			return []
 		}
 		
-		let contentsType = draggedFeedContentsType(draggedEntries)
+		guard !(item is OPMLFeed) else {
+			return []
+		}
+		
+		if let proposedEntry = item as? OPMLEntry, proposedEntry.address == draggedEntries.first?.address {
+			return []
+		}
+		
+		let contentsType = draggedFeedContentsType(info.draggingSource, draggedEntries)
 
-		func evaluateDrop() -> NSDragOperation {
-			switch contentsType {
-			case .singleNonLocal:
-				return .copy
-			case .singleLocal:
-				if (info.draggingSource as AnyObject) === outlineView {
-					return .move
-				} else {
-					return []
-				}
-			default:
+		switch contentsType {
+		case .singleNonLocal:
+			if draggedEntries.first?.isFolder ?? true {
 				return []
+			} else {
+				return .copy
 			}
+		case .singleLocal:
+			return .move
+		default:
+			return []
 		}
-		
-		if item == nil {
-			return evaluateDrop()
-		}
-		
-		if let entry = item as? OPMLEntry, entry.isFolder {
-			return evaluateDrop()
-		}
-		
-		return []
-		
 	}
 	
 	func outlineView(_ outlineView: NSOutlineView, acceptDrop info: NSDraggingInfo, item: Any?, childIndex index: Int) -> Bool {
-		
 		guard let draggedEntries = OPMLEntry.entries(with: info.draggingPasteboard), !draggedEntries.isEmpty else {
 			return false
 		}
 		
-		let contentsType = draggedFeedContentsType(draggedEntries)
+		let contentsType = draggedFeedContentsType(info.draggingSource, draggedEntries)
 		
 		switch contentsType {
 		case .singleNonLocal:
@@ -175,11 +168,14 @@ private extension ViewController {
 		case empty, singleLocal, singleNonLocal, multipleLocal, multipleNonLocal, mixed
 	}
 	
-	func draggedFeedContentsType(_ draggedEntries: [OPMLEntry]) -> DraggedEntriesContentsType {
+	func draggedFeedContentsType(_ draggingSource: Any?, _ draggedEntries: [OPMLEntry]) -> DraggedEntriesContentsType {
 		
 		if draggedEntries.count == 1 {
-			let entry = draggedEntries.first!
-			return entry.isLocalEntry ? .singleLocal : .singleNonLocal
+			if (draggingSource as AnyObject) === outlineView! {
+				return .singleLocal
+			} else {
+				return .singleNonLocal
+			}
 		}
 		
 		return .empty
