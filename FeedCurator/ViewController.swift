@@ -12,6 +12,7 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 	private var addFeed: AddFeed?
 	private var feedFinder: FeedFinder?
 	private var indeterminateProgress: IndeterminateProgress?
+	private var numberOfFeedsBeingFound = 0
 
 	private var windowController: WindowController? {
 		return self.view.window?.windowController as? WindowController
@@ -21,18 +22,15 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 		return windowController?.document as? Document
 	}
 
-	var currentlySelectedEntry: OPMLEntry? {
-		let selectedRow = outlineView.selectedRow
-		if selectedRow != -1 {
-			return outlineView.item(atRow: selectedRow) as? OPMLEntry
-		}
-		return nil
+	var currentlySelectedEntries: [OPMLEntry] {
+		return outlineView.selectedRowIndexes.compactMap{ outlineView.item(atRow: $0) as? OPMLEntry }
 	}
 	
 	var currentlySelectedParent: OPMLEntry? {
-		guard let current = currentlySelectedEntry else {
+		guard currentlySelectedEntries.count == 1, let current = currentlySelectedEntries.first else {
 			return nil
 		}
+		
 		if current.isFolder {
 			return current
 		} else {
@@ -53,6 +51,7 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 		outlineView.setDraggingSourceOperationMask(.copy, forLocal: false)
 		outlineView.setDraggingSourceOperationMask(.move, forLocal: true)
 		outlineView.registerForDraggedTypes([OPMLFeed.feedUTIType, OPMLEntry.folderUTIType, .URL, .string])
+		outlineView.allowsMultipleSelection = true
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(opmlDocumentChildrenDidChange(_:)), name: .OPMLDocumentChildrenDidChange, object: nil)
 
@@ -71,21 +70,22 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 		if item.action == #selector(importOPML(_:)) {
 			return true
 		}
+		
 		if item.action == #selector(delete(_:)) {
-			if currentlySelectedEntry != nil {
+			if currentlySelectedEntries.count > 0 {
 				return true
 			}
 		}
+		
 		return false
 	}
 
 	// MARK: Actions
 	
 	@IBAction func delete(_ sender: AnyObject?) {
-		guard let current = currentlySelectedEntry else {
-			return
+		for entry in currentlySelectedEntries {
+			deleteEntry(entry)
 		}
-		deleteEntry(current)
 	}
 
 	@IBAction func newFeed(_ sender: AnyObject?) {
@@ -101,7 +101,7 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 	}
 	
 	@IBAction func renameEntry(_ sender: NSTextField) {
-		guard let entry = currentlySelectedEntry else {
+		guard let entry = currentlySelectedEntries.first else {
 			return
 		}
 		document?.updateTitle(entry: entry, title: sender.stringValue)
@@ -149,17 +149,10 @@ class ViewController: NSViewController, NSUserInterfaceValidations {
 	
 	// MARK: Notifications
 	@objc func opmlDocumentChildrenDidChange(_ note: Notification) {
-		
 		// Save the entry to restore the selection
-		let current = currentlySelectedEntry
-		
+		let selectedRowIndexes = outlineView.selectedRowIndexes
 		outlineView.reloadData()
-		
-		if current != nil {
-			let rowIndex = outlineView.row(forItem: current)
-			outlineView.rs_selectRowAndScrollToVisible(rowIndex)
-		}
-		
+		outlineView.selectRowIndexes(selectedRowIndexes, byExtendingSelection: false)
 	}
 
 }
@@ -182,8 +175,9 @@ extension ViewController: AddFeedDelegate {
 extension ViewController: FeedFinderDelegate {
 	
 	public func feedFinder(_ feedFinder: FeedFinder, didFindFeeds feedSpecifiers: Set<FeedSpecifier>) {
-		
+		numberOfFeedsBeingFound = numberOfFeedsBeingFound - 1
 		view.window?.endSheet(indeterminateProgress!.window!)
+		
 		let dragData = currentDragData
 		currentDragData = nil
 		
@@ -263,21 +257,22 @@ extension ViewController: FeedFinderDelegate {
 extension ViewController {
 	
 	func findFeed(_ urlString: String) {
-		
 		guard let url = URL(string: urlString.rs_normalizedURL()) else {
 			return
 		}
 		
-		let msg = NSLocalizedString("Downloading feed data...", comment: "Downloading feed")
-		indeterminateProgress = IndeterminateProgress(message: msg)
-		view.window?.beginSheet(indeterminateProgress!.window!)
+		if numberOfFeedsBeingFound == 0 {
+			let msg = NSLocalizedString("Downloading feed data...", comment: "Downloading feed")
+			indeterminateProgress = IndeterminateProgress(message: msg)
+			view.window?.beginSheet(indeterminateProgress!.window!)
+		}
+		
+		numberOfFeedsBeingFound =  numberOfFeedsBeingFound + 1
 
 		feedFinder = FeedFinder(url: url, delegate: self)
-		
 	}
 
 	func deleteEntry(_ entry: OPMLEntry) {
-		
 		guard let document = document else {
 			assertionFailure()
 			return
@@ -286,6 +281,8 @@ extension ViewController {
 		let parent = outlineView.parent(forItem: entry) as? OPMLEntry
 		let childIndex = outlineView.childIndex(forItem: entry)
 		
+		guard childIndex != -1 else { return }
+		
 		// Update the model
 		let realParent = parent == nil ? document.opmlDocument : parent!
 		document.removeEntry(parent: realParent, childIndex: childIndex)
@@ -293,7 +290,6 @@ extension ViewController {
 		// Update the outline
 		let indexSet = IndexSet(integer: childIndex)
 		outlineView.removeItems(at: indexSet, inParent: parent, withAnimation: .slideUp)
-		
 	}
 	
 	func appendEntry(_ entry: OPMLEntry) {
@@ -302,10 +298,9 @@ extension ViewController {
 	}
 	
 	func insertEntry(_ entry: OPMLEntry) {
-		
 		let parent = currentlySelectedParent
 		let childIndex: Int = {
-			if let current = currentlySelectedEntry {
+			if let current = currentlySelectedEntries.last {
 				if current.isFolder {
 					return outlineView.numberOfChildren(ofItem: parent)
 				} else {
@@ -328,6 +323,8 @@ extension ViewController {
 		}
 
 		let correctedChildIndex: Int = {
+			guard !(parent?.isFolder ?? true) else { return parent?.entries.count ?? document.opmlDocument.entries.count }
+
 			if childIndex == NSOutlineViewDropOnItemIndex {
 				return 0
 			} else {
@@ -365,6 +362,8 @@ extension ViewController {
 		// same parent folder or not.  If we are, we have to remove one from the "to"
 		// index, but only if the "from" object is higher up than the "to" object.
 		let correctedToChildIndex: Int = {
+			guard !(toParent?.isFolder ?? true) else { return toParent?.entries.count ?? document.opmlDocument.entries.count }
+
 			if toChildIndex == NSOutlineViewDropOnItemIndex {
 				return 0
 			} else {
@@ -387,7 +386,6 @@ extension ViewController {
 		
 		// Update the outline
 		outlineView.moveItem(at: fromChildIndex, inParent: fromParent, to: correctedToChildIndex, inParent: toParent)
-		
 	}
 	
 }

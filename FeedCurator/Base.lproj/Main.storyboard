@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -719,12 +719,12 @@ CA
                             <allowedToolbarItems>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="Nxd-mo-7cY"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="3ic-jy-Ogu"/>
-                                <toolbarItem implicitItemIdentifier="B8964D33-5B99-41D4-B606-286B2CA1ED9A" label="Add" paletteLabel="Add" image="NSAddTemplate" sizingBehavior="auto" id="gjV-vs-8eC">
+                                <toolbarItem implicitItemIdentifier="B8964D33-5B99-41D4-B606-286B2CA1ED9A" label="Add" paletteLabel="Add" image="plus" catalog="system" sizingBehavior="auto" id="gjV-vs-8eC">
                                     <nil key="toolTip"/>
                                     <button key="view" verticalHuggingPriority="750" id="t6h-53-0LF">
-                                        <rect key="frame" x="0.0" y="14" width="40" height="25"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSAddTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ik0-rh-tbt">
+                                        <rect key="frame" x="1" y="14" width="26" height="23"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="plus" catalog="system" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ik0-rh-tbt">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -733,11 +733,11 @@ CA
                                         <action selector="newFeed:" target="6f7-a7-6o1" id="VHW-ZT-AOZ"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="7B48A55B-B800-48D8-8A8A-2C7740BD7B7B" label="Title" paletteLabel="Title" sizingBehavior="auto" id="Rsh-bx-k9r">
+                                <toolbarItem implicitItemIdentifier="7B48A55B-B800-48D8-8A8A-2C7740BD7B7B" label="Title" paletteLabel="Title" title="Title" sizingBehavior="auto" id="Rsh-bx-k9r">
                                     <nil key="toolTip"/>
                                     <button key="view" verticalHuggingPriority="750" id="lYO-a6-njK">
-                                        <rect key="frame" x="0.0" y="14" width="127" height="25"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <rect key="frame" x="0.0" y="14" width="31" height="16"/>
+                                        <autoresizingMask key="autoresizingMask"/>
                                         <buttonCell key="cell" type="roundTextured" title="Title" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="Unb-Dj-43f">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -747,12 +747,12 @@ CA
                                         </connections>
                                     </button>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="362D2025-EB16-41F0-A751-87713FC5AE42" label="New Folder" paletteLabel="New Folder" image="newFolder" sizingBehavior="auto" id="JgQ-hz-SLG">
+                                <toolbarItem implicitItemIdentifier="362D2025-EB16-41F0-A751-87713FC5AE42" label="New Folder" paletteLabel="New Folder" image="folder.badge.plus" catalog="system" sizingBehavior="auto" id="JgQ-hz-SLG">
                                     <nil key="toolTip"/>
                                     <button key="view" verticalHuggingPriority="750" id="wRf-ej-ecR">
-                                        <rect key="frame" x="14" y="14" width="40" height="25"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="newFolder" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="eka-04-Vgz">
+                                        <rect key="frame" x="19" y="14" width="30" height="23"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="folder.badge.plus" catalog="system" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="eka-04-Vgz">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -794,11 +794,11 @@ CA
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="liG-9d-jHo">
                                 <rect key="frame" x="0.0" y="0.0" width="900" height="446"/>
                                 <clipView key="contentView" id="EU4-ss-UzT">
-                                    <rect key="frame" x="1" y="0.0" width="898" height="445"/>
+                                    <rect key="frame" x="1" y="1" width="898" height="444"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="xqd-er-Qxv" viewBased="YES" indentationPerLevel="16" outlineTableColumn="eGF-8D-w70" id="Oxa-E7-vjW" customClass="OutlineView" customModule="Feed_Curator" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="898" height="420"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="898" height="419"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -817,7 +817,7 @@ CA
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView identifier="nameCell" id="FgD-7L-feU">
-                                                            <rect key="frame" x="1" y="1" width="300" height="17"/>
+                                                            <rect key="frame" x="1" y="1" width="305" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="weV-zO-3fw">
@@ -826,7 +826,7 @@ CA
                                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSActionTemplate" id="Y4b-b2-vKq"/>
                                                                 </imageView>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WGL-W1-eYT">
-                                                                    <rect key="frame" x="25" y="0.0" width="275" height="17"/>
+                                                                    <rect key="frame" x="25" y="0.0" width="280" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="Ccg-HI-2ee">
                                                                         <font key="font" metaFont="system"/>
@@ -858,7 +858,7 @@ CA
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView identifier="pageCell" id="QLp-bQ-wmn">
-                                                            <rect key="frame" x="304" y="1" width="300" height="17"/>
+                                                            <rect key="frame" x="309" y="1" width="300" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tvL-iX-MLA">
@@ -877,7 +877,7 @@ CA
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="feedColumn" width="289" minWidth="10" maxWidth="3.4028234663852886e+38" id="YGn-Km-xgD">
+                                                <tableColumn identifier="feedColumn" width="280" minWidth="10" maxWidth="3.4028234663852886e+38" id="YGn-Km-xgD">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Feed URL">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -890,11 +890,11 @@ CA
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView identifier="feedCell" id="Z0u-Bn-WnP">
-                                                            <rect key="frame" x="607" y="1" width="289" height="17"/>
+                                                            <rect key="frame" x="612" y="1" width="284" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yTw-6R-OZM">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="289" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="284" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="YT5-sD-SZg">
                                                                         <font key="font" metaFont="system"/>
@@ -921,7 +921,7 @@ CA
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <tableHeaderView key="headerView" id="xqd-er-Qxv">
+                                <tableHeaderView key="headerView" wantsLayer="YES" id="xqd-er-Qxv">
                                     <rect key="frame" x="0.0" y="0.0" width="898" height="25"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
@@ -944,8 +944,8 @@ CA
         </scene>
     </scenes>
     <resources>
-        <image name="NSActionTemplate" width="14" height="14"/>
-        <image name="NSAddTemplate" width="11" height="11"/>
-        <image name="newFolder" width="19" height="19"/>
+        <image name="NSActionTemplate" width="20" height="20"/>
+        <image name="folder.badge.plus" catalog="system" width="19" height="14"/>
+        <image name="plus" catalog="system" width="14" height="13"/>
     </resources>
 </document>

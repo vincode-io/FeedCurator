@@ -126,19 +126,14 @@ extension ViewController: NSOutlineViewDelegate {
 			return []
 		}
 		
-		let contentsType = draggedFeedContentsType(info.draggingSource, draggedEntries)
-
-		switch contentsType {
-		case .singleNonLocal:
+		if (info.draggingSource as AnyObject) === outlineView {
+			return .move
+		} else {
 			if draggedEntries.first?.isFolder ?? true {
 				return []
 			} else {
 				return .copy
 			}
-		case .singleLocal:
-			return .move
-		default:
-			return []
 		}
 	}
 	
@@ -147,65 +142,32 @@ extension ViewController: NSOutlineViewDelegate {
 			return false
 		}
 		
-		let contentsType = draggedFeedContentsType(info.draggingSource, draggedEntries)
-		
-		switch contentsType {
-		case .singleNonLocal:
-			return acceptSingleNonLocalEntryDrop(outlineView, draggedEntries.first!, parent: item as? OPMLEntry, index)
-		case .singleLocal:
-			return acceptSingleLocalEntryDrop(outlineView, draggedEntries.first!, parent: item as? OPMLEntry, index)
-		default:
-			return false
+		if (info.draggingSource as AnyObject) === outlineView {
+			acceptLocalDrop(outlineView, draggedEntries, parent: item as? OPMLEntry, index)
+		} else {
+			acceptNonLocalDrop(outlineView, draggedEntries, parent: item as? OPMLEntry, index)
 		}
-
+		
+		return true
 	}
 	
 }
 
 private extension ViewController {
 
-	enum DraggedEntriesContentsType {
-		case empty, singleLocal, singleNonLocal, multipleLocal, multipleNonLocal, mixed
-	}
-	
-	func draggedFeedContentsType(_ draggingSource: Any?, _ draggedEntries: [OPMLEntry]) -> DraggedEntriesContentsType {
-		
-		if draggedEntries.count == 1 {
-			if (draggingSource as AnyObject) === outlineView! {
-				return .singleLocal
-			} else {
-				return .singleNonLocal
+	func acceptNonLocalDrop(_ outlineView: NSOutlineView, _ draggedEntries: [OPMLEntry], parent: OPMLEntry?, _ index: Int) {
+		for entry in draggedEntries {
+			if let feed = entry as? OPMLFeed, let feedURL = feed.feedURL {
+				currentDragData = (parent: parent, index: index)
+				findFeed(feedURL)
 			}
 		}
-		
-		return .empty
-		
 	}
 	
-	func acceptSingleNonLocalEntryDrop(_ outlineView: NSOutlineView, _ draggedEntry: OPMLEntry, parent: OPMLEntry?, _ index: Int) -> Bool {
-		if let feed = draggedEntry as? OPMLFeed, let feedURL = feed.feedURL {
-			currentDragData = (parent: parent, index: index)
-			findFeed(feedURL)
-			return true
-		} else {
-			return false
+	func acceptLocalDrop(_ outlineView: NSOutlineView, _ draggedEntries: [OPMLEntry], parent: OPMLEntry?, _ index: Int) {
+		for foundEntries in draggedEntries.compactMap({ $0.address }).compactMap({ document?.opmlDocument.entry(for: $0) }) {
+			moveEntry(foundEntries, toParent: parent, toChildIndex: index)
 		}
-	}
-	
-	func acceptSingleLocalEntryDrop(_ outlineView: NSOutlineView, _ draggedEntry: OPMLEntry, parent: OPMLEntry?, _ index: Int) -> Bool {
-		
-		guard let address = draggedEntry.address else {
-			assertionFailure()
-			return false
-		}
-		
-		if let lookupEntry = document?.opmlDocument.entry(for: address) {
-			moveEntry(lookupEntry, toParent: parent, toChildIndex: index)
-			return true
-		}
-		
-		return false
-		
 	}
 	
 }

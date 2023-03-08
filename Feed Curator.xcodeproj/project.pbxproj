@@ -142,7 +142,6 @@
 		512BDE28224689DE00CB4159 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		512BDE2A224694E800CB4159 /* Feed Curator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Feed Curator.entitlements"; sourceTree = "<group>"; };
 		51533744224E9BE10024544D /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
-		515337A3224EEFC90024544D /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		5153381A2252BB800024544D /* AppDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDefaults.swift; sourceTree = "<group>"; };
 		518C65A322443C7B00B18604 /* Feed Curator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Feed Curator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		518C65A622443C7B00B18604 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -207,20 +206,11 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		515337A2224EEF990024544D /* Configuration */ = {
-			isa = PBXGroup;
-			children = (
-				515337A3224EEFC90024544D /* Release.xcconfig */,
-			);
-			path = Configuration;
-			sourceTree = "<group>";
-		};
 		518C659A22443C7B00B18604 = {
 			isa = PBXGroup;
 			children = (
 				512BDE2A224694E800CB4159 /* Feed Curator.entitlements */,
 				518C65A522443C7B00B18604 /* FeedCurator */,
-				515337A2224EEF990024544D /* Configuration */,
 				518C65A422443C7B00B18604 /* Products */,
 				518C65ED224577A100B18604 /* RSCore.xcodeproj */,
 				518C65BC22443FF500B18604 /* RSParser.xcodeproj */,
@@ -675,8 +665,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 1.3.1;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = io.vincode.FeedCurator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -685,7 +675,6 @@
 		};
 		518C65B722443C7C00B18604 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 515337A3224EEFC90024544D /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -699,8 +688,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 1.3.1;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = io.vincode.FeedCurator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
