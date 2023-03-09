@@ -323,10 +323,8 @@ extension ViewController {
 		}
 
 		let correctedChildIndex: Int = {
-			guard !(parent?.isFolder ?? true) else { return parent?.entries.count ?? document.opmlDocument.entries.count }
-
 			if childIndex == NSOutlineViewDropOnItemIndex {
-				return 0
+				return parent?.entries.count ?? document.opmlDocument.entries.count
 			} else {
 				return childIndex
 			}
@@ -356,33 +354,24 @@ extension ViewController {
 		let fromParent = outlineView.parent(forItem: entry) as? OPMLEntry
 		let fromChildIndex = outlineView.childIndex(forItem: entry)
 
-		// The first thing we do in this mess is check to see if the item was dropped
-		// on a folder or not.  If it was, we add it at the beginning by setting the
-		// index to zero.  After that we check to see if we are moving stuff inside the
-		// same parent folder or not.  If we are, we have to remove one from the "to"
-		// index, but only if the "from" object is higher up than the "to" object.
 		let correctedToChildIndex: Int = {
-			guard !(toParent?.isFolder ?? true) else { return toParent?.entries.count ?? document.opmlDocument.entries.count }
-
+			var corrected = 0
 			if toChildIndex == NSOutlineViewDropOnItemIndex {
-				return 0
+				corrected = toParent?.entries.count ?? document.opmlDocument.entries.count
 			} else {
-				if toParent == fromParent {
-					if fromChildIndex < toChildIndex {
-						return toChildIndex - 1
-					} else {
-						return toChildIndex
-					}
-				} else {
-					return toChildIndex
-				}
+				corrected = toChildIndex
 			}
+			if fromParent ?? document.opmlDocument == toParent ?? document.opmlDocument && fromChildIndex < corrected {
+				corrected = corrected - 1
+			}
+			return corrected
 		}()
 		
-		// Update the model
-		let realToParent = toParent == nil ? document.opmlDocument : toParent!
-		let realFromParent = fromParent == nil ? document.opmlDocument : fromParent!
-		document.moveEntry(fromParent: realFromParent, fromChildIndex: fromChildIndex, toParent: realToParent, toChildIndex: correctedToChildIndex, entry: entry)
+		document.moveEntry(fromParent: fromParent ?? document.opmlDocument,
+						   fromChildIndex: fromChildIndex,
+						   toParent: toParent ?? document.opmlDocument,
+						   toChildIndex: correctedToChildIndex,
+						   entry: entry)
 		
 		// Update the outline
 		outlineView.moveItem(at: fromChildIndex, inParent: fromParent, to: correctedToChildIndex, inParent: toParent)

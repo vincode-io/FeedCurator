@@ -20,24 +20,24 @@ class OPMLEntry: NSObject, NSPasteboardWriting {
 	var overrideAddress: OPMLEntryAddress?
 	var title: String?
 	var entries = [OPMLEntry]()
-
+	
 	weak var parent: OPMLEntry? {
 		didSet {
 			overrideAddress = nil
 		}
 	}
 	
-	var address: OPMLEntryAddress? {
+	var address: OPMLEntryAddress {
 		if overrideAddress != nil {
-			return overrideAddress
+			return overrideAddress!
 		}
 		if parent != nil {
 			let backwardsAddress = parent!.mapAddress(child: self, workAddress: OPMLEntryAddress())
 			return backwardsAddress.reversed()
 		}
-		return nil
+		return []
 	}
-
+	
 	var isFolder: Bool {
 		return type(of: self) == OPMLEntry.self
 	}
@@ -65,13 +65,13 @@ class OPMLEntry: NSObject, NSPasteboardWriting {
 		
 		let t = title?.rs_stringByEscapingSpecialXMLCharacters() ?? ""
 		var s = "<outline text=\"\(t)\" title=\"\(t)\">\n".rs_string(byPrependingNumberOfTabs: indentLevel)
-
+		
 		for entry in entries {
 			s += entry.makeXML(indentLevel: indentLevel + 1)
 		}
 		
 		s += "</outline>\n".rs_string(byPrependingNumberOfTabs: indentLevel)
-
+		
 		return s
 		
 	}
@@ -85,7 +85,7 @@ class OPMLEntry: NSObject, NSPasteboardWriting {
 		result[Key.title] = title
 		return result
 	}
-
+	
 	static func entries(with pasteboard: NSPasteboard) -> [OPMLEntry]? {
 		
 		guard let items = pasteboard.pasteboardItems else {
@@ -122,7 +122,6 @@ class OPMLEntry: NSObject, NSPasteboardWriting {
 	}
 	
 	func pasteboardPropertyList(forType type: NSPasteboard.PasteboardType) -> Any? {
-		
 		let plist: Any?
 		
 		switch type {
@@ -135,9 +134,12 @@ class OPMLEntry: NSObject, NSPasteboardWriting {
 		}
 		
 		return plist
-		
 	}
-
+	
+	static func == (lhs: OPMLEntry, rhs: OPMLEntry) -> Bool {
+		return lhs.address == rhs.address
+	}
+	
 }
 
 private extension OPMLEntry {
