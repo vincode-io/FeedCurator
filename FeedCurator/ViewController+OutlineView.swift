@@ -40,15 +40,6 @@ extension ViewController: NSOutlineViewDataSource {
 
 extension ViewController: NSOutlineViewDelegate {
 	
-	private static let folderImage: NSImage? = {
-		return NSImage(named: "NSFolder")
-	}()
-	
-	private static let faviconImage: NSImage? = {
-		let path = "/System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/BookmarkIcon.icns"
-		return NSImage(contentsOfFile: path)
-	}()
-
 	func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
 		
 		switch tableColumn?.identifier.rawValue {
@@ -56,12 +47,13 @@ extension ViewController: NSOutlineViewDelegate {
 			if let cell = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "nameCell"), owner: nil) as? NSTableCellView {
 				let entry = item as! OPMLEntry
 				if entry.isFolder {
-					cell.imageView?.image = ViewController.folderImage
+					cell.imageView?.image = NSImage(systemSymbolName: "folder", accessibilityDescription: nil)
 					cell.textField?.isEditable = true
 				} else {
-					cell.imageView?.image = ViewController.faviconImage
+					cell.imageView?.image = NSImage(systemSymbolName: "globe", accessibilityDescription: nil)?.withSymbolConfiguration(.init(pointSize: 14, weight: .light))
 					cell.textField?.isEditable = false
 				}
+				cell.imageView?.contentTintColor = NSColor.controlAccentColor
 				cell.textField?.stringValue = entry.title ?? ""
 				return cell
 			}
